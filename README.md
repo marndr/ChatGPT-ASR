@@ -1,4 +1,4 @@
-# Chat GPT-ASR
+# ChatGPT-ASR
 
 ## Setup
 
@@ -6,7 +6,7 @@
 
 2. Navigate into the project directory:
 ```
-cd Chat GPT-ASR
+cd ChatGPT-ASR
 
 ```
 
