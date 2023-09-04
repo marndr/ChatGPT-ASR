@@ -5,30 +5,19 @@
 1. Clone this repository.
 
 2. Navigate into the project directory:
-```
-cd ChatGPT-ASR
-
-```
-
-3. Create a new virtual environment:
-```
- python -m venv venv
- . venv/bin/activate
- 
+```bash
+cd chat-gpt-asr
 ```
 
-4. Install the requirements:
+3. Create a new virtual environment and install the requirements:
+```bash
+conda env create -n chat-gpt-asr --file requirements.txt
+conda activate chat-gpt-asr
 ```
-pip install -r requirements.txt
 
-```
-
-5. Make a copy of the example environment variables file:
-```
+4. Make a copy of the example environment variables file:
+```bash
 cp .env.example .env
-
 ```
 
-6. Add your API key to the newly created .env file.
-
-
+5. Add your API key to the newly created .env file.
