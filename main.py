@@ -1,14 +1,34 @@
 import os
 import openai
-
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # Set your OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def test_asr_correction():
-    # List of ASR output sentences and their corresponding reference sentences
+def correct_asr_errors(asr_outputs):
+    corrected_outputs = []
+
+    for asr_output in asr_outputs:
+        user_prompt = f"Correct the ASR error in the following sentence: '{asr_output}'"
+
+        # Use ChatGPT to correct ASR error
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Use GPT-3.5 Turbo model
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that corrects ASR errors."},
+                {"role": "user", "content": user_prompt},
+            ]
+        )
+
+        # Extract and store the corrected sentence
+        corrected_sentence = response['choices'][0]['message']['content']
+        corrected_outputs.append(corrected_sentence)
+
+    return corrected_outputs
+
+if __name__ == "__main__":
     asr_outputs = [
         "I prefer tea over coffee.",
         "I prefer see over coffee.",
@@ -32,36 +52,10 @@ def test_asr_correction():
         "I'm going to the gross restore.",
     ]
 
-    # Prompt for ChatGPT to correct ASR errors
-    prompts = [
-        "Correct the ASR error in the following sentence: 'I prefer see over coffee.'",
-        "Is there any ASR error in the sentence: 'I prefer see over coffee.'?",
-    ]
+    corrected_results = correct_asr_errors(asr_outputs)
 
-    for prompt in prompts:
-        for asr_output in asr_outputs:
-            formatted_prompt = prompt.replace(
-                "I prefer see over coffee.", asr_output
-            ).replace(
-                "I prefer tea over coffee.", asr_output
-            )  # Replace example ASR outputs in the prompt
-        
-            # Call OpenAI's GPT-3 model to correct the ASR error
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                prompt=formatted_prompt,
-                temperature=0.6,
-            )
-        
-            # Print the corrected sentence from ChatGPT's response
-            corrected_sentence = response.choices[0].text.strip()
-            print(f"ASR Input: '{asr_output}'")
-            print(f"Prompt: '{formatted_prompt}'")
-            print(f"ChatGPT Response: '{corrected_sentence}'")
-            print("=" * 50)
-
-if __name__ == "__main__":
-    test_asr_correction()
-
-
+    for i, (original, corrected) in enumerate(zip(asr_outputs, corrected_results)):
+        print(f"ASR Input {i + 1}: '{original}'")
+        print(f"Corrected Output {i + 1}: '{corrected}'")
+        print("=" * 50)
 
