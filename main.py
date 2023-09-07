@@ -34,7 +34,7 @@ def test_asr_correction():
 
     # Prompt for ChatGPT to correct ASR errors
     prompts = [
-        "Correct the ASR error in the following sentence: 'I prefer tea over coffee.'",
+        "Correct the ASR error in the following sentence: 'I prefer see over coffee.'",
         "Is there any ASR error in the sentence: 'I prefer see over coffee.'?",
     ]
 
@@ -62,5 +62,6 @@ def test_asr_correction():
 
 if __name__ == "__main__":
     test_asr_correction()
+
 
 
