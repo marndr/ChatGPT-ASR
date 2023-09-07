@@ -18,25 +18,39 @@ def test_asr_correction():
         "I'll beat you at the coffee shop.",
         "He's a professional chef.",
         "He's a professional sheaf.",
+        "I have a black cat.",
+        "I have a black hat.",
+        "The weather is nice today.",
+        "The leather is mice today.",
+        "She plays the piano beautifully.",
+        "She plays the piano duty fully.",
+        "Please pass me the salt.",
+        "Please past me the vault.",
+        "I'll be there in five minutes.",
+        "I'll be their in five minuets.",
+        "I'm going to the grocery store.",
+        "I'm going to the gross restore.",
     ]
 
     # Prompt for ChatGPT to correct ASR errors
     prompts = [
-        "Correct the ASR error in the following sentence: '{}'",
-        "Is there any ASR error in the sentence: '{}'?",
+        "Correct the ASR error in the following sentence: 'I prefer tea over coffee.'",
+        "Is there any ASR error in the sentence: 'I prefer see over coffee.'?",
     ]
-
 
     for prompt in prompts:
         for asr_output in asr_outputs:
-            # Replace '{}' in the prompt with the ASR output sentence
-            formatted_prompt = prompt.format(asr_output)
+            formatted_prompt = prompt.replace(
+                "I prefer see over coffee.", asr_output
+            ).replace(
+                "I prefer tea over coffee.", asr_output
+            )  # Replace example ASR outputs in the prompt
         
             # Call OpenAI's GPT-3 model to correct the ASR error
             response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=formatted_prompt,
-            temperature=0.6,
+                model="text-davinci-003",
+                prompt=formatted_prompt,
+                temperature=0.6,
             )
         
             # Print the corrected sentence from ChatGPT's response
