@@ -31,30 +31,27 @@ def correct_asr_errors(asr_outputs):
 if __name__ == "__main__":
     asr_outputs = [
         "I prefer see over coffee.",
-        "I prefer tea over coffee.",
-        "I need to catch a train to London.",
+        
         "I need to catch a drain to London.",
-        "I'll meet you at the coffee shop.",
+        
         "I'll beat you at the coffee shop.",
-        "He's a professional chef.",
+        
         "He's a professional sheaf.",
-        "I have a black cat.",
-        "I have a black hat.",
-        "The weather is nice today.",
-        "The leather is mice today.",
-        "She plays the piano beautifully.",
-        "She plays the piano duty fully.",
-        "Please pass me the salt.",
-        "Please past me the vault.",
-        "I'll be there in five minutes.",
+        
+        "The leather is nice today.",
+        
+        "The weather is mice today.",
+        
+        "Please pass me the vault.",
+        
         "I'll be their in five minuets.",
-        "I'm going to the grocery store.",
+        
         "I'm going to the gross restore.",
-        "I want to go to the beach.",
+        
         "I won't to go two the beech.",
-        "The sun is shining brightly.",
+        
         "The son is shining brightly.",
-    ]
+]
 
     corrected_results = correct_asr_errors(asr_outputs)
 
@@ -62,4 +59,5 @@ if __name__ == "__main__":
         print(f"ASR Input {i + 1}: '{original}'")
         print(f"Corrected Output {i + 1}: '{corrected}'")
         print("=" * 50)
+
 
