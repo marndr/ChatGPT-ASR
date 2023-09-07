@@ -31,25 +31,15 @@ def correct_asr_errors(asr_outputs):
 if __name__ == "__main__":
     asr_outputs = [
         "I prefer see over coffee.",
-        
         "I need to catch a drain to London.",
-        
         "I'll beat you at the coffee shop.",
-        
         "He's a professional sheaf.",
-        
         "The leather is nice today.",
-        
         "The weather is mice today.",
-        
         "Please pass me the vault.",
-        
         "I'll be their in five minuets.",
-        
         "I'm going to the gross restore.",
-        
         "I won't to go two the beech.",
-        
         "The son is shining brightly.",
 ]
 
