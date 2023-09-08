@@ -10,7 +10,9 @@ def check_asr_errors(asr_outputs):
     asr_results = []
 
     for asr_output in asr_outputs:
-        user_prompt = f"Is there any ASR error in the sentence: '{asr_output}'?"
+        user_prompt = f'''Is there any ASR error in the sentence: '{asr_output}'?
+                      Correct the ASR error in the following sentence: '{asr_output}'.'''
+                      
 
         # Use ChatGPT to check for ASR errors
         response = openai.ChatCompletion.create(
@@ -57,5 +59,4 @@ if __name__ == "__main__":
         print(f"ASR Input {i}: '{original}'")
         print(f"ASR Result {i}: '{result}'")
         print("=" * 50)
-
 
