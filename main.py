@@ -63,8 +63,8 @@ dataset = [
     
 # prompt = "Please correct any ASR errors in the following sentence: {}.  Put your answer into html h1 tag."
 # prompt = "Please correct any ASR errors in the following sentence: {} Put the corrected asr output into an html <h1> tag." 
-# prompt = "Kindly rectify any ASR inaccuracies within the following sentence: '{}' and place the corrected ASR output inside an HTML <h1> tag." # the best
-prompt = "Correct any ASR errors detected in the sentence: '{}', and insert the revised ASR output into an HTML <h1> tag. If there are several valid corrections, present them individually within HTML <h1> tags, ordered by decreasing likelihood."
+prompt = "Kindly rectify any ASR inaccuracies within the following sentence: '{}' and place the corrected ASR output inside an HTML <h1> tag." # the best
+#prompt = "Correct any ASR errors detected in the sentence: '{}', and insert the revised ASR output into an HTML <h1> tag. If there are several valid corrections, present them individually within HTML <h1> tags, ordered by decreasing likelihood."
 
 for i, (asr_output, reference) in enumerate(dataset, 1):
 
