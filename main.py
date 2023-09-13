@@ -1,40 +1,53 @@
 import os
 import openai
 from dotenv import load_dotenv
+import re
+import numpy as np
 
+# Load API key from environment variables
 load_dotenv()
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def correct_outputs(dataset):
-    corrected_outputs = []
+def custom_split(self):
+    return list(filter(None, re.split(r'[ ,.!?]+', self)))
 
-    for asr_output, reference_transcription in dataset:
-        user_prompt = f'''Correct the ASR error in the following sentence: '{asr_output}'
-                      The reference transcription is: '{reference_transcription}'.'''
-                      
-        # Use ChatGPT to correct ASR errors
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant that corrects ASR errors."},
-                {"role": "user", "content": user_prompt},
-            ]
-        )
+def levenshtein_distance_custom(s1, s2, insert_cost=1, delete_cost=1, substitute_cost=1):
+        # s1: reference, s2: hypothesis,
+        s1 = custom_split(s1.lower())
+        s2 = custom_split(s2.lower())
+        m, n = len(s1), len(s2)
+        dp = [[0] * (n+1) for _ in range(m+1)]
 
-        # Extract the corrected output from the model's response
-        corrected_output = response['choices'][0]['message']['content']
-        corrected_outputs.append(corrected_output)
+        for i in range(m + 1):
+            dp[i][0] = i * delete_cost
 
-    return corrected_outputs
+        for j in range(n + 1):
+            dp[0][j] = j * insert_cost
 
-def evaluate_corrected_outputs(dataset, corrected_outputs):
-    num_correct = sum(corrected_output == reference_transcription for corrected_output, (_, reference_transcription) in zip(corrected_outputs, dataset))
-    percentage_correct = (num_correct / len(dataset)) * 100
-    return percentage_correct
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                dp[i][j] = min(
+                    dp[i][j - 1] + insert_cost,                                            # insert cost
+                    dp[i - 1][j] + delete_cost,                                            # delete cost
+                    dp[i - 1][j - 1] + (substitute_cost if s1[i - 1] != s2[j - 1] else 0)  # substitute cost
+                )
+        try:
+            wer = dp[m][n]/m
+        except ZeroDivisionError:
+            wer = dp[m][n]
+        return wer
+        
+def ask_chatgpt(question):
+    # Use ChatGPT to correct ASR errors for a single sentence
+    return openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that corrects ASR errors."},
+            {"role": "user", "content": question},
+        ]
+    )['choices'][0]['message']['content']
 
-if __name__ == "__main__":
-    dataset = [
+dataset = [
         ("I prefer see over coffee.", "I prefer tea over coffee."),
         ("I need to catch a drain to London.", "I need to catch a train to London."),
         ("I'll beat you at the coffee shop.", "I'll meet you at the coffee shop."),
@@ -45,19 +58,29 @@ if __name__ == "__main__":
         ("I'm going to the gross restore.", "I'm going to the grocery store."),
         ("I won't to go two the beech.", "I want to go to the beach."), 
         ("The son is shining brightly in the sky.", "The sun is shining brightly in the sky."),
-        ("The son sets at the beech are always stunting.", "The sun sets at the beach are always stunting.")
+        ("The son sets at the beech are always stunting.", "The sun sets at the beach are always stunning.")
     ]
+    
+# prompt = "Please correct any ASR errors in the following sentence: {}.  Put your answer into html h1 tag."
+# prompt = "Please correct any ASR errors in the following sentence: {} Put the corrected asr output into an html <h1> tag." 
+# prompt = "Kindly rectify any ASR inaccuracies within the following sentence: '{}' and place the corrected ASR output inside an HTML <h1> tag." # the best
+prompt = "Correct any ASR errors detected in the sentence: '{}', and insert the revised ASR output into an HTML <h1> tag. If there are several valid corrections, present them individually within HTML <h1> tags, ordered by decreasing likelihood."
 
-    corrected_outputs = correct_outputs(dataset)
-    percentage_correct = evaluate_corrected_outputs(dataset, corrected_outputs)
+for i, (asr_output, reference) in enumerate(dataset, 1):
 
-    for i, (asr_output, reference_transcription) in enumerate(dataset, 1):
-        corrected_output = corrected_outputs[i - 1]
-        print(f"ASR Input {i}: '{asr_output}'")
-        print(f"Corrected Output {i}: '{corrected_output}'")
-        print(f"Reference Transcription {i}: '{reference_transcription}'")  
-        print("=" * 50)
+    question = prompt.format(asr_output)
+    response = ask_chatgpt(question)
+    
+    print(f"Test {i}")
+    print(f"question: {question}")
+    print(f"raw response: {response}")
+    
+    corrected_asr_output = re.findall('<h1>(.*?)</h1>', response)[0]
+    wer = levenshtein_distance_custom(corrected_asr_output, reference)
+    
+    print(f"Corrected ASR Output:   '{corrected_asr_output}'")
+    print(f"Reference:              '{reference}'")
+    print(f"WER {wer}")
+    print("=" * 50)
 
-    print(f"Percentage Correct: {percentage_correct:.2f}%")
-
-
+    
