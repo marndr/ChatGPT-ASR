@@ -5,6 +5,7 @@ import re
 import numpy as np
 import json
 
+# Load API key from environment variables
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -64,6 +65,7 @@ dataset = [
         ("The son sets at the beech are always stunting.", "The sun sets at the beach are always stunning.")
     ]
 
+f_out = open("results.md", "w")
 for i, (prompt, reference) in enumerate(dataset, 1):
 
     messages =  [  
@@ -74,13 +76,13 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     Do not output any additional text that is not in JSON format. \
     Do not write any explanatory text after outputting the requested JSON.
         """},    
-        {'role':'user', 'content':f'{delimiter}I meet pizza{delimiter}'},   
-        {'role':'assistant', 'content':'[{"response": "I eat pizza", "probability": "0.99"}]'},   
+        {'role':'user', 'content':f'{delimiter}I meet pizza.{delimiter}'},   
+        {'role':'assistant', 'content':'[{"response": "I eat pizza.", "probability": "0.99"}]'},   
         {'role':'user', 'content':f'{delimiter}{prompt}{delimiter}'}
     ]
     corrected_ASR_output = get_completion_from_messages(messages)
     corrected_ASR_output = json.loads(corrected_ASR_output)
-
+    # sort list in-place and returns None
     list.sort(corrected_ASR_output, key=lambda x: x["probability"], reverse=True) 
     
     response = corrected_ASR_output[0]["response"]
@@ -94,4 +96,16 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     print(f"Reference:             {reference}")
     print(f"WER {wer}")
     print("=" * 50)
+
+    f_out.write(f"""
+    ## Test {i}
+    ASR output: {prompt}
+    corrected ASR output:  {response}
+    Reference:             {reference}
+    WER {wer}
+    ---
+    """)
+
+f_out.close()
+
 
