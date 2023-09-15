@@ -1,45 +1,27 @@
-import unittest
-from main import check_asr_errors
+import pytest
+from main import levenshtein_distance_custom
 
-class TestASRErrorChecking(unittest.TestCase):
-    def setUp(self):
-        self.asr_outputs = [
-            "I prefer see over coffee.",
-            "I need to catch a drain to London.",
-            "I'll beat you at the coffee shop.",
-            "He's a professional sheaf.",
-            "The leather is nice today.",
-            "The weather is mice today.",
-            "Please pass me the vault.",
-            "I'll be their in five minuets.",
-            "I'm going to the gross restore.",
-            "I won't to go two the beech.",
-            "The son is shining brightly in the sky.",
-            "The son sets at the beech are always stunting.",
-            "I prefer tea over coffee.",
-            "I need to catch a train to London.",
-            "I'll meet you at the coffee shop.",
-            "He's a professional chef.",
-            "The weather is nice today.",
-            "Please pass me the salt.",
-            "I'll be there in five minutes.",
-            "I'm going to the grocery store.",
-            "I'd like to order a pizza with pepperoni and mushrooms."
-        ]
+def test_levenshtein_distance_custom_same_strings():
+    s1 = "hello"
+    s2 = "hello"
+    result = levenshtein_distance_custom(s1, s2)
+    assert result == 0, "Expected distance between identical strings to be 0"
 
-    def test_asr_error_detection(self):
-        # Test ASR error detection for all ASR outputs
-        asr_results = check_asr_errors(self.asr_outputs)
+def test_levenshtein_distance_custom_insertion():
+    s1 = "hello"
+    s2 = "hellxo"
+    result = levenshtein_distance_custom(s1, s2)
+    assert result == 1, "Expected 1 insertion operation"
 
-        for i, (original, result) in enumerate(zip(self.asr_outputs, asr_results), 1):
-            with self.subTest(i=i):
-                self.assertNotEqual(original, result, f"ASR Input {i}: '{original}' has no error but was flagged as an error.")
-                print(f"ASR Input {i}: '{original}'")
-                print(f"ASR Result {i}: '{result}'")
-                print("=" * 50)
+def test_levenshtein_distance_custom_deletion():
+    s1 = "hello"
+    s2 = "helo"
+    result = levenshtein_distance_custom(s1, s2)
+    assert result == 1, "Expected 1 deletion operation"
 
-if __name__ == "__main__":
-    unittest.main()
-
-
+def test_levenshtein_distance_custom_substitution():
+    s1 = "hello"
+    s2 = "hallo"
+    result = levenshtein_distance_custom(s1, s2)
+    assert result == 1, "Expected 1 substitution operation"
 
