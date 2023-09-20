@@ -14,7 +14,7 @@ def custom_split(self):
     return list(filter(None, re.split(r'[ ,.!?]+', self)))
 
 # adapted from this link:https://github.com/analyticsinmotion/werpy/blob/main/werpy/metrics.py#L98
-def levenshtein_distance_custom(s1, s2, insert_cost=1, delete_cost=1, substitute_cost=1):
+def wer(s1, s2, insert_cost=1, delete_cost=1, substitute_cost=1):
         # Preprocess and split the input strings
         s1 = custom_split(s1.lower())
         s2 = custom_split(s2.lower())
@@ -40,10 +40,10 @@ def levenshtein_distance_custom(s1, s2, insert_cost=1, delete_cost=1, substitute
                 )
         # Calculate Word Error Rate (WER) and handle the case of zero division       
         try:
-            wer = dp[m][n]/m
+            WER = dp[m][n]/m
         except ZeroDivisionError:
-            wer = dp[m][n]
-        return wer
+            WER = dp[m][n]
+        return WER
 
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
@@ -92,14 +92,14 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     
     response = corrected_ASR_output[0]["response"]
 
-    wer = levenshtein_distance_custom(response, reference) 
+    WER = wer(response, reference) 
     
     print(f"Test {i}")
     print(f"ASR output:            {prompt}")
-    # print(f"Suggested corrections: {json.dumps(corrected_ASR_output, indent=2)}")
+    #print(f"Suggested corrections: {json.dumps(corrected_ASR_output, indent=2)}")
     print(f"corrected ASR output:  {response}")
     print(f"Reference:             {reference}")
-    print(f"WER {wer}")
+    print(f"WER {WER}")
     print("=" * 50)
 
     f_out.write(f"""
@@ -107,7 +107,7 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     ASR output: {prompt}
     corrected ASR output:  {response}
     Reference:             {reference}
-    WER {wer}
+    WER {WER}
     ---
     """)
 
