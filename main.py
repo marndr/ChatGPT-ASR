@@ -9,9 +9,6 @@ from jiwer import wer as jiwer_wer, cer as jiwer_cer, mer as jiwer_mer
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Define a custom word split function
-def custom_split(self):
-    return list(filter(None, re.split(r'[ ,.!?]+', self)))
 
 def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(
@@ -20,7 +17,8 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0)
         temperature=temperature,
     )
     return response.choices[0].message["content"]
-
+    
+    
 delimiter = "####"
 dataset = [
     ("I prefer see over coffee.", "I prefer tea over coffee."),
