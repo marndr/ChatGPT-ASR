@@ -3,7 +3,7 @@ import openai
 from dotenv import load_dotenv
 import re
 import json
-from jiwer import wer as jiwer_wer, cer as jiwer_cer, ser as jiwer_ser
+from jiwer import wer as jiwer_wer, cer as jiwer_cer, mer as jiwer_mer
 
 # Load API key 
 load_dotenv()
