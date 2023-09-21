@@ -3,7 +3,7 @@ import openai
 from dotenv import load_dotenv
 import re
 import json
-from jiwer import wer as jiwer_wer, cer as jiwer_cer, mer as jiwer_mer
+from jiwer import wer as jiwer_wer, cer as jiwer_cer
 
 # Load API key 
 load_dotenv()
@@ -60,7 +60,6 @@ for i, (prompt, reference) in enumerate(dataset, 1):
 
     # Calculate CER, SER, and WER using jiwer
     CER = jiwer_cer(response, reference) * 100
-    SER = jiwer_mer(response, reference) * 100
     WER = jiwer_wer(response, reference) * 100
 
     print(f"Test {i}")
@@ -69,7 +68,7 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     print(f"Corrected ASR output:  {response}")
     print(f"Reference:             {reference}")
     print(f"CER: {CER:.2f}%")
-    print(f"SER: {SER:.2f}%")
+    #print(f"SER: {SER:.2f}%")
     print(f"WER: {WER:.2f}%")
     print("=" * 50)
 
