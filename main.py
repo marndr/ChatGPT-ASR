@@ -78,7 +78,6 @@ for i, (prompt, reference) in enumerate(dataset, 1):
     Corrected ASR output:  {response}
     Reference:             {reference}
     CER: {CER:.2f}%
-    SER: {SER:.2f}%
     WER: {WER:.2f}%
     ---
     """)
