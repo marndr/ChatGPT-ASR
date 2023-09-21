@@ -1,3 +1,5 @@
+jiwer==3.0.3
 numpy==1.25.2
 openai==0.28.0
 python-dotenv==1.0.0
+whisper_timestamped==1.12.20
