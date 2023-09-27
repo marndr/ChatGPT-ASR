@@ -18,3 +18,5 @@ build/
 .env
 
 chatgpt.ipynb
+
+.ipynb_checkpoints/
