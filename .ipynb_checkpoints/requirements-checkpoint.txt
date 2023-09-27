@@ -1,3 +1,0 @@
-python==3.10
-openai
-python-dotenv==0.19.2
