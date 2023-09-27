@@ -79,17 +79,19 @@ def transcribe(audio_filename):
 def evaluate(asr_transcription, corrected_asr_transcription, reference_transcription):
 
     # Calculate CER and WER using jiwer for both original and corrected ASR transcriptions
-
+    
     asr_transcription = remove_punctuations(asr_transcription.lower())
     corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
     reference_transcription = remove_punctuations(reference_transcription.lower())
-    
+
+    SER = (corrected_asr_transcription == reference_transcription)*100
+    SER_original = (asr_transcription == reference_transcription)*100
     CER = jiwer_cer(corrected_asr_transcription , reference_transcription) * 100
     WER = jiwer_wer(corrected_asr_transcription , reference_transcription) * 100
     CER_original = jiwer_cer(asr_transcription , reference_transcription) * 100
     WER_original = jiwer_wer(asr_transcription , reference_transcription) * 100
     
-    return WER, WER_original, CER, CER_original
+    return WER, WER_original, CER, CER_original,SER,SER_original
     
  
 def get_messages(asr_transcription, delimiter="####"):

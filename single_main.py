@@ -26,7 +26,7 @@ librispeech_data = read_librispeech_transcriptions(root_folder=root)
 f_out = open("results_whisper.md", "w")
 #f_out = open ("results_dummy.md", "w")
 
-WER_avg , WER_original_avg, CER_avg, CER_original_avg = 0.,0.,0.,0.
+WER_avg , WER_original_avg, CER_avg, CER_original_avg, SER_avg, SER_original_avg = 0.,0.,0.,0.,0.,0.
 count = 0
 
 # comment/uncomment based on dataset
@@ -49,13 +49,15 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     corrected_ASR_output.sort(key=lambda x: x["probability"], reverse=True)
     corrected_asr_transcription = corrected_ASR_output[0]["response"]
     
-    WER, WER_original, CER, CER_original = evaluate(asr_transcription, corrected_asr_transcription, reference_transcription)
+    WER, WER_original, CER, CER_original,SER, SER_original = evaluate(asr_transcription, corrected_asr_transcription, reference_transcription)
     
     count += 1
     WER_avg += WER
     WER_original_avg += WER_original
     CER_avg += CER
     CER_original_avg += CER_original
+    SER_avg += SER
+    SER_original_avg += SER_original
     
     print("---")
     print(f"i: {i}\n")
@@ -66,6 +68,7 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     print(f"CER: {CER:.2f}%    CER(No chatgpt): {CER_original:.2f}%\n")
     #print(f"SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}%")
     print(f"WER: {WER:.2f}%    WER(No chatgpt): {WER_original:.2f}%\n")
+    print(f"SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}%\n")
     print("---")
 
     f_out.write(f"""
@@ -75,6 +78,7 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     Reference transcription:      {reference_transcription}
     CER: {CER:.2f}%    CER(No chatgpt): {CER_original:.2f}%%
     WER: {WER:.2f}%    WER(No chatgpt): {WER_original:.2f}
+    SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}
     ---
 """)
     
@@ -83,16 +87,23 @@ WER_avg /= count
 WER_original_avg /= count
 CER_avg  /= count
 CER_original_avg /= count
+SER_avg /=count
+SER_original_avg /= count
 
 print(f"average WER is {WER_avg}\n")
 print(f"average WER original is {WER_original_avg}\n")
 print(f"average CER is {CER_avg}\n")
 print(f"average CER original is  {CER_original_avg}\n")
+print(f"average SER is {SER_avg}\n")
+print(f"average SER original is  {SER_original_avg}\n")
+
 
 f_out.write(f"average WER is {WER_avg}\n")
 f_out.write(f"average WER original is {WER_original_avg}\n")
 f_out.write(f"average CER is {CER_avg}\n")
 f_out.write(f"average CER original is  {CER_original_avg}\n")
+f_out.write(f"average SER is {SER_avg}\n")
+f_out.write(f"average SER original is  {SER_original_avg}\n")
 
 f_out.close()
 
