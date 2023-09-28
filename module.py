@@ -4,19 +4,6 @@ import whisper_timestamped as whisper
 import json
 from jiwer import wer as jiwer_wer, cer as jiwer_cer
 
-  
-def chatgpt(messages, openai, model="gpt-3.5-turbo", temperature=0.1):
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-    )
-    return response.choices[0].message["content"]
-
-def remove_punctuations(s):
-    l = list(filter(None, re.split(r'[ ,.!?]+', s)))
-    return " ".join(l)
-
 def read_dummy_transcriptions():
     dataset = [
     ("I prefer see over coffee.", "I prefer tea over coffee."),
@@ -33,7 +20,7 @@ def read_dummy_transcriptions():
 ]
     return dataset
 
-    
+
 # Function to read audio filenames and their corresponding transcriptions
 def read_librispeech_transcriptions(root_folder="."):
     data = {}
@@ -69,11 +56,43 @@ def read_librispeech_transcriptions(root_folder="."):
 
     return data
 
+
+def remove_punctuations(s):
+    l = list(filter(None, re.split(r'[ ,.!?]+', s)))
+    return " ".join(l)
+
+
 def transcribe(audio_filename):
     audio = whisper.load_audio(audio_filename)
     model = whisper.load_model("tiny", device="cpu")
     result = whisper.transcribe(model, audio, language="en")
     return result["text"]
+
+  
+def chatgpt(messages, openai, model="gpt-3.5-turbo", temperature=0.1):
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=temperature,
+    )
+    return response.choices[0].message["content"]
+
+
+def get_messages(asr_transcription, delimiter="####"):
+    messages = [
+        {'role': 'system', 'content': f"""You are a helpful assistant that corrects ASR errors. \
+        You will be provided with the ASR output text delimited with {delimiter} characters. \
+        Provide multiple suggestions with the errors in the ASR text being corrected. Provide your output in json format with the \
+        keys: response and probability. response is the text with ASR errors being corrected and probability shows the likelihood of each correction. \
+        Do not correct the grammar in the prompt. \
+        Do not output any additional text that is not in JSON format. \
+        Do not write any explanatory text after outputting the requested JSON.
+            """},
+        {'role': 'user', 'content': f'{delimiter}I meet pizza.{delimiter}'},
+        {'role': 'assistant', 'content': '[{"response": "I eat pizza.", "probability": 0.99}]'},
+        {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
+    ]   
+    return messages
 
 
 def evaluate(asr_transcription, corrected_asr_transcription, reference_transcription):
@@ -94,22 +113,3 @@ def evaluate(asr_transcription, corrected_asr_transcription, reference_transcrip
     return WER, WER_original, CER, CER_original,SER,SER_original
     
  
-def get_messages(asr_transcription, delimiter="####"):
-    messages = [
-        {'role': 'system', 'content': f"""You are a helpful assistant that corrects ASR errors. \
-        You will be provided with the ASR output text delimited with {delimiter} characters. \
-        Provide multiple suggestions with the errors in the ASR text being corrected. Provide your output in json format with the \
-        keys: response and probability. response is the text with ASR errors being corrected and probability shows the likelihood of each correction. \
-        Do not correct the grammar in the prompt. \
-        Do not output any additional text that is not in JSON format. \
-        Do not write any explanatory text after outputting the requested JSON.
-            """},
-        {'role': 'user', 'content': f'{delimiter}I meet pizza.{delimiter}'},
-        {'role': 'assistant', 'content': '[{"response": "I eat pizza.", "probability": 0.99}]'},
-        {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
-    ]   
-    return messages
-
-
-
-
