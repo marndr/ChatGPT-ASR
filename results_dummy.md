@@ -5,6 +5,7 @@
     Reference transcription:      I prefer tea over coffee.
     CER: 0.00%    CER(No chatgpt): 8.33%%
     WER: 0.00%    WER(No chatgpt): 20.00
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 1
@@ -13,6 +14,7 @@
     Reference transcription:      I need to catch a train to London.
     CER: 0.00%    CER(No chatgpt): 3.03%%
     WER: 0.00%    WER(No chatgpt): 12.50
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 2
@@ -21,6 +23,7 @@
     Reference transcription:      I'll meet you at the coffee shop.
     CER: 0.00%    CER(No chatgpt): 6.25%%
     WER: 0.00%    WER(No chatgpt): 14.29
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 3
@@ -29,6 +32,7 @@
     Reference transcription:      He's a professional chef.
     CER: 0.00%    CER(No chatgpt): 8.00%%
     WER: 0.00%    WER(No chatgpt): 25.00
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 4
@@ -37,6 +41,7 @@
     Reference transcription:      The weather is nice today.
     CER: 0.00%    CER(No chatgpt): 4.00%%
     WER: 0.00%    WER(No chatgpt): 20.00
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 5
@@ -45,6 +50,7 @@
     Reference transcription:      Please pass me the salt.
     CER: 0.00%    CER(No chatgpt): 8.33%%
     WER: 0.00%    WER(No chatgpt): 20.00
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 6
@@ -53,6 +59,7 @@
     Reference transcription:      I'll be there in five minutes.
     CER: 0.00%    CER(No chatgpt): 13.79%%
     WER: 0.00%    WER(No chatgpt): 33.33
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 7
@@ -61,6 +68,7 @@
     Reference transcription:      I'm going to the grocery store.
     CER: 0.00%    CER(No chatgpt): 16.67%%
     WER: 0.00%    WER(No chatgpt): 33.33
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 8
@@ -69,6 +77,7 @@
     Reference transcription:      I want to go to the beach.
     CER: 0.00%    CER(No chatgpt): 14.81%%
     WER: 0.00%    WER(No chatgpt): 42.86
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 9
@@ -77,6 +86,7 @@
     Reference transcription:      The sun is shining brightly in the sky.
     CER: 0.00%    CER(No chatgpt): 2.63%%
     WER: 0.00%    WER(No chatgpt): 12.50
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 
     ## Test 10
@@ -85,8 +95,11 @@
     Reference transcription:      The sun sets at the beach are always stunning.
     CER: 0.00%    CER(No chatgpt): 6.67%%
     WER: 0.00%    WER(No chatgpt): 33.33
+    SER: 100.00%    SER(No chatgpt): 0.00
     ---
 average WER is 0.0
 average WER original is 24.28571428571428
 average CER is 0.0
 average CER original is  8.410890930978375
+average SER is 100.0
+average SER original is  0.0
