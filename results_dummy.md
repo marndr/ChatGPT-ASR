@@ -91,14 +91,14 @@
 
     ## Test 10
     ASR transcription:            The son sets at the beech are always stunting.
-    Corrected ASR transcription:  The sunsets at the beach are always stunning.
+    Corrected ASR transcription:  The sun sets at the beach are always stunning.
     Reference transcription:      The sun sets at the beach are always stunning.
-    CER: 2.27%    CER(No chatgpt): 6.67%%
-    WER: 25.00%    WER(No chatgpt): 33.33
-    SER: 100.00%    SER(No chatgpt): 100.00
+    CER: 0.00%    CER(No chatgpt): 6.67%%
+    WER: 0.00%    WER(No chatgpt): 33.33
+    SER: 0.00%    SER(No chatgpt): 100.00
     ---
 
-    CER: 1.00%    CER(No chatgpt): 8.41%%
-    WER: 4.09%    WER(No chatgpt): 24.29
-    SER: 18.18%    SER(No chatgpt): 100.00
+    CER_avg: 0.79%    CER_original_avg: 8.41%%
+    WER_avg: 1.82%    WER_original_avg: 24.29
+    SER_avg: 9.09%    SER_original_avg: 100.00
     ---
