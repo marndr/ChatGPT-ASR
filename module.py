@@ -99,14 +99,15 @@ def get_messages(asr_transcription, delimiter="####"):
         You will be provided with the ASR output text delimited with {delimiter} characters. \
         Provide multiple suggestions with the errors in the ASR text being corrected. Provide your output in json format with the \
         keys: response and probability. response is the text with ASR errors being corrected and probability shows the likelihood of each correction. \
-        Do not correct the grammar in the prompt. \
+        Do not correct the grammar in the transcription. \
+        Do not change the case, for example lower case or upper case, in the transcription. \
         Do not output any additional text that is not in JSON format. \
         Do not write any explanatory text after outputting the requested JSON. \
-        Do not change the grammer of the text.
             """},
-        {'role': 'user', 'content': f'{delimiter}But, Dukalion and Piro were very sad, for they knew that they were the only persons who were left alive in all the land.{delimiter}'},
-        {'role': 'assistant', 'content': '[{"response": "But, Deucalion and Pyrrha were very sad, for they knew that they were the only persons who were left alive in all the land.", "probability": 0.99}]'},
+        {'role': 'user', 'content': f'{delimiter}Hilda watched him from her corner, trembling and scarcely breathing, dark shadows going about her eyes.{delimiter}'},
+        {'role': 'assistant', 'content': '[{"response": "HILDA WATCHED HIM FROM HER CORNER TREMBLING AND SCARCELY BREATHING DARK SHADOWS GROWING ABOUT HER EYES", "probability": 0.99}]'},
         {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
+
     ]   
     return messages
 

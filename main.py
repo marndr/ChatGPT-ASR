@@ -98,9 +98,9 @@ print(f"average SER original is  {SER_original_avg}\n")
 
 
 f_out.write(f"""
-    CER: {CER_avg:.2f}%    CER(No chatgpt): {CER_original_avg:.2f}%%
-    WER: {WER_avg:.2f}%    WER(No chatgpt): {WER_original_avg:.2f}
-    SER: {SER_avg:.2f}%    SER(No chatgpt): {SER_original_avg:.2f}
+    CER_avg: {CER_avg:.2f}%    CER_original_avg: {CER_original_avg:.2f}%%
+    WER_avg: {WER_avg:.2f}%    WER_original_avg: {WER_original_avg:.2f}
+    SER_avg: {SER_avg:.2f}%    SER_original_avg: {SER_original_avg:.2f}
     ---
 """)
 f_out.close()
