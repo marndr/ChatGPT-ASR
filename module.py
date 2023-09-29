@@ -68,6 +68,21 @@ def transcribe(audio_filename):
     result = whisper.transcribe(model, audio, language="en")
     return result["text"]
 
+
+def preprocess_transcription(trans):
+    d={}
+    d["text"]= trans["text"]
+    words=[]
+    for i, seg in enumerate(trans["segments"]):
+        words.extend(seg["words"])
+
+    l=[]
+    for word in words:
+        l.append({"text": word["text"], "confidence": word["confidence"]})
+        
+    d["words"]= l
+    return d
+
   
 def chatgpt(messages, openai, model="gpt-3.5-turbo", temperature=0.1):
     response = openai.ChatCompletion.create(
@@ -86,10 +101,11 @@ def get_messages(asr_transcription, delimiter="####"):
         keys: response and probability. response is the text with ASR errors being corrected and probability shows the likelihood of each correction. \
         Do not correct the grammar in the prompt. \
         Do not output any additional text that is not in JSON format. \
-        Do not write any explanatory text after outputting the requested JSON.
+        Do not write any explanatory text after outputting the requested JSON. \
+        Do not change the grammer of the text.
             """},
-        {'role': 'user', 'content': f'{delimiter}I meet pizza.{delimiter}'},
-        {'role': 'assistant', 'content': '[{"response": "I eat pizza.", "probability": 0.99}]'},
+        {'role': 'user', 'content': f'{delimiter}But, Dukalion and Piro were very sad, for they knew that they were the only persons who were left alive in all the land.{delimiter}'},
+        {'role': 'assistant', 'content': '[{"response": "But, Deucalion and Pyrrha were very sad, for they knew that they were the only persons who were left alive in all the land.", "probability": 0.99}]'},
         {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
     ]   
     return messages
@@ -103,8 +119,8 @@ def evaluate(asr_transcription, corrected_asr_transcription, reference_transcrip
     corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
     reference_transcription = remove_punctuations(reference_transcription.lower())
 
-    SER = (corrected_asr_transcription == reference_transcription)*100
-    SER_original = (asr_transcription == reference_transcription)*100
+    SER = 100 - (corrected_asr_transcription == reference_transcription)*100
+    SER_original = 100 - (asr_transcription == reference_transcription)*100
     CER = jiwer_cer(corrected_asr_transcription , reference_transcription) * 100
     WER = jiwer_wer(corrected_asr_transcription , reference_transcription) * 100
     CER_original = jiwer_cer(asr_transcription , reference_transcription) * 100
