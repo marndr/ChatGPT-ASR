@@ -2,22 +2,21 @@ import os
 import re
 import whisper_timestamped as whisper
 import json
-from jiwer import wer as jiwer_wer, cer as jiwer_cer
 
 def read_dummy_transcriptions():
-    dataset = [
-    ("I prefer see over coffee.", "I prefer tea over coffee."),
-    ("I need to catch a drain to London.", "I need to catch a train to London."),
-    ("I'll beat you at the coffee shop.", "I'll meet you at the coffee shop."),
-    ("He's a professional sheaf.", "He's a professional chef."),
-    ("The leather is nice today.", "The weather is nice today."),
-    ("Please pass me the vault.", "Please pass me the salt."),
-    ("I'll be their in five minuets.", "I'll be there in five minutes."),
-    ("I'm going to the gross restore.", "I'm going to the grocery store."),
-    ("I won't to go two the beech.", "I want to go to the beach."),
-    ("The son is shining brightly in the sky.", "The sun is shining brightly in the sky."),
-    ("The son sets at the beech are always stunting.", "The sun sets at the beach are always stunning.")
-]
+    dataset = {
+    "I prefer see over coffee.": "I prefer tea over coffee.",
+    "I need to catch a drain to London.": "I need to catch a train to London.",
+    "I'll beat you at the coffee shop.": "I'll meet you at the coffee shop.",
+    "He's a professional sheaf.": "He's a professional chef.",
+    "The leather is nice today.": "The weather is nice today.",
+    "Please pass me the vault.": "Please pass me the salt.",
+    "I'll be their in five minuets.": "I'll be there in five minutes.",
+    "I'm going to the gross restore.": "I'm going to the grocery store.",
+    "I won't to go two the beech.": "I want to go to the beach.",
+    "The son is shining brightly in the sky.": "The sun is shining brightly in the sky.",
+    "The son sets at the beech are always stunting.": "The sun sets at the beach are always stunning."
+}
     return dataset
 
 
@@ -114,19 +113,14 @@ def get_messages(asr_transcription, delimiter="####"):
 
 def evaluate(asr_transcription, corrected_asr_transcription, reference_transcription):
 
-    # Calculate CER and WER using jiwer for both original and corrected ASR transcriptions
-    
     asr_transcription = remove_punctuations(asr_transcription.lower())
     corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
     reference_transcription = remove_punctuations(reference_transcription.lower())
 
     SER = 100 - (corrected_asr_transcription == reference_transcription)*100
     SER_original = 100 - (asr_transcription == reference_transcription)*100
-    CER = jiwer_cer(corrected_asr_transcription , reference_transcription) * 100
-    WER = jiwer_wer(corrected_asr_transcription , reference_transcription) * 100
-    CER_original = jiwer_cer(asr_transcription , reference_transcription) * 100
-    WER_original = jiwer_wer(asr_transcription , reference_transcription) * 100
     
-    return WER, WER_original, CER, CER_original,SER,SER_original
+    
+    return SER,SER_original
     
  

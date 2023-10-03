@@ -1,39 +1,50 @@
 from module import chatgpt, \
     read_librispeech_transcriptions, \
-    transcribe, \
-    get_messages, evaluate, read_dummy_transcriptions
+    transcribe, evaluate,\
+    get_messages, remove_punctuations, read_dummy_transcriptions
 from dotenv import load_dotenv
 import json
 import openai
 import os
+import argparse
+from jiwer import compute_measures
 
+
+parser = argparse.ArgumentParser(description="ASR Correction")
+parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
+args = parser.parse_args()
+    
 delimiter = "####"
 
 # Load API key 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
   
+if args.dataset=="librispeech":
+    root = "/home/mnaderi/Documents/thesis/whisperii/LibriSpeech/dev-clean"
+    data = read_librispeech_transcriptions(root_folder=root)
+    f_out = open("results_whisper.md", "w")
+    
+elif args.dataset=="dummy":
+    data = read_dummy_transcriptions()
+    f_out = open ("results_dummy.md", "w")
 
-# Read audio filenames and transcriptions
-root = "/home/mnaderi/Documents/thesis/whisperii/LibriSpeech/dev-clean"
+ref_l = []
+hyp_l= []
+hyp_l_original = []
 
-# comment/uncomment based on dataset
-librispeech_data = read_librispeech_transcriptions(root_folder=root)
-#dummy_data = read_dummy_transcriptions()
-
-# comment/uncomment based on dataset
-f_out = open("results_whisper.md", "w")
-#f_out = open ("results_dummy.md", "w")
-
-WER_avg , WER_original_avg, CER_avg, CER_original_avg, SER_avg, SER_original_avg = 0.,0.,0.,0.,0.,0.
+SER_chatgpt, SER_original = 0.,0.
 count = 0
 
-# comment/uncomment based on dataset
-for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items()):
-#for i, (asr_transcription, reference_transcription) in enumerate(dummy_data):
+for i, (audio_path, reference_transcription) in enumerate(data.items()):
 
-    # comment/uncomment based on dataset
-    asr_transcription  = transcribe(audio_path)
+    if i > 10:
+        break
+        
+    if args.dataset=="librispeech":
+        asr_transcription  = transcribe(audio_path)
+    elif args.dataset == "dummy":
+        asr_transcription  = audio_path
     
     messages = get_messages(asr_transcription, delimiter)
     corrected_ASR_output = chatgpt(messages, openai)
@@ -48,15 +59,17 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     corrected_ASR_output.sort(key=lambda x: x["probability"], reverse=True)
     corrected_asr_transcription = corrected_ASR_output[0]["response"]
     
-    WER, WER_original, CER, CER_original,SER, SER_original = evaluate(asr_transcription, corrected_asr_transcription, reference_transcription)
+    
+    ref_l.append(remove_punctuations(reference_transcription.lower()))
+    hyp_l.append(remove_punctuations(corrected_asr_transcription.lower()))
+    hyp_l_original.append(remove_punctuations(asr_transcription.lower()))
+    
+    SER_chatgpt_, SER_original_ = evaluate(asr_transcription, corrected_asr_transcription, reference_transcription)
     
     count += 1
-    WER_avg += WER
-    WER_original_avg += WER_original
-    CER_avg += CER
-    CER_original_avg += CER_original
-    SER_avg += SER
-    SER_original_avg += SER_original
+    SER_chatgpt += SER_chatgpt_
+    SER_original += SER_original_
+
     
     print("---")
     print(f"i: {i}\n")
@@ -64,10 +77,6 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     # print(f"Suggested corrections: {json.dumps(corrected_ASR_output, indent=2)}")
     print(f"Corrected ASR transcription:  {corrected_asr_transcription}\n")
     print(f"Reference transcription:             {reference_transcription}\n")
-    print(f"CER: {CER:.2f}%    CER(No chatgpt): {CER_original:.2f}%\n")
-    #print(f"SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}%")
-    print(f"WER: {WER:.2f}%    WER(No chatgpt): {WER_original:.2f}%\n")
-    print(f"SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}%\n")
     print("---")
 
     f_out.write(f"""
@@ -75,32 +84,26 @@ for i, (audio_path, reference_transcription) in enumerate(librispeech_data.items
     ASR transcription:            {asr_transcription}
     Corrected ASR transcription:  {corrected_asr_transcription}
     Reference transcription:      {reference_transcription}
-    CER: {CER:.2f}%    CER(No chatgpt): {CER_original:.2f}%%
-    WER: {WER:.2f}%    WER(No chatgpt): {WER_original:.2f}
-    SER: {SER:.2f}%    SER(No chatgpt): {SER_original:.2f}
     ---
 """)
-    
-    
-WER_avg /= count
-WER_original_avg /= count
-CER_avg  /= count
-CER_original_avg /= count
-SER_avg /=count
-SER_original_avg /= count
 
-print(f"average WER is {WER_avg}\n")
-print(f"average WER original is {WER_original_avg}\n")
-print(f"average CER is {CER_avg}\n")
-print(f"average CER original is  {CER_original_avg}\n")
-print(f"average SER is {SER_avg}\n")
-print(f"average SER original is  {SER_original_avg}\n")
 
+chatgpt_corrected_results= compute_measures(hyp_l,ref_l)
+original_results = compute_measures(hyp_l_original, ref_l)
+SER_chatgpt /=count
+SER_original /= count
+
+
+print(f"wer_original is {original_results['wer']:.04f}\n")
+print(f"wer_corrected_chatgpt is {chatgpt_corrected_results['wer']:.04f}\n")
+print(f"SER_original is {SER_original:.04f}\n")
+print(f"SER_corrected_chatgpt is {SER_chatgpt:.04f}\n")
 
 f_out.write(f"""
-    CER_avg: {CER_avg:.2f}%    CER_original_avg: {CER_original_avg:.2f}%%
-    WER_avg: {WER_avg:.2f}%    WER_original_avg: {WER_original_avg:.2f}
-    SER_avg: {SER_avg:.2f}%    SER_original_avg: {SER_original_avg:.2f}
+    wer_original: {original_results["wer"]:.04f}%   wer_corrected_chatgpt {chatgpt_corrected_results["wer"]:.04f}%%
+    SER_original: {SER_original:.04f}%    SER_corrected_chatgpt: {SER_chatgpt:.04f}
     ---
 """)
 f_out.close()
+
+
