@@ -111,7 +111,7 @@ def get_messages(asr_transcription, delimiter="####"):
     return messages
 
 
-def evaluate(asr_transcription, corrected_asr_transcription, reference_transcription):
+def evaluate_SER(asr_transcription, corrected_asr_transcription, reference_transcription):
 
     asr_transcription = remove_punctuations(asr_transcription.lower())
     corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())

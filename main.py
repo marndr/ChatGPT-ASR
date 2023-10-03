@@ -1,6 +1,6 @@
 from module import chatgpt, \
     read_librispeech_transcriptions, \
-    transcribe, evaluate,\
+    transcribe, evaluate_SER,\
     get_messages, remove_punctuations, read_dummy_transcriptions
 from dotenv import load_dotenv
 import json
@@ -64,7 +64,7 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
     hyp_l.append(remove_punctuations(corrected_asr_transcription.lower()))
     hyp_l_original.append(remove_punctuations(asr_transcription.lower()))
     
-    SER_chatgpt_, SER_original_ = evaluate(asr_transcription, corrected_asr_transcription, reference_transcription)
+    SER_chatgpt_, SER_original_ = evaluate_SER(asr_transcription, corrected_asr_transcription, reference_transcription)
     
     count += 1
     SER_chatgpt += SER_chatgpt_
@@ -76,7 +76,7 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
     print(f"ASR transcription:            {asr_transcription}\n")
     # print(f"Suggested corrections: {json.dumps(corrected_ASR_output, indent=2)}")
     print(f"Corrected ASR transcription:  {corrected_asr_transcription}\n")
-    print(f"Reference transcription:             {reference_transcription}\n")
+    print(f"Reference transcription:      {reference_transcription}\n")
     print("---")
 
     f_out.write(f"""
@@ -94,14 +94,16 @@ SER_chatgpt /=count
 SER_original /= count
 
 
-print(f"wer_original is {original_results['wer']:.04f}\n")
-print(f"wer_corrected_chatgpt is {chatgpt_corrected_results['wer']:.04f}\n")
-print(f"SER_original is {SER_original:.04f}\n")
+print(f"WER_original is          {original_results['wer']:.04f}\n")
+print(f"WER_corrected_chatgpt is {chatgpt_corrected_results['wer']:.04f}\n")
+print(f"SER_original is          {SER_original:.04f}\n")
 print(f"SER_corrected_chatgpt is {SER_chatgpt:.04f}\n")
 
 f_out.write(f"""
-    wer_original: {original_results["wer"]:.04f}%   wer_corrected_chatgpt {chatgpt_corrected_results["wer"]:.04f}%%
-    SER_original: {SER_original:.04f}%    SER_corrected_chatgpt: {SER_chatgpt:.04f}
+    WER_original:         {original_results["wer"]:.04f}%    
+    WER_corrected_chatgpt:{chatgpt_corrected_results["wer"]:.04f}%
+    SER_original:         {SER_original:.04f}%    
+    SER_corrected_chatgpt:{SER_chatgpt:.04f}%
     ---
 """)
 f_out.close()
