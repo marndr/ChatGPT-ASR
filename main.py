@@ -39,7 +39,7 @@ count = 0
 
 for i, (audio_path, reference_transcription) in enumerate(data.items()):
 
-    if i > 10:
+    if i > 30:
         break
         
     if args.dataset=="librispeech":
@@ -97,20 +97,20 @@ ser_corrected_chatgpt /=count
 ser_original /= count
 
 
-print(f"WER_original is:          {wer_original:.04f}\n")
-print(f"WER_corrected_chatgpt is: {wer_corrected_chatgpt:.04f}\n")
-print(f"CER_original is:          {cer_original:.04f}\n")
-print(f"CER_corrected_chatgpt is: {cer_corrected_chatgpt:.04f}\n")
-print(f"SER_original is:          {ser_original:.04f}\n")
-print(f"SER_corrected_chatgpt is: {ser_corrected_chatgpt:.04f}\n")
+print(f"WER_original is:           {wer_original:.04f}\n")
+print(f"WER_corrected_chatgpt is:  {wer_corrected_chatgpt:.04f}\n")
+print(f"CER_original is:           {cer_original:.04f}\n")
+print(f"CER_corrected_chatgpt is:  {cer_corrected_chatgpt:.04f}\n")
+print(f"SER_original is:           {ser_original:.04f}\n")
+print(f"SER_corrected_chatgpt is:  {ser_corrected_chatgpt:.04f}\n")
 
 f_out.write(f"""
-    WER_original:         {wer_original:.04f}%    
-    WER_corrected_chatgpt:{wer_corrected_chatgpt:.04f}%
-    CER_original:         {cer_original:.04f}%    
-    CER_corrected_chatgpt:{cer_corrected_chatgpt:.04f}%
-    SER_original:         {ser_original:.04f}%    
-    SER_corrected_chatgpt:{ser_corrected_chatgpt:.04f}%
+    WER_original:           {wer_original:.04f}%    
+    WER_corrected_chatgpt:  {wer_corrected_chatgpt:.04f}%
+    CER_original:           {cer_original:.04f}%    
+    CER_corrected_chatgpt:  {cer_corrected_chatgpt:.04f}%
+    SER_original:           {ser_original:.04f}%    
+    SER_corrected_chatgpt:  {ser_corrected_chatgpt:.04f}%
     ---
 """)
 f_out.close()

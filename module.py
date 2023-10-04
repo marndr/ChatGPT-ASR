@@ -103,8 +103,8 @@ def get_messages(asr_transcription, delimiter="####"):
         Do not output any additional text that is not in JSON format. \
         Do not write any explanatory text after outputting the requested JSON. \
             """},
-        {'role': 'user', 'content': f'{delimiter}Hilda watched him from her corner, trembling and scarcely breathing, dark shadows going about her eyes.{delimiter}'},
-        {'role': 'assistant', 'content': '[{"response": "HILDA WATCHED HIM FROM HER CORNER TREMBLING AND SCARCELY BREATHING DARK SHADOWS GROWING ABOUT HER EYES", "probability": 0.99}]'},
+        {'role': 'user', 'content': f'{delimiter}The day he is coming, said Pomeethias. When Jupiter will send a flood the destroy mankind from the earth.{delimiter}'},
+        {'role': 'assistant', 'content': '[{"response": "THE DAY IS COMING SAID PROMETHEUS WHEN JUPITER WILL SEND A FLOOD TO DESTROY MANKIND FROM THE EARTH", "probability": 0.9}]'},
         {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
 
     ]   

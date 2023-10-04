@@ -19,7 +19,7 @@
 
     ## Test 3
     ASR transcription:            He's a professional sheaf.
-    Corrected ASR transcription:  HE'S A PROFESSIONAL CHEF
+    Corrected ASR transcription:  HE'S A PROFESSIONAL THIEF
     Reference transcription:      He's a professional chef.
     ---
 
@@ -61,12 +61,14 @@
 
     ## Test 10
     ASR transcription:            The son sets at the beech are always stunting.
-    Corrected ASR transcription:  THE SUN SETS AT THE BEACH ARE ALWAYS STUNNING
+    Corrected ASR transcription:  THE SUNSETS AT THE BEACH ARE ALWAYS STUNNING
     Reference transcription:      The sun sets at the beach are always stunning.
     ---
 
-    WER_original:         0.2429%    
-    WER_corrected_chatgpt:0.0143%
-    SER_original:         100.0000%    
-    SER_corrected_chatgpt:9.0909%
+    WER_original:           0.2429%    
+    WER_corrected_chatgpt:  0.0580%
+    CER_original:           0.0813%    
+    CER_corrected_chatgpt:  0.0152%
+    SER_original:           100.0000%    
+    SER_corrected_chatgpt:  27.2727%
     ---
