@@ -1,14 +1,15 @@
 from module import chatgpt, \
     read_librispeech_transcriptions, \
-    transcribe, evaluate_SER,\
-    get_messages, remove_punctuations, read_dummy_transcriptions
+    read_dummy_transcriptions,\
+    transcribe, remove_punctuations,\
+    get_messages, ser
 from dotenv import load_dotenv
 import json
 import openai
 import os
 import argparse
-from jiwer import compute_measures
-
+from jiwer import cer
+from jiwer import wer
 
 parser = argparse.ArgumentParser(description="ASR Correction")
 parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
@@ -33,7 +34,7 @@ ref_l = []
 hyp_l= []
 hyp_l_original = []
 
-SER_chatgpt, SER_original = 0.,0.
+ser_corrected_chatgpt, ser_original = 0.,0.
 count = 0
 
 for i, (audio_path, reference_transcription) in enumerate(data.items()):
@@ -64,11 +65,11 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
     hyp_l.append(remove_punctuations(corrected_asr_transcription.lower()))
     hyp_l_original.append(remove_punctuations(asr_transcription.lower()))
     
-    SER_chatgpt_, SER_original_ = evaluate_SER(asr_transcription, corrected_asr_transcription, reference_transcription)
+    SER_chatgpt_, SER_original_ = ser(asr_transcription, corrected_asr_transcription, reference_transcription)
     
     count += 1
-    SER_chatgpt += SER_chatgpt_
-    SER_original += SER_original_
+    ser_corrected_chatgpt += SER_chatgpt_
+    ser_original += SER_original_
 
     
     print("---")
@@ -88,22 +89,28 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
 """)
 
 
-chatgpt_corrected_results= compute_measures(hyp_l,ref_l)
-original_results = compute_measures(hyp_l_original, ref_l)
-SER_chatgpt /=count
-SER_original /= count
+wer_corrected_chatgpt= wer(hyp_l,ref_l)
+wer_original= wer(hyp_l_original, ref_l)
+cer_corrected_chatgpt=cer(hyp_l,ref_l)
+cer_original = cer(hyp_l_original, ref_l)
+ser_corrected_chatgpt /=count
+ser_original /= count
 
 
-print(f"WER_original is          {original_results['wer']:.04f}\n")
-print(f"WER_corrected_chatgpt is {chatgpt_corrected_results['wer']:.04f}\n")
-print(f"SER_original is          {SER_original:.04f}\n")
-print(f"SER_corrected_chatgpt is {SER_chatgpt:.04f}\n")
+print(f"WER_original is:          {wer_original:.04f}\n")
+print(f"WER_corrected_chatgpt is: {wer_corrected_chatgpt:.04f}\n")
+print(f"CER_original is:          {cer_original:.04f}\n")
+print(f"CER_corrected_chatgpt is: {cer_corrected_chatgpt:.04f}\n")
+print(f"SER_original is:          {ser_original:.04f}\n")
+print(f"SER_corrected_chatgpt is: {ser_corrected_chatgpt:.04f}\n")
 
 f_out.write(f"""
-    WER_original:         {original_results["wer"]:.04f}%    
-    WER_corrected_chatgpt:{chatgpt_corrected_results["wer"]:.04f}%
-    SER_original:         {SER_original:.04f}%    
-    SER_corrected_chatgpt:{SER_chatgpt:.04f}%
+    WER_original:         {wer_original:.04f}%    
+    WER_corrected_chatgpt:{wer_corrected_chatgpt:.04f}%
+    CER_original:         {cer_original:.04f}%    
+    CER_corrected_chatgpt:{cer_corrected_chatgpt:.04f}%
+    SER_original:         {ser_original:.04f}%    
+    SER_corrected_chatgpt:{ser_corrected_chatgpt:.04f}%
     ---
 """)
 f_out.close()
