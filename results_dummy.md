@@ -31,7 +31,7 @@
 
     ## Test 5
     ASR transcription:            Please pass me the vault.
-    Corrected ASR transcription:  PLEASE PASS ME THE VAULT
+    Corrected ASR transcription:  PLEASE PASS ME THE BOLT
     Reference transcription:      Please pass me the salt.
     ---
 
@@ -65,10 +65,10 @@
     Reference transcription:      The sun sets at the beach are always stunning.
     ---
 
-    WER_original:           0.2429%    
-    WER_corrected_chatgpt:  0.0580%
-    CER_original:           0.0813%    
-    CER_corrected_chatgpt:  0.0152%
+    WER_original:           24.2857%    
+    WER_corrected_chatgpt:  5.7971%
+    CER_original:           8.1325%    
+    CER_corrected_chatgpt:  1.5244%
     SER_original:           100.0000%    
     SER_corrected_chatgpt:  27.2727%
     ---

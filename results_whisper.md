@@ -85,7 +85,7 @@
 
     ## Test 14
     ASR transcription:             The honeysequal escaped no better, and the carnation was ready to die of vexation, at finding that her coveted freedom had leveled her to the dirt.
-    Corrected ASR transcription:  THE HONEYSEQUAL ESCAPED NO BETTER AND THE CARNATION WAS READY TO DIE OF VEXATION AT FINDING THAT HER COVETED FREEDOM HAD LEVELED HER TO THE DIRT
+    Corrected ASR transcription:  THE HONEY SUCKLE ESCAPED NO BETTER AND THE CARNATION WAS READY TO DIE OF VEXATION AT FINDING THAT HER COVETED FREEDOM HAD LEVELED HER TO THE DIRT
     Reference transcription:      THE HONEYSUCKLE ESCAPED NO BETTER AND THE CARNATION WAS READY TO DIE OF VEXATION AT FINDING THAT HER COVETED FREEDOM HAD LEVELLED HER TO THE DIRT
     ---
 
@@ -181,14 +181,14 @@
 
     ## Test 30
     ASR transcription:             Go on down the mountain, set Mercury, and as you go, cast the bones of your mother over your shoulders behind you. And with these words, he leapt into the air and with scene no more.
-    Corrected ASR transcription:  GO ON DOWN THE MOUNTAIN SAID MERCURY AND AS YOU GO CAST THE BONES OF YOUR MOTHER OVER YOUR SHOULDERS BEHIND YOU AND WITH THESE WORDS HE LEAPT INTO THE AIR AND WAS SEEN NO MORE
+    Corrected ASR transcription:  GO ON DOWN THE MOUNTAIN SET MERCURY AND AS YOU GO CAST THE BONES OF YOUR MOTHER OVER YOUR SHOULDERS BEHIND YOU AND WITH THESE WORDS HE LEAPT INTO THE AIR AND WAS SEEN NO MORE
     Reference transcription:      GO ON DOWN THE MOUNTAIN SAID MERCURY AND AS YOU GO CAST THE BONES OF YOUR MOTHER OVER YOUR SHOULDERS BEHIND YOU AND WITH THESE WORDS HE LEAPED INTO THE AIR AND WAS SEEN NO MORE
     ---
 
-    WER_original:           0.0592%    
-    WER_corrected_chatgpt:  0.0431%
-    CER_original:           0.0234%    
-    CER_corrected_chatgpt:  0.0152%
+    WER_original:           5.9172%    
+    WER_corrected_chatgpt:  4.5994%
+    CER_original:           2.3407%    
+    CER_corrected_chatgpt:  1.4934%
     SER_original:           58.0645%    
     SER_corrected_chatgpt:  45.1613%
     ---

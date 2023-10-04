@@ -39,8 +39,8 @@ count = 0
 
 for i, (audio_path, reference_transcription) in enumerate(data.items()):
 
-    if i > 30:
-        break
+    #if i > 30:
+        #break
         
     if args.dataset=="librispeech":
         asr_transcription  = transcribe(audio_path)
@@ -89,10 +89,10 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
 """)
 
 
-wer_corrected_chatgpt= wer(hyp_l,ref_l)
-wer_original= wer(hyp_l_original, ref_l)
-cer_corrected_chatgpt=cer(hyp_l,ref_l)
-cer_original = cer(hyp_l_original, ref_l)
+wer_corrected_chatgpt= wer(hyp_l,ref_l) * 100
+wer_original= wer(hyp_l_original, ref_l) * 100
+cer_corrected_chatgpt=cer(hyp_l,ref_l) * 100
+cer_original = cer(hyp_l_original, ref_l) * 100
 ser_corrected_chatgpt /=count
 ser_original /= count
 
