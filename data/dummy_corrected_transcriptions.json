@@ -1,0 +1,57 @@
+[
+  {
+    "asr_transcription": "I prefer see over coffee.",
+    "reference_transcription": "I prefer tea over coffee.",
+    "corrected_asr_transcription": "I PREFER TEA OVER COFFEE"
+  },
+  {
+    "asr_transcription": "I need to catch a drain to London.",
+    "reference_transcription": "I need to catch a train to London.",
+    "corrected_asr_transcription": "I NEED TO CATCH A TRAIN TO LONDON"
+  },
+  {
+    "asr_transcription": "I'll beat you at the coffee shop.",
+    "reference_transcription": "I'll meet you at the coffee shop.",
+    "corrected_asr_transcription": "I'LL MEET YOU AT THE COFFEE SHOP"
+  },
+  {
+    "asr_transcription": "He's a professional sheaf.",
+    "reference_transcription": "He's a professional chef.",
+    "corrected_asr_transcription": "HE'S A PROFESSIONAL THIEF"
+  },
+  {
+    "asr_transcription": "The leather is nice today.",
+    "reference_transcription": "The weather is nice today.",
+    "corrected_asr_transcription": "THE WEATHER IS NICE TODAY"
+  },
+  {
+    "asr_transcription": "Please pass me the vault.",
+    "reference_transcription": "Please pass me the salt.",
+    "corrected_asr_transcription": "PLEASE PASS ME THE VAULT"
+  },
+  {
+    "asr_transcription": "I'll be their in five minuets.",
+    "reference_transcription": "I'll be there in five minutes.",
+    "corrected_asr_transcription": "I'LL BE THERE IN FIVE MINUTES."
+  },
+  {
+    "asr_transcription": "I'm going to the gross restore.",
+    "reference_transcription": "I'm going to the grocery store.",
+    "corrected_asr_transcription": "I'M GOING TO THE GROCERY STORE"
+  },
+  {
+    "asr_transcription": "I won't to go two the beech.",
+    "reference_transcription": "I want to go to the beach.",
+    "corrected_asr_transcription": "I WANT TO GO TO THE BEACH"
+  },
+  {
+    "asr_transcription": "The son is shining brightly in the sky.",
+    "reference_transcription": "The sun is shining brightly in the sky.",
+    "corrected_asr_transcription": "THE SUN IS SHINING BRIGHTLY IN THE SKY"
+  },
+  {
+    "asr_transcription": "The son sets at the beech are always stunting.",
+    "reference_transcription": "The sun sets at the beach are always stunning.",
+    "corrected_asr_transcription": "THE SUNSETS AT THE BEACH ARE ALWAYS STUNNING"
+  }
+]

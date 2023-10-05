@@ -17,6 +17,8 @@ build/
 
 .env
 
-chatgpt.ipynb
+*.ipynb
 
 .ipynb_checkpoints/
+
+src/transcribe_whisper_parallel.py

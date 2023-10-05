@@ -1,7 +1,6 @@
-from module import chatgpt, \
-    read_librispeech_transcriptions, \
+from utils import chatgpt, \
     read_dummy_transcriptions,\
-    transcribe, remove_punctuations,\
+    remove_punctuations,\
     get_messages, ser
 from dotenv import load_dotenv
 import json
@@ -10,6 +9,7 @@ import os
 import argparse
 from jiwer import cer
 from jiwer import wer
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description="ASR Correction")
 parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
@@ -22,31 +22,27 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
   
 if args.dataset=="librispeech":
-    root = "/home/mnaderi/Documents/thesis/whisperii/LibriSpeech/dev-clean"
-    data = read_librispeech_transcriptions(root_folder=root)
-    f_out = open("results_whisper.md", "w")
+    file_name = "results_whisper.md"
+    with open("whisper_transcriptions.json", "r") as f:
+        json_obj=f.read()
+        data=json.loads(json_obj)
     
 elif args.dataset=="dummy":
     data = read_dummy_transcriptions()
-    f_out = open ("results_dummy.md", "w")
+    file_name= "results_dummy.md"
+
+
 
 ref_l = []
 hyp_l= []
 hyp_l_original = []
-
 ser_corrected_chatgpt, ser_original = 0.,0.
 count = 0
 
-for i, (audio_path, reference_transcription) in enumerate(data.items()):
-
-    #if i > 30:
-        #break
+for d in tqdm(data):
+    asr_transcription = d["asr_transcription"]
+    reference_transcription = d["reference_transcription"]
         
-    if args.dataset=="librispeech":
-        asr_transcription  = transcribe(audio_path)
-    elif args.dataset == "dummy":
-        asr_transcription  = audio_path
-    
     messages = get_messages(asr_transcription, delimiter)
     corrected_ASR_output = chatgpt(messages, openai)
     try:
@@ -72,21 +68,21 @@ for i, (audio_path, reference_transcription) in enumerate(data.items()):
     ser_original += SER_original_
 
     
-    print("---")
-    print(f"i: {i}\n")
-    print(f"ASR transcription:            {asr_transcription}\n")
+    #print("---")
+    #print(f"i: {i}\n")
+    #print(f"ASR transcription:            {asr_transcription}\n")
     # print(f"Suggested corrections: {json.dumps(corrected_ASR_output, indent=2)}")
-    print(f"Corrected ASR transcription:  {corrected_asr_transcription}\n")
-    print(f"Reference transcription:      {reference_transcription}\n")
-    print("---")
+    #print(f"Corrected ASR transcription:  {corrected_asr_transcription}\n")
+    #print(f"Reference transcription:      {reference_transcription}\n")
+    #print("---")
 
-    f_out.write(f"""
+    #f_out.write(f"""
     ## Test {i}
-    ASR transcription:            {asr_transcription}
-    Corrected ASR transcription:  {corrected_asr_transcription}
-    Reference transcription:      {reference_transcription}
-    ---
-""")
+    #ASR transcription:            {asr_transcription}
+    #Corrected ASR transcription:  {corrected_asr_transcription}
+    #Reference transcription:      {reference_transcription}
+    #---
+#""")
 
 
 wer_corrected_chatgpt= wer(hyp_l,ref_l) * 100
@@ -104,7 +100,8 @@ print(f"CER_corrected_chatgpt is:  {cer_corrected_chatgpt:.04f}\n")
 print(f"SER_original is:           {ser_original:.04f}\n")
 print(f"SER_corrected_chatgpt is:  {ser_corrected_chatgpt:.04f}\n")
 
-f_out.write(f"""
+with open(file_name, "w") as f:
+    f.write(f"""
     WER_original:           {wer_original:.04f}%    
     WER_corrected_chatgpt:  {wer_corrected_chatgpt:.04f}%
     CER_original:           {cer_original:.04f}%    
@@ -113,6 +110,4 @@ f_out.write(f"""
     SER_corrected_chatgpt:  {ser_corrected_chatgpt:.04f}%
     ---
 """)
-f_out.close()
-
 
