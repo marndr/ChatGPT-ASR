@@ -2,6 +2,7 @@ from utils import remove_punctuations
 import json
 from jiwer import cer, wer
 from tqdm import tqdm
+import argparse
 
 def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
 
@@ -39,7 +40,10 @@ if __name__ == "__main__":
     count = 0
     
     for d in tqdm(data):
-                    
+        
+        if d["corrected_asr_transcription"] is None:
+            continue 
+
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
         hyp_l_original.append(remove_punctuations(d["asr_transcription"].lower()))
@@ -69,7 +73,7 @@ if __name__ == "__main__":
     print(f"SER_original is:           {ser_original:.04f}\n")
     print(f"SER_corrected_chatgpt is:  {ser_corrected_chatgpt:.04f}\n")
     
-    with open("../"+filename, "w") as f:
+    with open("../data/"+filename, "w") as f:
         f.write(f"""
         WER_original:           {wer_original:.04f}%    
         WER_corrected_chatgpt:  {wer_corrected_chatgpt:.04f}%
