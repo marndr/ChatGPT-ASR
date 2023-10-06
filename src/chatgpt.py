@@ -6,6 +6,8 @@ import os
 import argparse
 from utils import read_dummy_transcriptions
 
+import multiprocessing
+
 def chatgpt(messages, openai, model="gpt-3.5-turbo", temperature=0.1):
     response = openai.ChatCompletion.create(
         model=model,
@@ -53,27 +55,34 @@ if __name__ =="__main__":
         data = read_dummy_transcriptions()
         filename = "dummy_corrected_transcriptions.json" 
 
-    l=[]
-    for d in tqdm(data):
+    def get_chatgpt_response(d):
         asr_transcription = d["asr_transcription"]
         reference_transcription = d["reference_transcription"]
-        
         messages = get_messages(asr_transcription, delimiter)
-        corrected_asr_transcription = chatgpt(messages, openai)
         try:
-            corrected_asr_transcription = json.loads(corrected_asr_transcription)
+            corrected_asr_transcription = chatgpt(messages, openai)
+            _ = json.loads(corrected_asr_transcription)
+
         except json.decoder.JSONDecodeError:
-            print("chatgpt seems to fail to produce output in desired format, here is its output: ", corrected_asr_transcription, "original asr transcript: ", asr_transcription)
-            print("skipping this iteration")
-            continue 
-    
-        corrected_asr_transcription = corrected_asr_transcription["text"]
-        l.append({
-        "asr_transcription":asr_transcription,
-        "reference_transcription":reference_transcription,
-        "corrected_asr_transcription": corrected_asr_transcription
-        }) 
+            _ = {"text":None}
+
+        except:
+            _ = {"text":None}
+
+        finally:
+            corrected_asr_transcription = _["text"]  
         
+        # print(f"cpu {multiprocessing.current_process()} is running ...")
+        return {
+                "asr_transcription":asr_transcription,
+                "reference_transcription":reference_transcription,
+                "corrected_asr_transcription": corrected_asr_transcription
+                }
+        
+
+    with multiprocessing.Pool(processes=8) as pool:
+        l = pool.map(get_chatgpt_response, data)
+ 
     with open("../data/"+filename, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
