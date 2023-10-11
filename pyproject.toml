@@ -1,0 +1,4 @@
+[project]
+name = "chat-gpt-asr"
+version = "0.1.0"
+authors = [{name = "Maryam Naderi", email = "maryam.naderi@idiap.ch"}]

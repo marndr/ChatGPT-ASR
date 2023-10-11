@@ -11,8 +11,10 @@ cd chat-gpt-asr
 
 3. Create a new virtual environment and install the requirements:
 ```bash
-conda env create -n chat-gpt-asr --file requirements.txt
+conda create -n chat-gpt-asr python=3.10
 conda activate chat-gpt-asr
+pip install -r requirements.txt
+pip install -e .
 ```
 
 4. Make a copy of the example environment variables file:

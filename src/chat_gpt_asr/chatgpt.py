@@ -4,7 +4,7 @@ import openai
 from tqdm import tqdm
 import os
 import argparse
-from utils import read_dummy_transcriptions
+from chat_gpt_asr.utils import read_dummy_transcriptions
 
 import multiprocessing
 

@@ -1,4 +1,4 @@
-from utils import read_librispeech_transcriptions
+from chat_gpt_asr.utils import read_librispeech_transcriptions
 import json
 
 def transcribe(audio_filename):
