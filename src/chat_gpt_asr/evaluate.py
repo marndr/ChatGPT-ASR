@@ -1,4 +1,4 @@
-from utils import remove_punctuations
+from chat_gpt_asr.utils import remove_punctuations
 import json
 from jiwer import cer, wer
 from tqdm import tqdm
