@@ -32,7 +32,7 @@
   {
     "asr_transcription": "I'll be their in five minuets.",
     "reference_transcription": "I'll be there in five minutes.",
-    "corrected_asr_transcription": "I'LL BE THERE IN FIVE MINUTES."
+    "corrected_asr_transcription": "I'LL BE THERE IN FIVE MINUTES"
   },
   {
     "asr_transcription": "I'm going to the gross restore.",
@@ -42,7 +42,7 @@
   {
     "asr_transcription": "I won't to go two the beech.",
     "reference_transcription": "I want to go to the beach.",
-    "corrected_asr_transcription": "I WANT TO GO TO THE BEACH"
+    "corrected_asr_transcription": "I want to go to the beach."
   },
   {
     "asr_transcription": "The son is shining brightly in the sky.",

@@ -24,13 +24,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.dataset == "librispeech":
-        with open("../data/whisper_corrected_transcriptions.json", "r") as f:
+        with open("../../data/whisper_corrected_transcriptions.json", "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
         filename= "results_whisper.md"    
 
     elif args.dataset == "dummy":
-        with open("../data/dummy_corrected_transcriptions.json", "r") as f:
+        with open("../../data/dummy_corrected_transcriptions.json", "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
         filename= "results_dummy.md"    
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     print(f"SER_original is:           {ser_original:.04f}\n")
     print(f"SER_corrected_chatgpt is:  {ser_corrected_chatgpt:.04f}\n")
     
-    with open("../data/"+filename, "w") as f:
+    with open("../../data/"+filename, "w") as f:
         f.write(f"""
         WER_original:           {wer_original:.04f}%    
         WER_corrected_chatgpt:  {wer_corrected_chatgpt:.04f}%
