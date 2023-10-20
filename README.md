@@ -23,3 +23,13 @@ cp .env.example .env
 ```
 
 5. Add your API key to the newly created .env file.
+
+## Scripts and experiments
+
+### Transcribe data with Whisper
+
+Transcribe the Librispeech `dev-clean` subset with Whisper's `tiny` model and
+save the output in `data/transcriptions/`:
+```bash
+python scripts/transcribe.py
+```
