@@ -1,9 +1,8 @@
 import os
 import re
-import json
 
 def read_dummy_transcriptions():
-    dataset =[ 
+    dataset =[
     {"asr_transcription":"I prefer see over coffee.",
         "reference_transcription": "I prefer tea over coffee."
     },
@@ -81,10 +80,6 @@ def preprocess_transcription(trans):
     l=[]
     for word in words:
         l.append({"text": word["text"], "confidence": word["confidence"]})
-        
+
     d["words"]= l
     return d
-
-
-
- 
