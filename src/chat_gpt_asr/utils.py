@@ -70,16 +70,27 @@ def remove_punctuations(s):
     return " ".join(l)
 
 
-def preprocess_transcription(trans):
-    d={}
-    d["text"]= trans["text"]
-    words=[]
-    for i, seg in enumerate(trans["segments"]):
-        words.extend(seg["words"])
+#def confidence_score_word_level(trans):
+    #d={}
+    #d["text"]= trans["text"]
+    #words=[]
+    #for i, seg in enumerate(trans["segments"]):
+        #words.extend(seg["words"])
 
+    #l=[]
+    #for word in words:
+        #l.append({"text": word["text"], "confidence": word["confidence"]})
+
+    #d["words"]= l
+    #return d
+    
+    
+def confidence_score_sentence_level(trans):
+    d = {}
+    d["text"] = trans["text"]
     l=[]
-    for word in words:
-        l.append({"text": word["text"], "confidence": word["confidence"]})
-
-    d["words"]= l
+    for i, seg in enumerate (trans["segments"]):
+        l.append(seg["confidence"])
+    confidence_score = sum(l)/len(l)
+    d["confidence_score"]=confidence_score
     return d

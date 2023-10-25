@@ -3,7 +3,7 @@ from tqdm import tqdm
 import os
 import sys
 import argparse
-from chat_gpt_asr.utils import read_dummy_transcriptions
+from chat_gpt_asr.utils import read_dummy_transcriptions, confidence_score_sentence_level
 from dotenv import load_dotenv
 import json
 import time
@@ -13,21 +13,36 @@ import concurrent.futures
 #import asyncio
 import traceback
 
+
+# experiment 2
 def get_messages(asr_transcription, delimiter="####"):
     messages = [
-        {'role': 'system', 'content': f"""You are an assisting AI specialized in correcting ASR errors. \
-        You will be presented with an ASR transcription delimited by {delimiter} characters, and your task is to rectify any errors in it. \
-        Please provide your output in JSON format with the key "text." \
-        The text within "text" should be enclosed in double quotation marks. If the text contains any internal quotations, escape them with a backslash (\"). \
-        Do not output any additional text that is not in JSON format. \
-        Do not write any explanatory text after outputting the requested JSON. \
-            """},
-        {'role': 'user', 'content': f'{delimiter}the day he is coming, said Pomeethias. When Jupiter will send a flood the destroy mankind from the earth.{delimiter}'},
-        {'role': 'assistant', 'content': '{"text": "the day is coming said prometheus when jupiter will send a flood to destroy mankind from the earth."}'},
-        {'role': 'user', 'content': f'{delimiter}{asr_transcription}{delimiter}'}
-
-    ]   
+        {
+            'role': 'system',
+            'content': f"""You are a helpful assistant that corrects ASR errors. \
+            You will be provided with the ASR output in JSON format with keys: text and confidence_score. \
+            The text is the ASR transcription for an audio and confidence_score is its level of confidence. \
+            If the confidence_score is low (lower than 0.7), it's very likely that the ASR system made an error in the transcription. \
+            Therefore, your task is to replace low-confidence text in the ASR transcription with better transcription that make sense in the context. \
+            Provide the most the corrected transcription in string format. \
+            Do not change the case, for example, lower case or upper case, in the transcription. \
+            Do not output any additional text that is not the corrected transcription. \
+            Do not write any explanatory text that is not the corrected transcription.
+            """
+        },
+        {
+            'role': 'user',
+            'content': json.dumps({
+                'text': 'Why not allow your silver tuff to luxuriate in a natural manner?',
+                'confidence_score': 0.66
+            })
+        },
+        #{'role': 'assistant', 'content': '{"text": "why not allow your silver tufts to luxuriate in a natural manner?"}'},
+        {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
+        {'role': 'user', 'content': json.dumps(asr_transcription)}
+    ]
     return messages
+
 
 def print_error(error_code):
     exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -45,7 +60,8 @@ def get_chatgpt_response(d):
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
     messages = get_messages(asr_transcription, delimiter)
-
+    #print(messages)
+        
     retries = 5 
     while retries > 0:
         try:
@@ -56,7 +72,7 @@ def get_chatgpt_response(d):
                 request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message["content"]
-            _ = json.loads(corrected_asr_transcription)
+            _ = {"text":corrected_asr_transcription}
             retries = -1
 
         except openai.error.Timeout: # timeout try again a few seconds later
@@ -70,11 +86,11 @@ def get_chatgpt_response(d):
             _ = {"text":None}
             sys.exit(1)
 
-        except json.decoder.JSONDecodeError:
-            print_error(1)
-            print(f"transcription: {asr_transcription}\nChatGPT raw output: {corrected_asr_transcription}\n")
-            _ = {"text":None}
-            retries = -1
+        #except json.decoder.JSONDecodeError:
+        #    print_error(1)
+        #    print(f"transcription: {asr_transcription}\nChatGPT raw output: {corrected_asr_transcription}\n")
+        #    _ = {"text":None}
+        #    retries = -1
 
         except Exception as e:
             print_error(4)
@@ -96,6 +112,7 @@ if __name__ =="__main__":
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
             default="librispeech", help="Select the dataset (librispeech or dummy)")
+    parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
     args = parser.parse_args()
         
     # Load API key 
@@ -104,19 +121,28 @@ if __name__ =="__main__":
     #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
     
     delimiter = "####"
-
+    
+    
     if args.dataset == "librispeech":
-        transcription_file = "../../data/transcriptions/whisper_tiny_librispeech_dev-clean.json"
-        output_file = f"../../data/transcriptions/experiment1/whisper_corrected_transcriptions.json"
+        transcription_file = "../../data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json"  # experiment 2
+        output_file = f"../../results/experiment2/whisper_corrected_transcriptions.json"  # experiment 2
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
             
+        # experiment 2
+        if args.num_data > 0:
+            data = data[:args.num_data]
+        for i,d in enumerate(data):
+            asr_transcription = confidence_score_sentence_level(d["asr_transcription"])
+            reference_transcription= d["reference_transcription"]
+            data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
+            
     elif args.dataset == "dummy":
         data = read_dummy_transcriptions()
-        output_file = f"../../data/transcription/experiment1/dummy_corrected_transcriptions.json" 
+        output_file = f"../../results/experiment2/dummy_corrected_transcriptions.json" 
 
-    # multithread parallelization 
+    ### multithread parallelization 
     l = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         futures = {executor.submit(get_chatgpt_response, item):item for item in data}
@@ -133,11 +159,11 @@ if __name__ =="__main__":
                 traceback.print_tb(exc_traceback)
                 print('%r generated an exception: %s' % (item, exc))
 
-    # asyncio parallelization
+    ### asyncio parallelization
     # loop = asyncio.get_event_loop()
     # l = loop.run_until_complete(asyncio.gather(*(get_chatgpt_response(item) for item in data)))
 
-    # no parallelization
+    ### no parallelization
     # l =[]
     # for d in tqdm(data):
     #     l.append(get_chatgpt_response(d))
@@ -145,5 +171,4 @@ if __name__ =="__main__":
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
-
 

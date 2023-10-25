@@ -6,7 +6,8 @@ import argparse
 
 def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
 
-    asr_transcription = remove_punctuations(asr_transcription.lower())
+    asr_transcription = remove_punctuations(d["asr_transcription"]["text"].lower())
+    
     corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
     reference_transcription = remove_punctuations(reference_transcription.lower())
 
@@ -24,18 +25,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.dataset == "librispeech":
-        with open("../../data/transcriptions/experiment1/whisper_corrected_transcriptions.json", "r") as f:
+        with open("../../results/experiment2/whisper_corrected_transcriptions.json", "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
-        output_filename= "../../data/transcriptions/experiment1/results_whisper.md"    
+        output_filename= "../../results/experiment2/results_whisper.md"    
 
     elif args.dataset == "dummy":
-        with open("../../data/transcriptions/experiment1/results_dummy", "r") as f:
+        with open("../../results/experiment2/results_dummy", "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
-        output_filename= "../../data/transcriptions/experiment1/results_dummy.md"    
-
-   
+        output_filename= "../../results/experiment2/results_dummy.md"    
+  
 
     ref_l, hyp_l, hyp_l_original = [],  [], []
     ser_corrected_chatgpt, ser_original = 0.,0.
@@ -48,9 +48,9 @@ if __name__ == "__main__":
 
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
-        hyp_l_original.append(remove_punctuations(d["asr_transcription"].lower()))
+        hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))
         
-        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"],
+        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"]["text"],
         d["corrected_asr_transcription"],d["reference_transcription"])
     
         count += 1
