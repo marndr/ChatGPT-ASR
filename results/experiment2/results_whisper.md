@@ -1,9 +1,9 @@
 
-        WER_original:           4.7970%    
-        WER_corrected_chatgpt:  4.4199%
-        CER_original:           1.5994%    
-        CER_corrected_chatgpt:  1.5603%
-        SER_original:           52.0000%    
-        SER_corrected_chatgpt:  48.0000%
+        WER_original:           3.6885%    
+        WER_corrected_chatgpt:  4.8980%
+        CER_original:           1.4096%    
+        CER_corrected_chatgpt:  1.7134%
+        SER_original:           40.0000%    
+        SER_corrected_chatgpt:  50.0000%
         ---
     

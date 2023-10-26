@@ -1,42 +1,43 @@
-from chat_gpt_asr.utils import remove_punctuations
+import os
+from chat_gpt_asr.utils import remove_punctuations, ser
 import json
 from jiwer import cer, wer
 from tqdm import tqdm
 import argparse
 
-def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
-
-    asr_transcription = remove_punctuations(d["asr_transcription"]["text"].lower())
-    
-    corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
-    reference_transcription = remove_punctuations(reference_transcription.lower())
-
-    SER = 100 - (corrected_asr_transcription == reference_transcription)*100
-    SER_original = 100 - (asr_transcription == reference_transcription)*100
-    
-    
-    return SER,SER_original
+# experiment 2
+root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
+    parser.add_argument("-e","--experiment", choices = ["experiment-1","experiment-2"])
     args = parser.parse_args()
 
+    if args.experiment == "experiment-1":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root, "results/experiment1/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root, "results/experiment1/results_whisper.md")
+
+    elif args.experiment== "experiment-2":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root, "results/experiment2/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root, "results/experiment2/results_whisper.md")
+
     if args.dataset == "librispeech":
-        with open("../../results/experiment2/whisper_corrected_transcriptions.json", "r") as f:
+        with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
-        output_filename= "../../results/experiment2/results_whisper.md"    
+        output_filename= OUTPUT_FILE  
 
     elif args.dataset == "dummy":
+        raise ValueError
         with open("../../results/experiment2/results_dummy", "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
         output_filename= "../../results/experiment2/results_dummy.md"    
-  
-
+        
+   
     ref_l, hyp_l, hyp_l_original = [],  [], []
     ser_corrected_chatgpt, ser_original = 0.,0.
     count = 0
@@ -48,7 +49,7 @@ if __name__ == "__main__":
 
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
-        hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))
+        hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))  
         
         SER_chatgpt_, SER_original_ = ser(d["asr_transcription"]["text"],
         d["corrected_asr_transcription"],d["reference_transcription"])
