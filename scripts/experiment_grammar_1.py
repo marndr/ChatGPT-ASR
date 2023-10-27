@@ -1,6 +1,4 @@
-
-
-# experiment 2
+# experiment 1
 import argparse
 import json
 import os
@@ -12,11 +10,10 @@ from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_sentence_level, read_dummy_transcriptions
 
 
-
 delimiter = "####"
 CONFIDENCE= False
-TRANSCRIPTION_FILENAME = "../../data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json"  # experiment 2
-CORRECTED_TRANSCRIPTION_FILENAME = f"../../results/experiment1/whisper_corrected_transcriptions.json"  # experiment 2
+TRANSCRIPTION_FILENAME = "../../data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json"  # experiment 1
+CORRECTED_TRANSCRIPTION_FILENAME = f"../../results/experiment1/whisper_corrected_transcriptions.json"  # experiment 1
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [

@@ -5,7 +5,6 @@ from jiwer import cer, wer
 from tqdm import tqdm
 import argparse
 
-# experiment 2
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 
 
@@ -13,7 +12,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
-    parser.add_argument("-e","--experiment", choices = ["experiment-1","experiment-2"])
+    parser.add_argument("-e","--experiment", choices = ["experiment-1","experiment-2"], help = "Select the experiment")
     args = parser.parse_args()
 
     if args.experiment == "experiment-1":

@@ -1,5 +1,3 @@
-
-
 # experiment 2
 import argparse
 import json
@@ -7,8 +5,8 @@ import os
 
 from dotenv import load_dotenv
 import openai
-from chat_gpt_asr.chatgpt import multithread_parallelization
 
+from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_sentence_level, read_dummy_transcriptions
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
