@@ -5,15 +5,16 @@ import os
 
 from dotenv import load_dotenv
 import openai
-from chat_gpt_asr.chatgpt import multithread_parallelization
 
+from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_sentence_level, read_dummy_transcriptions
 
+root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 
 delimiter = "####"
-CONFIDENCE= False
-TRANSCRIPTION_FILENAME = "../../data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json"  # experiment 1
-CORRECTED_TRANSCRIPTION_FILENAME = f"../../results/experiment1/whisper_corrected_transcriptions.json"  # experiment 1
+
+TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean.json") # experiment 1
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/experiment1/whisper_corrected_transcriptions.json")  # experiment 1
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [
@@ -38,8 +39,8 @@ def get_messages_exp1(asr_transcription, delimiter="####"):
     return messages
 
 
-if __name__ =="__main__":  
-    
+if __name__ =="__main__": 
+     
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
             default="librispeech", help="Select the dataset (librispeech or dummy)")
@@ -51,7 +52,7 @@ if __name__ =="__main__":
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
     #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
-    
+
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
         output_file = CORRECTED_TRANSCRIPTION_FILENAME
@@ -64,13 +65,13 @@ if __name__ =="__main__":
 
         # experiment 1
         for i,d in enumerate(data):
-            asr_transcription = confidence_score_sentence_level(d["asr_transcription"],CONFIDENCE) 
+            asr_transcription = d["asr_transcription"]
             reference_transcription= d["reference_transcription"]
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
             
     elif args.dataset == "dummy":
         data = read_dummy_transcriptions()
-        output_file = f"../../results/experiment1/dummy_corrected_transcriptions.json" 
+        output_file = os.path.join(root,"results/experiment1/dummy_corrected_transcriptions.json") 
 
     l= multithread_parallelization(data, get_messages_fn=get_messages_exp1)
  

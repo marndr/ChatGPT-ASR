@@ -12,29 +12,29 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
-    parser.add_argument("-e","--experiment", choices = ["experiment-1","experiment-2"], help = "Select the experiment")
+    parser.add_argument("-e","--experiment", choices = ["experiment_without_confidence","experiment_with_confidence"], help = "Select the experiment")
     args = parser.parse_args()
 
-    if args.experiment == "experiment-1":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root, "results/experiment1/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root, "results/experiment1/results_whisper.md")
+    if args.experiment == "experiment_without_confidence":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_without_chatgpt/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/experiment_without_chatgpt/results_whisper.md")
 
-    elif args.experiment== "experiment-2":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root, "results/experiment2/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root, "results/experiment2/results_whisper.md")
+    elif args.experiment == "experiment_with_confidence":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_with_chatgpt/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/experiment_with_chatgpt/results_whisper.md")
 
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
-        output_filename= OUTPUT_FILE  
+        output_filename= OUTPUT_FILE
 
-    elif args.dataset == "dummy":
-        raise ValueError
-        with open("../../results/experiment2/results_dummy", "r") as f:
-            json_obj=f.read()
-            data=json.loads(json_obj)
-        output_filename= "../../results/experiment2/results_dummy.md"    
+    #elif args.dataset == "dummy":
+        #raise ValueError
+        #with open("../results/experiment_with_chatgpt/results_dummy", "r") as f:
+            #json_obj=f.read()
+            #data=json.loads(json_obj)
+        #output_filename=os.path.join(root,"results/experiment_with_chatgpt/dummy_corrected_transcriptions.json")     
         
    
     ref_l, hyp_l, hyp_l_original = [],  [], []
@@ -45,12 +45,13 @@ if __name__ == "__main__":
         
         if d["corrected_asr_transcription"] is None:
             continue 
-
+            
+        #evaluation for experiment_without_confidence
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
-        hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))  
+        hyp_l_original.append(remove_punctuations(d["asr_transcription"].lower()))  
         
-        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"]["text"],
+        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"],
         d["corrected_asr_transcription"],d["reference_transcription"])
     
         count += 1
