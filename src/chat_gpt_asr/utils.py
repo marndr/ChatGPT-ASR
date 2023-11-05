@@ -85,7 +85,7 @@ def remove_punctuations(s):
     #return d
     
     
-def confidence_score_sentence_level(trans, confidence):
+def confidence_score_sentence_level(trans, confidence = True):
     d = {}
     d["text"] = trans["text"]
     if confidence:
@@ -96,7 +96,6 @@ def confidence_score_sentence_level(trans, confidence):
         confidence_score = sum(l)/len(l)
         d["confidence_score"]=confidence_score
     return d
-
 
 def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
 
@@ -109,3 +108,4 @@ def ser(asr_transcription, corrected_asr_transcription, reference_transcription)
     
     
     return SER,SER_original
+

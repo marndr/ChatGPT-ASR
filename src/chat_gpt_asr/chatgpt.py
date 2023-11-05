@@ -25,7 +25,7 @@ def print_error(error_code):
         traceback.print_tb(exc_traceback)
         
 def get_chatgpt_response(d, get_messages_fn):
-
+    
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
     messages = get_messages_fn(asr_transcription)

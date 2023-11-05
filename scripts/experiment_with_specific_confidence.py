@@ -14,7 +14,7 @@ root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 delimiter = "####"
 CONFIDENCE = True
 TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") # experiment 2
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/experiment2/whisper_corrected_transcriptions.json")  # experiment 2
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/experiment_with_specific_confidence/whisper_corrected_transcriptions.json")  # experiment 2
     
 def get_messages_exp2(asr_transcription, delimiter="####"):
     messages = [
@@ -56,8 +56,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")  
     
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
@@ -75,12 +75,15 @@ if __name__ =="__main__":
             reference_transcription= d["reference_transcription"]
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
             
-    elif args.dataset == "dummy":
-        data = read_dummy_transcriptions()
-        output_file = os.path.join(root,"results/experiment2/dummy_corrected_transcriptions.json") 
+    #elif args.dataset == "dummy":
+        #data = read_dummy_transcriptions()
+        #output_file = os.path.join(root,"results/experiment_with_confidence/dummy_corrected_transcriptions.json") 
 
     l= multithread_parallelization(data, get_messages_fn=get_messages_exp2)
  
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
+        
+        
+        

@@ -13,16 +13,16 @@ root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 
 delimiter = "####"
 
-TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean.json") # experiment 1
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/experiment1/whisper_corrected_transcriptions.json")  # experiment 1
+TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") # experiment 1
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/experiment_without_confidence/whisper_corrected_transcriptions.json")  # experiment 1
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [
         {
             'role': 'system',
             'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You are an assisting AI specialized in correcting ASR errors. \
-            You will be presented with an ASR transcription delimited by {delimiter} characters, and your task is to rectify any errors in it. \
+            You will be presented with an ASR transcription delimited by {delimiter} characters,\
+            and your task is to rectify any errors in it. \
             Provide the most probable corrected transcription in string format. \
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
@@ -65,15 +65,17 @@ if __name__ =="__main__":
 
         # experiment 1
         for i,d in enumerate(data):
-            asr_transcription = d["asr_transcription"]
+            asr_transcription = confidence_score_sentence_level(d["asr_transcription"] , confidence = True) 
             reference_transcription= d["reference_transcription"]
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
             
     elif args.dataset == "dummy":
         data = read_dummy_transcriptions()
-        output_file = os.path.join(root,"results/experiment1/dummy_corrected_transcriptions.json") 
+        output_file = os.path.join(root,"results/experiment_without_confidence/dummy_corrected_transcriptions.json") 
 
     l= multithread_parallelization(data, get_messages_fn=get_messages_exp1)
+ 
+ 
  
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)

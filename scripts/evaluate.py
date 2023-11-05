@@ -16,12 +16,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.experiment == "experiment_without_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_without_chatgpt/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root,"results/experiment_without_chatgpt/results_whisper.md")
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/experiment_without_confidence/results_whisper.md")
 
     elif args.experiment == "experiment_with_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_with_chatgpt/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root,"results/experiment_with_chatgpt/results_whisper.md")
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_with_confidence/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/experiment_with_confidence/results_whisper.md")
 
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
@@ -49,9 +49,9 @@ if __name__ == "__main__":
         #evaluation for experiment_without_confidence
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
-        hyp_l_original.append(remove_punctuations(d["asr_transcription"].lower()))  
+        hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))  
         
-        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"],
+        SER_chatgpt_, SER_original_ = ser(d["asr_transcription"]["text"],
         d["corrected_asr_transcription"],d["reference_transcription"])
     
         count += 1
@@ -86,4 +86,6 @@ if __name__ == "__main__":
         SER_corrected_chatgpt:  {ser_corrected_chatgpt:.04f}%
         ---
     """)
+    
+    
     

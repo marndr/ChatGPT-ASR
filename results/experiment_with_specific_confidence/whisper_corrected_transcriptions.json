@@ -1,0 +1,202 @@
+[
+  {
+    "asr_transcription": {
+      "text": " Your cousin, the wild convolvulus, whom I left in the fields this morning, does no such thing I assure you.",
+      "confidence_score": 0.768
+    },
+    "reference_transcription": "YOUR COUSIN THE WILD CONVOLVULUS WHOM I LEFT IN THE FIELDS THIS MORNING DOES NO SUCH THING I ASSURE YOU",
+    "corrected_asr_transcription": "Your cousin, the wild convolvulus, whom I left in the fields this morning, does not do such a thing, I assure you."
+  },
+  {
+    "asr_transcription": {
+      "text": " He really grieved to see it.",
+      "confidence_score": 0.849
+    },
+    "reference_transcription": "HE REALLY GRIEVED TO SEE IT",
+    "corrected_asr_transcription": "He really grieved to see it."
+  },
+  {
+    "asr_transcription": {
+      "text": " Why not allow your silver tuff to luxuriate in a natural manner?",
+      "confidence_score": 0.66
+    },
+    "reference_transcription": "WHY NOT ALLOW YOUR SILVER TUFTS TO LUXURIATE IN A NATURAL MANNER",
+    "corrected_asr_transcription": "Why not allow your silver tuft to luxuriate in a natural manner?"
+  },
+  {
+    "asr_transcription": {
+      "text": " You surely cannot suppose that in a natural state, you would be forced to climb regularly up one tall bear stick, such as I see you upon now.",
+      "confidence_score": 0.916
+    },
+    "reference_transcription": "YOU SURELY CANNOT SUPPOSE THAT IN A NATURAL STATE YOU WOULD BE FORCED TO CLIMB REGULARLY UP ONE TALL BARE STICK SUCH AS I SEE YOU UPON NOW",
+    "corrected_asr_transcription": "You surely cannot suppose that in a natural state, you would be forced to climb regularly up one tall birch stick, such as I see you upon now."
+  },
+  {
+    "asr_transcription": {
+      "text": " Still, the rose tree stood out that there must be some great advantages in a gardener's care, for she could not pretend to be ignorant of her own superiority to all her wild relations in the woods.",
+      "confidence_score": 0.8969999999999999
+    },
+    "reference_transcription": "STILL THE ROSE TREE STOOD OUT THAT THERE MUST BE SOME GREAT ADVANTAGES IN A GARDENER'S CARE FOR SHE COULD NOT PRETEND TO BE IGNORANT OF HER OWN SUPERIORITY TO ALL HER WILD RELATIONS IN THE WOODS",
+    "corrected_asr_transcription": "Still, the rose tree stood out that there must be some great advantages in a gardener's care, for she could not pretend to be ignorant of her own superiority to all her wild relations in the woods."
+  },
+  {
+    "asr_transcription": {
+      "text": " My young plans require heat, or they would not live, and the pots we are kept in protect us from those cruel, wire worms who delight to destroy our roots.",
+      "confidence_score": 0.869
+    },
+    "reference_transcription": "MY YOUNG PLANTS REQUIRE HEAT OR THEY WOULD NOT LIVE AND THE POTS WE ARE KEPT IN PROTECT US FROM THOSE CRUEL WIRE WORMS WHO DELIGHT TO DESTROY OUR ROOTS",
+    "corrected_asr_transcription": "My young plants require heat, or they would not live, and the pots we are kept in protect us from those cruel wireworms who delight to destroy our roots."
+  },
+  {
+    "asr_transcription": {
+      "text": " What a fuss is made about you, my dear little friends.",
+      "confidence_score": 0.85
+    },
+    "reference_transcription": "WHAT A FUSS IS MADE ABOUT YOU MY DEAR LITTLE FRIENDS",
+    "corrected_asr_transcription": "What a fuss is made about you, my dear little friends."
+  },
+  {
+    "asr_transcription": {
+      "text": " Meanwhile, how fair did it with the flowers?",
+      "confidence_score": 0.874
+    },
+    "reference_transcription": "MEANWHILE HOW FARED IT WITH THE FLOWERS",
+    "corrected_asr_transcription": "Meanwhile, how did it fare with the flowers?"
+  },
+  {
+    "asr_transcription": {
+      "text": " echoed the flowers, tramulously as, with a sort of fearful pleasure, they awaited his approach.",
+      "confidence_score": 0.827
+    },
+    "reference_transcription": "ECHOED THE FLOWERS TREMULOUSLY AS WITH A SORT OF FEARFUL PLEASURE THEY AWAITED HIS APPROACH",
+    "corrected_asr_transcription": "echoed the flowers, tremulously as, with a sort of fearful pleasure, they awaited his approach."
+  },
+  {
+    "asr_transcription": {
+      "text": " Then the wind took another frog around the garden and made up to the large white lily, and who's refined ear he whispered aloud as to the necessity or advantage of her thick, powerful stem being propped up against a stupid ugly stick.",
+      "confidence_score": 0.8063333333333333
+    },
+    "reference_transcription": "THEN THE WIND TOOK ANOTHER FROLIC ROUND THE GARDEN AND MADE UP TO THE LARGE WHITE LILY INTO WHOSE REFINED EAR HE WHISPERED A DOUBT AS TO THE NECESSITY OR ADVANTAGE OF HER THICK POWERFUL STEM BEING PROPPED UP AGAINST A STUPID UGLY STICK",
+    "corrected_asr_transcription": "Then the wind took another frog around the garden and made up to the large white lily, and whose refined ear he whispered aloud as to the necessity or advantage of her thick, powerful stem being propped up against a stupid ugly stick."
+  },
+  {
+    "asr_transcription": {
+      "text": " Oh, that she were once more climbing up the friendly fur pole.",
+      "confidence_score": 0.862
+    },
+    "reference_transcription": "OH THAT SHE WERE ONCE MORE CLIMBING UP THE FRIENDLY FIR POLE",
+    "corrected_asr_transcription": "Oh, that she were once more climbing up the friendly fur pole."
+  },
+  {
+    "asr_transcription": {
+      "text": " Did that lovely creature suppose that nature, who had done so much for her, that the fame of her beauty extended throughout the world, had yet left her so weak and feeble, that she could not support herself in the position most calculated to give her ease and pleasure?",
+      "confidence_score": 0.9533333333333333
+    },
+    "reference_transcription": "DID THAT LOVELY CREATURE SUPPOSE THAT NATURE WHO HAD DONE SO MUCH FOR HER THAT THE FAME OF HER BEAUTY EXTENDED THROUGHOUT THE WORLD HAD YET LEFT HER SO WEAK AND FEEBLE THAT SHE COULD NOT SUPPORT HERSELF IN THE POSITION MOST CALCULATED TO GIVE HER EASE AND PLEASURE",
+    "corrected_asr_transcription": "Did that lovely creature suppose that nature, who had done so much for her, that the fame of her beauty extended throughout the world, had yet left her so weak and feeble, that she could not support herself in the position most calculated to give her ease and pleasure?"
+  },
+  {
+    "asr_transcription": {
+      "text": " Before the day closed, the gardener came whistling from his farm work to look over his pretty charges.",
+      "confidence_score": 0.807
+    },
+    "reference_transcription": "BEFORE THE DAY CLOSED THE GARDENER CAME WHISTLING FROM HIS FARM WORK TO LOOK OVER HIS PRETTY CHARGES",
+    "corrected_asr_transcription": "Before the day closed, the gardener came whistling from his farm work to look over his pretty charges."
+  },
+  {
+    "asr_transcription": {
+      "text": " Making a sort of edging circuit round the garden, he knocked over the convolvulus pole, tore the strips from the stick that held up the white lily, loosed all the carnation flowers from their fascinings, broke the rose tree down and levelled the sweet peas to the ground.",
+      "confidence_score": 0.855
+    },
+    "reference_transcription": "MAKING A SORT OF EDDYING CIRCUIT ROUND THE GARDEN HE KNOCKED OVER THE CONVOLVULUS POLE TORE THE STRIPS FROM THE STICK THAT HELD UP THE WHITE LILY LOOSED ALL THE CARNATION FLOWERS FROM THEIR FASTENINGS BROKE THE ROSE TREE DOWN AND LEVELLED THE SWEET PEAS TO THE GROUND",
+    "corrected_asr_transcription": "Making a sort of edging circuit round the garden, he knocked over the convolvulus pole, tore the strips from the stick that held up the white lily, loosed all the carnation flowers from their fastenings, broke the rose tree down and leveled the sweet peas to the ground."
+  },
+  {
+    "asr_transcription": {
+      "text": " The honeysequal escaped no better, and the carnation was ready to die of vexation, at finding that her coveted freedom had leveled her to the dirt.",
+      "confidence_score": 0.7975
+    },
+    "reference_transcription": "THE HONEYSUCKLE ESCAPED NO BETTER AND THE CARNATION WAS READY TO DIE OF VEXATION AT FINDING THAT HER COVETED FREEDOM HAD LEVELLED HER TO THE DIRT",
+    "corrected_asr_transcription": "The honeysuckle escaped no better, and the carnation was ready to die of vexation, at finding that her coveted freedom had leveled her to the dirt."
+  },
+  {
+    "asr_transcription": {
+      "text": " Indeed, not a flower escaped his mischievous suggestions.",
+      "confidence_score": 0.883
+    },
+    "reference_transcription": "INDEED NOT A FLOWER ESCAPED HIS MISCHIEVOUS SUGGESTIONS",
+    "corrected_asr_transcription": "Indeed, not a flower escaped his mischievous suggestions."
+  },
+  {
+    "asr_transcription": {
+      "text": " weeds mean while sprang up, and a dreary confusion rained in the once ordally and brilliant little garden.",
+      "confidence_score": 0.672
+    },
+    "reference_transcription": "WEEDS MEANWHILE SPRANG UP AND A DREARY CONFUSION REIGNED IN THE ONCE ORDERLY AND BRILLIANT LITTLE GARDEN",
+    "corrected_asr_transcription": "weeds meanwhile sprang up, and a dreary confusion reigned in the once orderly and brilliant little garden."
+  },
+  {
+    "asr_transcription": {
+      "text": " But for the sight that awaited him, he was not prepared at all.",
+      "confidence_score": 0.942
+    },
+    "reference_transcription": "BUT FOR THE SIGHT THAT AWAITED HIM HE WAS NOT PREPARED AT ALL",
+    "corrected_asr_transcription": "But for the sight that awaited him, he was not prepared at all."
+  },
+  {
+    "asr_transcription": {
+      "text": " The mistress had returned, and the young lady was with her, and hurried at once to her favorite garden.",
+      "confidence_score": 0.91
+    },
+    "reference_transcription": "THE MISTRESS HAD RETURNED AND THE YOUNG LADY WAS WITH HER AND HURRIED AT ONCE TO HER FAVOURITE GARDEN",
+    "corrected_asr_transcription": "The mistress had returned, and the young lady was with her, and hurried at once to her favorite garden."
+  },
+  {
+    "asr_transcription": {
+      "text": " In those very early times, there was a man named Dukalian, and he was the son of Prometheus.",
+      "confidence_score": 0.823
+    },
+    "reference_transcription": "IN THOSE VERY EARLY TIMES THERE WAS A MAN NAMED DEUCALION AND HE WAS THE SON OF PROMETHEUS",
+    "corrected_asr_transcription": "In those very early times, there was a man named Dukalian, and he was the son of Prometheus."
+  },
+  {
+    "asr_transcription": {
+      "text": " After Jupiter had bound Prometheus on Mount Caucasus and had sent diseases and cares into the world, men became very, very wicked.",
+      "confidence_score": 0.851
+    },
+    "reference_transcription": "AFTER JUPITER HAD BOUND PROMETHEUS ON MOUNT CAUCASUS AND HAD SENT DISEASES AND CARES INTO THE WORLD MEN BECAME VERY VERY WICKED",
+    "corrected_asr_transcription": "After Jupiter had bound Prometheus on Mount Caucasus and had sent diseases and cares into the world, men became very, very wicked."
+  },
+  {
+    "asr_transcription": {
+      "text": " These men, he said to his mighty company, are nothing but a source of trouble.",
+      "confidence_score": 0.869
+    },
+    "reference_transcription": "THESE MEN HE SAID TO HIS MIGHTY COMPANY ARE NOTHING BUT A SOURCE OF TROUBLE",
+    "corrected_asr_transcription": "These men, he said to his mighty company, are nothing but a source of trouble."
+  },
+  {
+    "asr_transcription": {
+      "text": " In this position she remained until a gentle hand was laid upon her shoulder.",
+      "confidence_score": 0.933
+    },
+    "reference_transcription": "IN THIS POSITION SHE REMAINED UNTIL A GENTLE HAND WAS LAID UPON HER SHOULDER",
+    "corrected_asr_transcription": "In this position she remained until a gentle hand was laid upon her shoulder."
+  },
+  {
+    "asr_transcription": {
+      "text": " But men kept on fighting and robbing, even while the rain was pouring down, and the sea was coming up over the land.",
+      "confidence_score": 0.9630000000000001
+    },
+    "reference_transcription": "BUT MEN KEPT ON FIGHTING AND ROBBING EVEN WHILE THE RAIN WAS POURING DOWN AND THE SEA WAS COMING UP OVER THE LAND",
+    "corrected_asr_transcription": "But men kept on fighting and robbing, even while the rain was pouring down, and the sea was coming up over the land."
+  },
+  {
+    "asr_transcription": {
+      "text": " I'm not thinking about the garden mama, replied the young girl, without lifting up her face. We can plant new flowers and tie up even some of these afresh.",
+      "confidence_score": 0.915
+    },
+    "reference_transcription": "I AM NOT THINKING ABOUT THE GARDEN MAMMA REPLIED THE YOUNG GIRL WITHOUT LIFTING UP HER FACE WE CAN PLANT NEW FLOWERS AND TIE UP EVEN SOME OF THESE AFRESH",
+    "corrected_asr_transcription": "I'm not thinking about the garden, mama,\" replied the young girl, without lifting up her face. We can plant new flowers and tie up even some of these afresh."
+  }
+]
