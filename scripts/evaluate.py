@@ -12,14 +12,14 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
-    parser.add_argument("-e","--experiment", choices = ["experiment_without_confidence","experiment_with_confidence"], help = "Select the experiment")
+    parser.add_argument("-e","--experiment", choices = ["experiment_without_confidence","experiment_with_specific_confidence"], help = "Select the experiment")
     args = parser.parse_args()
 
     if args.experiment == "experiment_without_confidence":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
         OUTPUT_FILE = os.path.join(root,"results/experiment_without_confidence/results_whisper.md")
 
-    elif args.experiment == "experiment_with_confidence":
+    elif args.experiment == "experiment_with_specific_confidence":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_with_confidence/whisper_corrected_transcriptions.json")
         OUTPUT_FILE = os.path.join(root,"results/experiment_with_confidence/results_whisper.md")
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         #output_filename=os.path.join(root,"results/experiment_with_chatgpt/dummy_corrected_transcriptions.json")     
         
    
-    ref_l, hyp_l, hyp_l_original = [],  [], []
+    ref_l, hyp_l, hyp_l_original = [], [], []
     ser_corrected_chatgpt, ser_original = 0.,0.
     count = 0
     

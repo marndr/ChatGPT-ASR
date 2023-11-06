@@ -1,7 +1,7 @@
 import os
 from chat_gpt_asr.utils import remove_punctuations, ser
 import json
-from jiwer import cer, wer
+import jiwer 
 from tqdm import tqdm
 import argparse
 
@@ -16,56 +16,48 @@ with open(l , "r") as f:
 
         
 def evaluate_with_thresh(items, thresh):
-    total_wer = 0
-    total_cer = 0
-    total_ser = 0
-    total_count = 0
- 
+    hyp_l, ref_l = [], []
+   
     for item in items:
         
-        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
-        corrected_asr_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
-        reference_transcription = remove_punctuations(item["reference_transcription"].lower())
-        confidence = item["asr_transcription"]["confidence_score"]  
+        if item["corrected_asr_transcription"] is None:
+            continue 
+           
+
+        asr_transcription = item["asr_transcription"]["text"]
+        confidence = item["asr_transcription"]["confidence_score"] 
+        ref_transcription = item["reference_transcription"]  
+        cor_transcription = item ["corrected_asr_transcription"]
         
+        # remove punc and lower
+        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
+        ref_transcription = remove_punctuations(item["reference_transcription"].lower())
+        cor_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
+        
+        ref_l.append(ref_transcription)
+        
+        # check confidence and append the suitable value to hyp_l       
         if confidence < thresh:
-            Wer = wer([reference_transcription], [corrected_asr_transcription])
-            Cer = cer([reference_transcription], [corrected_asr_transcription])
-            #Ser = ser(reference_transcription, corrected_asr_transcription)
-            Ser = 0
-        else:
-            Wer = wer([reference_transcription],[ asr_transcription])
-            Cer = cer([reference_transcription], [asr_transcription])
-            #Ser = ser(reference_transcription, asr_transcription)
-            Ser = 0
+            hyp_l.append(cor_transcription)
             
-        total_wer += Wer
-        total_cer += Cer
-        total_ser += Ser
-        total_count += 1
+        else:
+            hyp_l.append(asr_transcription)
+            
+    wer = jiwer.wer(hyp_l, ref_l) * 100
+    cer = jiwer.cer(hyp_l , ref_l) * 100
     
-    if total_count > 0:
-        avg_wer = 100 *(total_wer / total_count)
-        avg_cer = 100 *(total_cer / total_count)
-        avg_ser = 100 *(total_ser / total_count)
-    else:
-        avg_wer = 0
-        avg_cer = 0
-        avg_ser = 0
-    
-    return avg_wer, avg_cer, avg_ser
+    return wer, cer
 
 
 thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 results = []
 
 for thresh in thresholds:
-    Wer, Cer, Ser = evaluate_with_thresh(data, thresh)
+    Wer, Cer = evaluate_with_thresh(data, thresh)
     results.append({
         "thresh":thresh,
         "wer": Wer,
-        "cer": Cer,
-        "ser": Ser   
+        "cer": Cer   
     })
 
 # Sort results based on WER
@@ -74,7 +66,7 @@ results.sort(key=lambda x: x["wer"])
 # Print results
 for result in results:
     
-    print(f'Threshold: {result["thresh"], result["wer"], result["cer"], result["ser"]}')
+    print(f'Threshold: {result["thresh"]:.02f}, {result["wer"]:.02f}, {result["cer"]:.02f}')
 
 
 
@@ -82,6 +74,7 @@ for result in results:
 with open(OUTPUT_FILE, 'w') as f:
     json_obj = json.dumps(results , indent = 2)
     f.write(json_obj)
+
 
 
 
