@@ -4,7 +4,7 @@ import json
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 l=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/histogram_plot.png")
+OUTPUT_FILE = os.path.join(root,"results/experiment_finding_best_confidence/histogram_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

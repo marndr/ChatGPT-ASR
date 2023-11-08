@@ -4,10 +4,12 @@ import json
 import jiwer 
 from tqdm import tqdm
 import argparse
+import matplotlib.pyplot as plt
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 l=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
 OUTPUT_FILE = os.path.join(root,"results/experiment_finding_best_confidence/results_whisper.md")
+output_file = os.path.join(root,"results/experiment_finding_best_confidence/Wer_versus_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -52,6 +54,7 @@ def evaluate_with_thresh(items, thresh):
 thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
 results = []
 
+
 for thresh in thresholds:
     Wer, Cer = evaluate_with_thresh(data, thresh)
     results.append({
@@ -59,6 +62,21 @@ for thresh in thresholds:
         "wer": Wer,
         "cer": Cer   
     })
+
+
+def plot(l):
+
+    x = [dictionary["thresh"] for dictionary in l]
+    y = [dictionary["wer"] for dictionary in l]
+    
+    plt.plot(x, y, "-or", label="Wer")
+    plt.xlabel("confidence")
+    plt.ylabel("Wer")
+    #plt.show()
+    plt.savefig(output_file)
+   
+plot(results)
+
 
 # Sort results based on WER
 results.sort(key=lambda x: x["wer"])
@@ -69,14 +87,10 @@ for result in results:
     print(f'Threshold: {result["thresh"]:.02f}, {result["wer"]:.02f}, {result["cer"]:.02f}')
 
 
-
 # Write the JSON data to a file
 with open(OUTPUT_FILE, 'w') as f:
     json_obj = json.dumps(results , indent = 2)
     f.write(json_obj)
-
-
-
 
 
 
