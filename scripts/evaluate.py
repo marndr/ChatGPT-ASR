@@ -11,30 +11,42 @@ root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
-    parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], default="librispeech", help="Select the dataset (librispeech or dummy)")
-    parser.add_argument("-e","--experiment", choices = ["experiment_without_confidence","experiment_with_specific_confidence"], help = "Select the experiment")
+    parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
+    parser.add_argument("-e","--experiment", choices = ["experiment_without_sentence_confidence","experiment_without_lowest_word_confidence", "experiment_with_specific_confidence", "experiment_without_sentence_confidence_GPT-4","experiment_without_lowest_word_confidence_GPT-4", "experiment_with_specific_confidence_GPT-4"], help = "Select the experiment")
     args = parser.parse_args()
 
-    if args.experiment == "experiment_without_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root,"results/experiment_without_confidence/results_whisper.md")
+    if args.experiment == "experiment_without_sentence_confidence":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/results_whisper.md")
 
+    elif args.experiment == "experiment_without_lowest_word_confidence":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/results_whisper.md")
+        
     elif args.experiment == "experiment_with_specific_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/experiment_with_confidence/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(root,"results/experiment_with_confidence/results_whisper.md")
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-3.5-Turbo/results_with_specific_confidence/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_with_specific_confidence/results_whisper.md")    
+        
+    
+    elif args.experiment == "experiment_without_sentence_confidence_GPT-4":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-4/results_sentence_confidence_GPT-4/results_without_sentence_confidence_GPT-4/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_sentence_confidence_GPT-4/results_without_sentence_confidence_GPT-4/results_whisper.md")
 
+    elif args.experiment == "experiment_without_lowest_word_confidence_GPT-4":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/results_whisper.md")
+    
+    elif args.experiment == "experiment_with_specific_confidence_GPT-4":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(root,"results/results_GPT-4/results_with_specific_confidence_GPT-4/whisper_corrected_transcriptions.json")
+        OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_with_specific_confidence_GPT-4/results_whisper.md")    
+      
+    
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
         output_filename= OUTPUT_FILE
-
-    #elif args.dataset == "dummy":
-        #raise ValueError
-        #with open("../results/experiment_with_chatgpt/results_dummy", "r") as f:
-            #json_obj=f.read()
-            #data=json.loads(json_obj)
-        #output_filename=os.path.join(root,"results/experiment_with_chatgpt/dummy_corrected_transcriptions.json")     
+ 
         
    
     ref_l, hyp_l, hyp_l_original = [], [], []

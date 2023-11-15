@@ -69,6 +69,7 @@ def remove_punctuations(s):
     l = list(filter(None, re.split(r'[ ,.!?]+', s)))
     return " ".join(l)
 
+
 def confidence_score_lowest_word_level(trans):
     d={}
     d["text"]= trans["text"]
@@ -83,6 +84,7 @@ def confidence_score_lowest_word_level(trans):
 
     d["confidence_score"]=lowest
     return d
+
 
 def confidence_score_word_level(trans):
     d={}
