@@ -24,7 +24,7 @@ def print_error(error_code):
     if 3<error_code <= 4:
         traceback.print_tb(exc_traceback)
         
-def get_chatgpt_response(d, get_messages_fn):
+def get_chatgpt_response(d, get_messages_fn, model):
     
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
@@ -35,7 +35,7 @@ def get_chatgpt_response(d, get_messages_fn):
     while retries > 0:
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model=model,
                 messages=messages,
                 temperature=0.1,
                 request_timeout=60
@@ -76,11 +76,11 @@ def get_chatgpt_response(d, get_messages_fn):
             }
 
 
-def multithread_parallelization(data, get_messages_fn, num_workers= 8):
+def multithread_parallelization(data, get_messages_fn, model ="gpt-3.5-turbo", num_workers= 8):
     ### multithread parallelization 
     l = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
-        futures = {executor.submit(get_chatgpt_response, item, get_messages_fn):item for item in data}
+        futures = {executor.submit(get_chatgpt_response, item, get_messages_fn, model):item for item in data}
         for future in tqdm(concurrent.futures.as_completed(futures)):
             item = futures[future]
             try:

@@ -7,9 +7,9 @@ import argparse
 import matplotlib.pyplot as plt
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/experiment_without_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/experiment_finding_best_confidence/results_whisper.md")
-output_file = os.path.join(root,"results/experiment_finding_best_confidence/Wer_versus_confidence_plot.png")
+l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_finding_best_sentence_confidence/results_whisper.md")
+output_file = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_finding_best_sentence_confidence/plots/Wer_versus_sentence_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

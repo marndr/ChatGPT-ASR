@@ -69,20 +69,34 @@ def remove_punctuations(s):
     l = list(filter(None, re.split(r'[ ,.!?]+', s)))
     return " ".join(l)
 
+def confidence_score_lowest_word_level(trans):
+    d={}
+    d["text"]= trans["text"]
+    words=[]
+    for i, seg in enumerate(trans["segments"]):
+        words.extend(seg["words"])
 
-#def confidence_score_word_level(trans):
-    #d={}
-    #d["text"]= trans["text"]
-    #words=[]
-    #for i, seg in enumerate(trans["segments"]):
-        #words.extend(seg["words"])
+    lowest=10000.
+    for word in words:
+    	if word["confidence"] < lowest:
+    		lowest = word["confidence"]
 
-    #l=[]
-    #for word in words:
-        #l.append({"text": word["text"], "confidence": word["confidence"]})
+    d["confidence_score"]=lowest
+    return d
 
-    #d["words"]= l
-    #return d
+def confidence_score_word_level(trans):
+    d={}
+    d["text"]= trans["text"]
+    words=[]
+    for i, seg in enumerate(trans["segments"]):
+        words.extend(seg["words"])
+
+    l=[]
+    for word in words:
+        l.append({"text": word["text"], "confidence": word["confidence"]})
+
+    d["words"]= l
+    return d
     
     
 def confidence_score_sentence_level(trans, confidence = True):
