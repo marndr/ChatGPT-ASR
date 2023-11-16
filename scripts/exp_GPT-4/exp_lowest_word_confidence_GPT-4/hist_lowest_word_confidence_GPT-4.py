@@ -3,8 +3,8 @@ import os
 import json
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-4/results_sentence_confidence_GPT-4/results_without_sentence_confidence_GPT-4/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_sentence_confidence_GPT-4/results_finding_best_sentence_confidence_GPT-4/plots/histogram_sentence_confidence_plot_GPT-4.png")
+l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/histogram_lowest_word_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

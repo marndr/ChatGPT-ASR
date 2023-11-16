@@ -70,7 +70,7 @@ if __name__ =="__main__":
             
     
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1,model = "gpt-3.5-turbo")
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1,model = "gpt-3.5-turbo-1106")
  
  
  

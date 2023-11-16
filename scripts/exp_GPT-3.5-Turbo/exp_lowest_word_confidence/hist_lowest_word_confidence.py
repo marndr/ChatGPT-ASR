@@ -4,7 +4,7 @@ import json
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_finding_best_lowest_word_confidence/plots/histogram_lowest_word_confidence_plot.png")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_find_thresh_lowest_word_confidence/plots/histogram_lowest_word_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

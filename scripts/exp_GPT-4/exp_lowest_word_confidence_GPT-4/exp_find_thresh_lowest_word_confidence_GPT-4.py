@@ -7,9 +7,9 @@ import argparse
 import matplotlib.pyplot as plt
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_finding_best_sentence_confidence/results_whisper.md")
-output_file = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_finding_best_sentence_confidence/plots/Wer_versus_sentence_confidence_plot.png")
+l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/results_whisper.md")
+output_file = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/plots/Wer_versus_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -91,7 +91,4 @@ for result in results:
 with open(OUTPUT_FILE, 'w') as f:
     json_obj = json.dumps(results , indent = 2)
     f.write(json_obj)
-
-
-
 

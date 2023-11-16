@@ -7,9 +7,9 @@ import argparse
 import matplotlib.pyplot as plt
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_finding_best_lowest_word_confidence/results_whisper.md")
-output_file = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_finding_best_lowest_word_confidence/plots/Wer_versus_confidence_plot.png")
+l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/results_whisper.md")
+output_file = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/plots/Wer_versus_sentence_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -48,10 +48,10 @@ def evaluate_with_thresh(items, thresh):
     wer = jiwer.wer(hyp_l, ref_l) * 100
     cer = jiwer.cer(hyp_l , ref_l) * 100
     
-    return wer, cer, hyp_l, hyp_f
+    return wer, cer
 
 
-thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
 results = []
 
 
@@ -91,5 +91,7 @@ for result in results:
 with open(OUTPUT_FILE, 'w') as f:
     json_obj = json.dumps(results , indent = 2)
     f.write(json_obj)
+
+
 
 
