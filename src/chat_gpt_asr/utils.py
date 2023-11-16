@@ -70,7 +70,7 @@ def remove_punctuations(s):
     return " ".join(l)
 
 
-def confidence_score_lowest_word_level(trans):
+def confidence_score_lowest_word_level(trans , confidence = True):
     d={}
     d["text"]= trans["text"]
     words=[]

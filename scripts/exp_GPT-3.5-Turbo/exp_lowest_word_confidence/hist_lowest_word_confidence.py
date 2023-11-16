@@ -21,7 +21,7 @@ for item in items:
 
 
 plt.hist(confidences, bins=20)
-plt.xlabel("lowest word confidence")
+plt.xlabel("lowest-word confidence")
 plt.ylabel("count")
 plt.savefig(OUTPUT_FILE)
 

@@ -13,7 +13,7 @@ root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root,"results/results_GPT-3.5-turbo/results_lowest_word_confidence/results_without_lowest_word/whisper_corrected_transcriptions.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")  
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [
@@ -41,8 +41,8 @@ def get_messages_exp1(asr_transcription, delimiter="####"):
 if __name__ =="__main__": 
      
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
-    parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
-            default="librispeech", help="Select the dataset (librispeech or dummy)")
+    parser.add_argument("-d", "--dataset", choices=["librispeech"], \
+            default="librispeech", help="Select the dataset (librispeech)")
     parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
     args = parser.parse_args()
 
