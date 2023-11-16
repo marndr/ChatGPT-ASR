@@ -81,7 +81,7 @@ def multithread_parallelization(data, get_messages_fn, model ="gpt-3.5-turbo", n
     l = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = {executor.submit(get_chatgpt_response, item, get_messages_fn, model):item for item in data}
-        for future in tqdm(concurrent.futures.as_completed(futures)):
+        for future in concurrent.futures.as_completed(futures):
             item = futures[future]
             try:
                 d = future.result()
