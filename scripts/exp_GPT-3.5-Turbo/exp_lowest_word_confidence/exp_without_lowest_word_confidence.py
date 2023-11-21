@@ -15,7 +15,7 @@ delimiter = "####"
 TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root,"results/results_GPT-3.5-Turbo/results_lowest_word_confidence/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")  
     
-def get_messages_exp1(asr_transcription, delimiter="####"):
+def get_messages_exp(asr_transcription, delimiter="####"):
     messages = [
         {
             'role': 'system',
@@ -70,7 +70,7 @@ if __name__ =="__main__":
             
     
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1,model = "gpt-3.5-turbo-1106")
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp,model = "gpt-3.5-turbo-1106")
  
  
  

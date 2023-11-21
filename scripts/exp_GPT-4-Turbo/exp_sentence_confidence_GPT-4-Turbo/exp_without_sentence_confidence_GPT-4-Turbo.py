@@ -13,7 +13,7 @@ root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
 delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json")
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/results_GPT-4/results_sentence_confidence_GPT-4/results_without_sentence_confidence_GPT-4/whisper_corrected_transcriptions.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/results_GPT-4-Turbo/results_sentence_confidence_GPT-4-Turbo/results_without_sentence_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")  
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [

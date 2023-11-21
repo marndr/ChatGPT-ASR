@@ -70,6 +70,31 @@ def remove_punctuations(s):
     return " ".join(l)
 
 
+def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
+
+    asr_transcription = remove_punctuations(asr_transcription.lower())
+    corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
+    reference_transcription = remove_punctuations(reference_transcription.lower())
+
+    SER = 100 - (corrected_asr_transcription == reference_transcription)*100
+    SER_original = 100 - (asr_transcription == reference_transcription)*100
+ 
+    return SER,SER_original
+ 
+    
+def confidence_score_sentence_level(trans, confidence = True):
+    d = {}
+    d["text"] = trans["text"]
+    if confidence:
+        
+        l=[]
+        for i, seg in enumerate (trans["segments"]):
+            l.append(seg["confidence"])
+        confidence_score = sum(l)/len(l)
+        d["confidence_score"]=confidence_score
+    return d    
+    
+    
 def confidence_score_lowest_word_level(trans , confidence = True):
     d={}
     d["text"]= trans["text"]
@@ -85,8 +110,8 @@ def confidence_score_lowest_word_level(trans , confidence = True):
     d["confidence_score"]=lowest
     return d
 
-
-def confidence_score_word_level(trans):
+    
+def confidence_score_word_level(trans, confidence = True):
     d={}
     d["text"]= trans["text"]
     words=[]
@@ -98,30 +123,6 @@ def confidence_score_word_level(trans):
         l.append({"text": word["text"], "confidence": word["confidence"]})
 
     d["words"]= l
-    return d
+    return d    
     
     
-def confidence_score_sentence_level(trans, confidence = True):
-    d = {}
-    d["text"] = trans["text"]
-    if confidence:
-        
-        l=[]
-        for i, seg in enumerate (trans["segments"]):
-            l.append(seg["confidence"])
-        confidence_score = sum(l)/len(l)
-        d["confidence_score"]=confidence_score
-    return d
-
-def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
-
-    asr_transcription = remove_punctuations(asr_transcription.lower())
-    corrected_asr_transcription = remove_punctuations(corrected_asr_transcription.lower())
-    reference_transcription = remove_punctuations(reference_transcription.lower())
-
-    SER = 100 - (corrected_asr_transcription == reference_transcription)*100
-    SER_original = 100 - (asr_transcription == reference_transcription)*100
-    
-    
-    return SER,SER_original
-

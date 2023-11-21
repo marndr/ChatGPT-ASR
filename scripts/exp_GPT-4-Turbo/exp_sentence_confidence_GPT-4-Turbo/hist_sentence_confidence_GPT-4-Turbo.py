@@ -3,8 +3,8 @@ import os
 import json
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/plots/histogram_lowest_word_confidence_plot.png")
+l=os.path.join(root,"results/results_GPT-4/results_sentence_confidence_GPT-4-Turbo/results_without_sentence_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-4-Turbo/results_sentence_confidence_GPT-4-Turbo/results_find_thresh_sentence_confidence_GPT-4-Turbo/plots/histogram_sentence_confidence_plot_GPT-4.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -21,7 +21,7 @@ for item in items:
 
 
 plt.hist(confidences, bins=20)
-plt.xlabel("lowest-word confidence")
+plt.xlabel("confidence")
 plt.ylabel("count")
 plt.savefig(OUTPUT_FILE)
 

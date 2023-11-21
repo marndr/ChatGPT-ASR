@@ -7,9 +7,9 @@ import argparse
 import matplotlib.pyplot as plt
 
 root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_without_lowest_word_confidence_GPT-4/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/results_whisper.md")
-output_file = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4/results_find_thresh_lowest_word_confidence_GPT-4/plots/Wer_versus_confidence_plot.png")
+l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_without_lowest_word_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_find_thresh_lowest_word_confidence_GPT-4-Turbo/results_whisper.md")
+output_file = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_find_thresh_lowest_word_confidence_GPT-4-Turbo/plots/Wer_versus_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
