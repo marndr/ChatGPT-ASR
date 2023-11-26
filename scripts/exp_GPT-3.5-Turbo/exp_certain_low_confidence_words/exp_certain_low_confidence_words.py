@@ -64,21 +64,23 @@ if __name__ =="__main__":
         if args.num_data > 0:
             data = data[:args.num_data]
 
-        
+        data1 = []
         for i,d in enumerate(data):
             asr_transcription = confidence_score_word_level(d["asr_transcription"], confidence = True) 
 
             low_confidence_words = [word["text"] for word in asr_transcription["words"] 
                                     if word["confidence"] <= THRESH]
-            asr_transcription = {"text": asr_transcription["text"], "low_confidence_words": low_confidence_words}
+            if len(low_confidence_words) > 0:
+                                       
+            	asr_transcription = {"text": asr_transcription["text"], "low_confidence_words": low_confidence_words}
     
-            reference_transcription= d["reference_transcription"]
+            	reference_transcription= d["reference_transcription"]
 
-            data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
-            
+            	# data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
+            	data1.append({"asr_transcription": asr_transcription, "reference_transcription": reference_transcription})
    
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp,model = "gpt-3.5-turbo-1106")
+    l= multithread_parallelization(data1, get_messages_fn=get_messages_exp,model = "gpt-3.5-turbo-1106")
  
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
