@@ -7,11 +7,19 @@ from chat_gpt_asr.utils import read_librispeech_transcriptions
 if __name__ == "__main__":
     whisper_model = "tiny"
     subset = "dev-clean"
-    root = Path("/home/mnaderi/Documents/thesis/whisperii/LibriSpeech")
-    output_folder = Path("../data/transcriptions")
-    output_file = output_folder / f"whisper_{whisper_model}_librispeech_{subset}-full.json"
+    
+    load_dotenv()
+    Root_Whisper = os.getenv("ROOT_WHISPER")
+    Root = os.getenv("ROOT_PATH")
+    output_folder = os.path.join(Root, "data/transcriptions")
+    output_file = os.path.join(output_folder, f"whisper_{whisper_model}_librispeech_{subset}-full.json")
+    
+    
+    #root = Path("/home/mnaderi/Documents/thesis/whisperii/LibriSpeech")
+    #output_folder = Path("../data/transcriptions")
+    #output_file = output_folder / f"whisper_{whisper_model}_librispeech_{subset}-full.json"
 
-    data = read_librispeech_transcriptions(root_folder=str(root / subset))
+    data = read_librispeech_transcriptions(root_folder=str(Root / subset))
     l = []
     length = len(data)
     for i, (audio_path, reference_transcription) in enumerate(data.items()):
@@ -27,3 +35,6 @@ if __name__ == "__main__":
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
+        
+        
+        
