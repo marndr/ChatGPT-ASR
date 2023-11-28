@@ -2,9 +2,11 @@ import matplotlib.pyplot as plt
 import os
 import json
 
-root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_without_lowest_word_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_find_thresh_lowest_word_confidence_GPT-4-Turbo/plots/histogram_lowest_word_confidence_plot.png")
+load_dotenv()
+Root = os.getenv("ROOT_PATH")
+
+l=os.path.join(Root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_without_lowest_word_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_GPT-4/results_lowest_word_confidence_GPT-4-Turbo/results_find_thresh_lowest_word_confidence_GPT-4-Turbo/plots/histogram_lowest_word_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

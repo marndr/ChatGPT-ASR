@@ -6,10 +6,12 @@ from tqdm import tqdm
 import argparse
 import matplotlib.pyplot as plt
 
-root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
-l=os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/results_whisper.md")
-output_file = os.path.join(root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/plots/Wer_versus_sentence_confidence_plot.png")
+load_dotenv()
+Root = os.getenv("ROOT_PATH")
+
+l=os.path.join(Root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/results_whisper.md")
+output_file = os.path.join(Root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_find_thresh_sentence_confidence/plots/Wer_versus_sentence_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

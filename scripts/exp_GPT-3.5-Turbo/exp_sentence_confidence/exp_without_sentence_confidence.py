@@ -9,12 +9,13 @@ import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_sentence_level, read_dummy_transcriptions
 
-root = "/home/mnaderi/Documents/thesis/chat-gpt-asr"
+load_dotenv()
+Root = os.getenv("ROOT_PATH")
 
 delimiter = "####"
 
-TRANSCRIPTION_FILENAME = os.path.join(root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(root, "results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")  
+TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_GPT-3.5-Turbo/results_sentence_confidence/results_without_sentence_confidence/whisper_corrected_transcriptions.json")  
     
 def get_messages_exp1(asr_transcription, delimiter="####"):
     messages = [
@@ -73,7 +74,7 @@ if __name__ =="__main__":
         data = read_dummy_transcriptions()
         output_file = os.path.join(root,"results/experiment_without_confidence/dummy_corrected_transcriptions.json") 
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1, )
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-3.5-turbo-1106" )
  
  
  
