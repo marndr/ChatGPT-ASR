@@ -11,11 +11,11 @@ from chat_gpt_asr.utils import confidence_score_word_level
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-THRESH = 0.5
+THRESH = 0.55
 delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_GPT-3.5-Turbo/results_certain_low_confidence_words/whisper_corrected_transcriptions.json")
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_GPT-3.5-Turbo/results_certain_low_confidence_words/whisper_corrected_transcriptions_Thresh=0.55.json")
     
 def get_messages_exp(asr_transcription, delimiter="####"):
     messages = [
