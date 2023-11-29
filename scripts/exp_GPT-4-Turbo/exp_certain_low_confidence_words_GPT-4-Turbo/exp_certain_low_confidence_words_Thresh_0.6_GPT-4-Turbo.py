@@ -1,4 +1,3 @@
-
 import argparse
 import json
 import os
@@ -12,11 +11,11 @@ from chat_gpt_asr.utils import confidence_score_word_level
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-THRESH = 0.5
+THRESH = 0.6
 delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_GPT-4-Turbo/results_certain_low_confidence_words_GPT-4-Turbo/whisper_corrected_transcriptions.json")
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_GPT-4-Turbo/results_certain_low_confidence_words_GPT-4-Turbo/whisper_corrected_transcriptions_Thresh=0.6.json")
     
 def get_messages_exp(asr_transcription, delimiter="####"):
     messages = [
@@ -67,21 +66,23 @@ if __name__ =="__main__":
         if args.num_data > 0:
             data = data[:args.num_data]
 
-        
+        data1 = []
         for i,d in enumerate(data):
             asr_transcription = confidence_score_word_level(d["asr_transcription"], confidence = True) 
 
             low_confidence_words = [word["text"] for word in asr_transcription["words"] 
                                     if word["confidence"] <= THRESH]
-            asr_transcription = {"text": asr_transcription["text"], "low_confidence_words": low_confidence_words}
+            if len(low_confidence_words) > 0:
+                                       
+            	asr_transcription = {"text": asr_transcription["text"], "low_confidence_words": low_confidence_words}
     
-            reference_transcription= d["reference_transcription"]
+            	reference_transcription= d["reference_transcription"]
 
-            data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
-            
+            	# data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
+            	data1.append({"asr_transcription": asr_transcription, "reference_transcription": reference_transcription})
    
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp,model = "gpt-4-1106-preview")
+    l= multithread_parallelization(data1, get_messages_fn=get_messages_exp,model = "gpt-4-1106-preview")
  
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
