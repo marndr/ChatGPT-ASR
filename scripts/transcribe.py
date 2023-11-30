@@ -9,7 +9,7 @@ if __name__ == "__main__":
     subset = "dev-clean"
     
     load_dotenv()
-    Root_Whisper = os.getenv("ROOT_WHISPER")
+    Root_Librispeech = os.getenv("ROOT_LIBRISPEECH")
     Root = os.getenv("ROOT_PATH")
     output_folder = os.path.join(Root, "data/transcriptions")
     output_file = os.path.join(output_folder, f"whisper_{whisper_model}_librispeech_{subset}-full.json")
@@ -19,7 +19,7 @@ if __name__ == "__main__":
     #output_folder = Path("../data/transcriptions")
     #output_file = output_folder / f"whisper_{whisper_model}_librispeech_{subset}-full.json"
 
-    data = read_librispeech_transcriptions(root_folder=str(Root / subset))
+    data = read_librispeech_transcriptions(root_folder=str(Root_Librispeech / subset))
     l = []
     length = len(data)
     for i, (audio_path, reference_transcription) in enumerate(data.items()):

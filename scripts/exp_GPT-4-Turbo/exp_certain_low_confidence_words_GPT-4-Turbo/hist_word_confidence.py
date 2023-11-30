@@ -2,13 +2,14 @@ import os
 import json
 import matplotlib.pyplot as plt
 
+from dotenv import load_dotenv
 from chat_gpt_asr.utils import confidence_score_word_level
 
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-OUTPUT_FILE = os.path.join(Root,"results/results_GPT-3.5-Turbo/results_certain_low_confidence_words/plots/histogram_confidence_words_plot.png")
+OUTPUT_FILE = os.path.join(Root,"results/results_GPT-4-Turbo/results_certain_low_confidence_words_GPT-4-Turbo/plots/histogram_confidence_words_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

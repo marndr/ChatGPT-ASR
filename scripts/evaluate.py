@@ -94,7 +94,7 @@ if __name__ == "__main__":
         if d["corrected_asr_transcription"] is None:
             continue 
             
-        #evaluation for experiment_without_confidence
+        
         ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
         hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
         hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))  
