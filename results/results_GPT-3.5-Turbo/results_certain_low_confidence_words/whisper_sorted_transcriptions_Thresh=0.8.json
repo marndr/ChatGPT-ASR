@@ -1,0 +1,227 @@
+[
+  {
+    "text": " Show Mr. North out he said, and go down to the barracks until TROC that Kirkland is to have a hundred lashes tomorrow.",
+    "corrected_text": "Show Mr. North out, he said, and go down to the barracks until the rock that Kirkland is to have a hundred lashes tomorrow.",
+    "reference_transcription": "SHOW MISTER NORTH OUT HE SAID AND GO DOWN TO THE BARRACKS AND TELL TROKE THAT KIRKLAND IS TO HAVE A HUNDRED LASHES TO MORROW",
+    "original_wer": 108.7,
+    "corrected_wer": 104.17,
+    "original_cer": 81.36,
+    "corrected_cer": 82.11
+  },
+  {
+    "text": " Long pepper. This is the produce of a different plant from that which produces the black. It consisting of the half-right flower heads of what naturalists call paparolongam and chaba.",
+    "corrected_text": "Long pepper. This is the produce of a different plant from that which produces the black. It consists of the half-dried flower heads of what naturalists call piper longum and cubeb.",
+    "reference_transcription": "LONG PEPPER THIS IS THE PRODUCE OF A DIFFERENT PLANT FROM THAT WHICH PRODUCES THE BLACK IT CONSISTING OF THE HALF RIPE FLOWER HEADS OF WHAT NATURALISTS CALL PIPER LONGUM AND CHABA",
+    "original_wer": 106.67,
+    "corrected_wer": 103.23,
+    "original_cer": 82.51,
+    "corrected_cer": 82.87
+  },
+  {
+    "text": " Under ordinary circumstances, the Abalone is tough and unpalatable, but after the deft manipulation of Herbert, they are tender and make a fine dish either fried, as chowder or Alanuborg.",
+    "corrected_text": "Under ordinary circumstances, the abalone is tough and unpalatable, but after the deft manipulation of Herbert, they are tender and make a fine dish either fried, as chowder, or ala nuborg.",
+    "reference_transcription": "UNDER ORDINARY CIRCUMSTANCES THE ABALONE IS TOUGH AND UNPALATABLE BUT AFTER THE DEFT MANIPULATION OF HERBERT THEY ARE TENDER AND MAKE A FINE DISH EITHER FRIED AS CHOWDER OR A LA NEWBERG",
+    "original_wer": 106.67,
+    "corrected_wer": 103.23,
+    "original_cer": 83.42,
+    "corrected_cer": 83.6
+  },
+  {
+    "text": " The room had neither carpet nor fireplace, and the only movables in it were a sofa bed, a table, and an armchair. All of such delicate and graceful forms, as may be seen on ancient vases of a far earlier period than that whereof we write.",
+    "corrected_text": "The room had neither carpet nor fireplace, and the only movable in it were a sofa bed, a table, and an armchair. All of such delicate and graceful forms, as may be seen on ancient vases of a far earlier period than that of which we write.",
+    "reference_transcription": "THE ROOM HAD NEITHER CARPET NOR FIREPLACE AND THE ONLY MOVABLES IN IT WERE A SOFA BED A TABLE AND AN ARM CHAIR ALL OF SUCH DELICATE AND GRACEFUL FORMS AS MAY BE SEEN ON ANCIENT VASES OF A FAR EARLIER PERIOD THAN THAT WHEREOF WE WRITE",
+    "original_wer": 102.17,
+    "corrected_wer": 100.0,
+    "original_cer": 80.25,
+    "corrected_cer": 80.67
+  },
+  {
+    "text": " Which thing being thus, there came a day when certain ladies to whom it was well-known, they haven't been with me at diverse times in my trouble, were met together for the pleasure of gentle company.",
+    "corrected_text": "Which thing being thus, there came a day when certain ladies to whom it was well known, they have been with me at diverse times in my trouble, were met together for the pleasure of gentle company.",
+    "reference_transcription": "WHICH THING BEING THUS THERE CAME A DAY WHEN CERTAIN LADIES TO WHOM IT WAS WELL KNOWN THEY HAVING BEEN WITH ME AT DIVERS TIMES IN MY TROUBLE WERE MET TOGETHER FOR THE PLEASURE OF GENTLE COMPANY",
+    "original_wer": 102.78,
+    "corrected_wer": 100.0,
+    "original_cer": 81.91,
+    "corrected_cer": 82.14
+  },
+  {
+    "text": " When we take into account that the Arabians are fond of lizards and locusts as articles of food, their cuisine altogether is scarcely attempting one.",
+    "corrected_text": "When we take into account that the Arabians are fond of lizards and locusts as articles of food, their cuisine all together is scarcely attempting one.",
+    "reference_transcription": "WHEN WE TAKE INTO ACCOUNT THAT THE ARABIANS ARE FOND OF LIZARDS AND LOCUSTS AS ARTICLES OF FOOD THEIR CUISINE ALTOGETHER IS SCARCELY A TEMPTING ONE",
+    "original_wer": 104.0,
+    "corrected_wer": 100.0,
+    "original_cer": 82.55,
+    "corrected_cer": 82.78
+  },
+  {
+    "text": " Four months had made great changes. He bore himself more like a man. His manner was much more considered engraved.",
+    "corrected_text": "Four months had made great changes. he bore himself more like a man. His manner was much more considered and grave.",
+    "reference_transcription": "FOUR MONTHS HAD MADE GREAT CHANGES HE BORE HIMSELF MORE LIKE A MAN HIS MANNER WAS MUCH MORE CONSIDERED AND GRAVE",
+    "original_wer": 105.0,
+    "corrected_wer": 100.0,
+    "original_cer": 80.7,
+    "corrected_cer": 80.87
+  },
+  {
+    "text": " Thompson opened a large restaurant in Opharrell Street, just above Fillmore, and for two years or more did a thriving business, his place being noted for its good-cooking and its splendid service.",
+    "corrected_text": "Thompson opened a large restaurant in Farrell Street, just above Fillmore, and for two years or more had a thriving business, his place being noted for its good cooking and its splendid service.",
+    "reference_transcription": "THOMPSON OPENED A LARGE RESTAURANT IN O'FARRELL STREET JUST ABOVE FILLMORE AND FOR TWO YEARS OR MORE DID A THRIVING BUSINESS HIS PLACE BEING NOTED FOR ITS GOOD COOKING AND ITS SPLENDID SERVICE",
+    "original_wer": 103.12,
+    "corrected_wer": 100.0,
+    "original_cer": 82.14,
+    "corrected_cer": 82.47
+  },
+  {
+    "text": " John Tate is the presiding spirit here. He having made reputation as club manager and then as manager of the cliffhouse.",
+    "corrected_text": "John Tate is the presiding spirit here. He made a reputation as club manager and then as manager of the Cliff House.",
+    "reference_transcription": "JOHN TAIT IS THE PRESIDING SPIRIT HERE HE HAVING MADE REPUTATION AS CLUB MANAGER AND THEN AS MANAGER OF THE CLIFF HOUSE",
+    "original_wer": 104.76,
+    "corrected_wer": 100.0,
+    "original_cer": 80.83,
+    "corrected_cer": 81.9
+  },
+  {
+    "text": " One can almost imagine himself in one of the famous lyroth's skullers of old Heidelberg. Not at the Shloss, of course. For here you cannot look down on the visor as it flows beneath the windows of the great winechthu-ban-the-hill.",
+    "corrected_text": "One can almost imagine himself in one of the famous breweries of old Heidelberg. Not at the Schloss, of course. For here you can look down on the river as it flows beneath the windows of the great wine barrel on the hill.",
+    "reference_transcription": "ONE CAN ALMOST IMAGINE HIMSELF IN ONE OF THE FAMOUS RATHSKELLERS OF OLD HEIDELBERG NOT AT THE SCHLOSS OF COURSE FOR HERE YOU CANNOT LOOK DOWN ON THE WEISER AS IT FLOWS BENEATH THE WINDOWS OF THE GREAT WINE STUBE ON THE HILL",
+    "original_wer": 107.5,
+    "corrected_wer": 100.0,
+    "original_cer": 81.74,
+    "corrected_cer": 81.9
+  },
+  {
+    "text": " He passed hours in watching her dressing, getting undressing for doll, and listening to her problem.",
+    "corrected_text": "He passed hours in watching her dressing, getting undressed for a doll, and listening to her problems.",
+    "reference_transcription": "HE PASSED HOURS IN WATCHING HER DRESSING AND UNDRESSING HER DOLL AND IN LISTENING TO HER PRATTLE",
+    "original_wer": 106.25,
+    "corrected_wer": 100.0,
+    "original_cer": 86.0,
+    "corrected_cer": 86.27
+  },
+  {
+    "text": " I can see them now, exactly as they looked, working about the table in the lamplight. Jake, with his heavy features, so rudely molded that his face seemed somehow unfinished. Otto, with his half-year and the savage scar that made his upper lip curls so ferociously under his twisted mustache.",
+    "corrected_text": "I can see them now, exactly as they looked, working at the table in the lamplight. Jake, with his heavy features, so rudely molded that his face seemed somehow unfinished. Otto, with his half sneer and the savage scar that made his upper lip curl so ferociously under his twisted mustache.",
+    "reference_transcription": "I CAN SEE THEM NOW EXACTLY AS THEY LOOKED WORKING ABOUT THE TABLE IN THE LAMPLIGHT JAKE WITH HIS HEAVY FEATURES SO RUDELY MOULDED THAT HIS FACE SEEMED SOMEHOW UNFINISHED OTTO WITH HIS HALF EAR AND THE SAVAGE SCAR THAT MADE HIS UPPER LIP CURL SO FEROCIOUSLY UNDER HIS TWISTED MUSTACHE",
+    "original_wer": 100.0,
+    "corrected_wer": 98.04,
+    "original_cer": 82.53,
+    "corrected_cer": 83.04
+  },
+  {
+    "text": " When thou love us man, or woman, or child, ye are even dog or right. Then wilt thou no longer need that I tell thee, how God and his Christ would not be content with each other alone in the glories, even of the eternal original love, because they could create more love.",
+    "corrected_text": "When you love man, or woman, or child, you are even as right. Then will you no longer need that I tell you, how God and his Christ would not be content with each other alone in the glories, even of the eternal original love, because they could create more love.",
+    "reference_transcription": "WHEN THOU LOVEST MAN OR WOMAN OR CHILD YEA OR EVEN DOG ARIGHT THEN WILT THOU NO LONGER NEED THAT I TELL THEE HOW GOD AND HIS CHRIST WOULD NOT BE CONTENT WITH EACH OTHER ALONE IN THE GLORIES EVEN OF THE ETERNAL ORIGINAL LOVE BECAUSE THEY COULD CREATE MORE LOVE",
+    "original_wer": 98.11,
+    "corrected_wer": 98.04,
+    "original_cer": 80.0,
+    "corrected_cer": 80.84
+  },
+  {
+    "text": " A lot of a regard for the honor of the first prozelite has countens to the belief, the hope, the wish, that the Ebionites, or at least the Nazarens, were distinguished only by their obstinate perseverance in the practice of the Mozaia Grites.",
+    "corrected_text": "A lot of regard for the honor of the first proselyte has conduced to the belief, the hope, the wish, that the Ebionites, or at least the Nazarenes, were distinguished only by their obstinate perseverance in the practice of the Mosaic rites.",
+    "reference_transcription": "A LAUDABLE REGARD FOR THE HONOR OF THE FIRST PROSELYTE HAS COUNTENANCED THE BELIEF THE HOPE THE WISH THAT THE EBIONITES OR AT LEAST THE NAZARENES WERE DISTINGUISHED ONLY BY THEIR OBSTINATE PERSEVERANCE IN THE PRACTICE OF THE MOSAIC RITES",
+    "original_wer": 97.67,
+    "corrected_wer": 97.62,
+    "original_cer": 82.64,
+    "corrected_cer": 83.33
+  },
+  {
+    "text": " Of our Christmas time, I was as full as full could be of going home for good and all. You and her to how I've wished it this terrible long time.",
+    "corrected_text": "Of our Christmas time, I was as full as full could be of going home for good and all. You and her to how I've wished this terrible long time.",
+    "reference_transcription": "AFORE CHRISTMAS TIME I WAS AS FULL AS FULL COULD BE OF GOING HOME FOR GOOD AND ALL YO HAN HEARD HOW I'VE WISHED IT THIS TERRIBLE LONG TIME",
+    "original_wer": 96.77,
+    "corrected_wer": 96.67,
+    "original_cer": 77.08,
+    "corrected_cer": 79.43
+  },
+  {
+    "text": " And therewith all such a bewilderment possessed me that I shut my eyes for peace. And in my brain did cease order of thought and every helpful thing.",
+    "corrected_text": "And therewith such a bewilderment possessed me that I shut my eyes for peace. And in my brain did cease order of thought and every helpful thing.",
+    "reference_transcription": "AND THEREWITHAL SUCH A BEWILDERMENT POSSESS'D ME THAT I SHUT MINE EYES FOR PEACE AND IN MY BRAIN DID CEASE ORDER OF THOUGHT AND EVERY HEALTHFUL THING",
+    "original_wer": 96.43,
+    "corrected_wer": 96.3,
+    "original_cer": 83.22,
+    "corrected_cer": 84.14
+  },
+  {
+    "text": " I hope you like him better than the frost bitten old day for you first new and we're kind enough to love.",
+    "corrected_text": "I hope you like it better than the frostbitten old day for your first new and were kind enough to love.",
+    "reference_transcription": "I HOPE YOU'LL LIKE HIM BETTER THAN THE FROST BITTEN OLD DAVID YOU FIRST KNEW AND WERE KIND ENOUGH TO LOVE",
+    "original_wer": 95.45,
+    "corrected_wer": 95.24,
+    "original_cer": 83.81,
+    "corrected_cer": 86.41
+  },
+  {
+    "text": " I happen to have McConnell's box for tonight or there'd be no chance of our getting places.",
+    "corrected_text": "I happen to have McConnell's box for tonight or there'd be no chance of getting to our places.",
+    "reference_transcription": "I HAPPEN TO HAVE MAC CONNELL'S BOX FOR TONIGHT OR THERE'D BE NO CHANCE OF OUR GETTING PLACES",
+    "original_wer": 100.0,
+    "corrected_wer": 94.44,
+    "original_cer": 79.12,
+    "corrected_cer": 80.85
+  },
+  {
+    "text": " I have always delighted in and reverence to beauty, but I felt simply a baste in the presence of such a splendid type, a compound of all that is best in Egyptian Greek and Italian.",
+    "corrected_text": "I have always delighted in and reverence for beauty, but I felt simply abase in the presence of such a splendid type, a compound of all that is best in Egyptian, Greek, and Italian.",
+    "reference_transcription": "I HAVE ALWAYS DELIGHTED IN AND REVERENCED BEAUTY BUT I FELT SIMPLY ABASHED IN THE PRESENCE OF SUCH A SPLENDID TYPE A COMPOUND OF ALL THAT IS BEST IN EGYPTIAN GREEK AND ITALIAN",
+    "original_wer": 94.29,
+    "corrected_wer": 94.12,
+    "original_cer": 79.44,
+    "corrected_cer": 80.66
+  },
+  {
+    "text": " I do not know he said as a tatingly, perhaps the harpies have flown over my table.",
+    "corrected_text": "I do not know, he said tantalizingly, perhaps the harpies have flown over my table.",
+    "reference_transcription": "I DO NOT KNOW HE SAID HESITATINGLY PERHAPS THE HARPIES HAVE FLOWN OVER MY TABLE",
+    "original_wer": 94.12,
+    "corrected_wer": 93.33,
+    "original_cer": 81.71,
+    "corrected_cer": 81.93
+  },
+  {
+    "text": " We decided that Anthony I should ride dude home and I would walk.",
+    "corrected_text": "We decided that Anthony should ride due home and I would walk.",
+    "reference_transcription": "WE DECIDED THAT ANTONIA SHOULD RIDE DUDE HOME AND I WOULD WALK",
+    "original_wer": 92.31,
+    "corrected_wer": 91.67,
+    "original_cer": 78.46,
+    "corrected_cer": 79.03
+  },
+  {
+    "text": " Well now said, meakin with the Sparity. I don't agree with you.",
+    "corrected_text": "Well now, speaking with the clarity. I don't agree with you.",
+    "reference_transcription": "WELL NOW SAID MEEKIN WITH ASPERITY I DON'T AGREE WITH YOU",
+    "original_wer": 91.67,
+    "corrected_wer": 90.91,
+    "original_cer": 77.78,
+    "corrected_cer": 81.67
+  },
+  {
+    "text": " I must have a teaspoonful, he said, to a lay that craving.",
+    "corrected_text": "I must have a teaspoon, he said, to allay that craving.",
+    "reference_transcription": "I MUST HAVE A TEASPOONFUL HE SAID TO ALLAY THE CRAVING",
+    "original_wer": 91.67,
+    "corrected_wer": 90.91,
+    "original_cer": 81.03,
+    "corrected_cer": 83.64
+  },
+  {
+    "text": " I turn up the Earth by a way of pastime.",
+    "corrected_text": "I turn up the earth by way of pastime.",
+    "reference_transcription": "I TURN UP THE EARTH BY WAY OF PASTIME",
+    "original_wer": 90.0,
+    "corrected_wer": 88.89,
+    "original_cer": 75.0,
+    "corrected_cer": 76.32
+  },
+  {
+    "text": " Bad general shit by a thought it was Christmas",
+    "corrected_text": "bad general shift by I thought it was Christmas",
+    "reference_transcription": "BAD GENERALSHIP I THOUGHT IT WAS CHRISTMAS",
+    "original_wer": 100.0,
+    "corrected_wer": 88.89,
+    "original_cer": 82.61,
+    "corrected_cer": 82.98
+  }
+]

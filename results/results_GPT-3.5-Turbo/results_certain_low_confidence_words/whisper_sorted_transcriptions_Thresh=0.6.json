@@ -1,0 +1,173 @@
+[
+  {
+    "text": " Show Mr. North out he said, and go down to the barracks until TROC that Kirkland is to have a hundred lashes tomorrow.",
+    "corrected_text": "Show Mr. North out, he said, and go down to the barracks until the rock that Kirkland is to have a hundred lashes tomorrow.",
+    "reference_transcription": "SHOW MISTER NORTH OUT HE SAID AND GO DOWN TO THE BARRACKS AND TELL TROKE THAT KIRKLAND IS TO HAVE A HUNDRED LASHES TO MORROW",
+    "original_wer": 108.7,
+    "corrected_wer": 104.17,
+    "original_cer": 81.36,
+    "corrected_cer": 82.11
+  },
+  {
+    "text": " Long pepper. This is the produce of a different plant from that which produces the black. It consisting of the half-right flower heads of what naturalists call paparolongam and chaba.",
+    "corrected_text": "Long pepper. This is the produce of a different plant from that which produces the black. It consists of the half-dried flower heads of what naturalists call piper longum and cubeb.",
+    "reference_transcription": "LONG PEPPER THIS IS THE PRODUCE OF A DIFFERENT PLANT FROM THAT WHICH PRODUCES THE BLACK IT CONSISTING OF THE HALF RIPE FLOWER HEADS OF WHAT NATURALISTS CALL PIPER LONGUM AND CHABA",
+    "original_wer": 106.67,
+    "corrected_wer": 103.23,
+    "original_cer": 82.51,
+    "corrected_cer": 82.87
+  },
+  {
+    "text": " When the Musterbell rang in the Gengbroke up, Rufus does on his silent way to a separate cell, observed a notable change of custom in the disposition of the new convict.",
+    "corrected_text": "When the muster bell rang in the cell block, Rufus goes on his silent way to a separate cell, observed a notable change of custom in the disposition of the new convict.",
+    "reference_transcription": "WHEN THE MUSTER BELL RANG AND THE GANG BROKE UP RUFUS DAWES ON HIS SILENT WAY TO HIS SEPARATE CELL OBSERVED A NOTABLE CHANGE OF CUSTOM IN THE DISPOSITION OF THE NEW CONVICT",
+    "original_wer": 106.45,
+    "corrected_wer": 103.12,
+    "original_cer": 83.43,
+    "corrected_cer": 83.93
+  },
+  {
+    "text": " One can almost imagine himself in one of the famous lyroth's skullers of old Heidelberg. Not at the Shloss, of course. For here you cannot look down on the visor as it flows beneath the windows of the great winechthu-ban-the-hill.",
+    "corrected_text": "One can almost imagine himself in one of the famous breweries of old Heidelberg. Not at the Schloss, of course. For here you cannot look down on the river as it flows beneath the windows of the great vineyard on the hill.",
+    "reference_transcription": "ONE CAN ALMOST IMAGINE HIMSELF IN ONE OF THE FAMOUS RATHSKELLERS OF OLD HEIDELBERG NOT AT THE SCHLOSS OF COURSE FOR HERE YOU CANNOT LOOK DOWN ON THE WEISER AS IT FLOWS BENEATH THE WINDOWS OF THE GREAT WINE STUBE ON THE HILL",
+    "original_wer": 107.5,
+    "corrected_wer": 102.38,
+    "original_cer": 81.74,
+    "corrected_cer": 81.9
+  },
+  {
+    "text": " Four months had made great changes. He bore himself more like a man. His manner was much more considered engraved.",
+    "corrected_text": "Four months had made great changes. he bore himself more like a man. His manner was much more considered and grave.",
+    "reference_transcription": "FOUR MONTHS HAD MADE GREAT CHANGES HE BORE HIMSELF MORE LIKE A MAN HIS MANNER WAS MUCH MORE CONSIDERED AND GRAVE",
+    "original_wer": 105.0,
+    "corrected_wer": 100.0,
+    "original_cer": 80.7,
+    "corrected_cer": 80.87
+  },
+  {
+    "text": " He passed hours in watching her dressing, getting undressing for doll, and listening to her problem.",
+    "corrected_text": "He passed hours in watching her dressing, getting undressed for a doll, and listening to her problem.",
+    "reference_transcription": "HE PASSED HOURS IN WATCHING HER DRESSING AND UNDRESSING HER DOLL AND IN LISTENING TO HER PRATTLE",
+    "original_wer": 106.25,
+    "corrected_wer": 100.0,
+    "original_cer": 86.0,
+    "corrected_cer": 86.14
+  },
+  {
+    "text": " The Huns singly there in Furriers, pressed them from behind with the irresistible weight of numbers. Italy, with her rich cities and fertile lowlands, back in them onto plunder, as auxiliaries they had learned their own strength and a Roman weakness. A Cossus Belly was soon found.",
+    "corrected_text": "The Huns singly were in furrows, pressed them from behind with the irresistible weight of numbers. Italy, with her rich cities and fertile lowlands, backed them onto plunder, as auxiliaries they had learned their own strength and a Roman weakness. A Cossus Belly was soon found.",
+    "reference_transcription": "THE HUNS SINGLY THEIR INFERIORS PRESSED THEM FROM BEHIND WITH THE IRRESISTIBLE WEIGHT OF NUMBERS ITALY WITH HER RICH CITIES AND FERTILE LOWLANDS BECKONED THEM ON TO PLUNDER AS AUXILIARIES THEY HAD LEARNED THEIR OWN STRENGTH AND ROMAN WEAKNESS A CASUS BELLI WAS SOON FOUND",
+    "original_wer": 97.87,
+    "corrected_wer": 97.83,
+    "original_cer": 82.56,
+    "corrected_cer": 83.45
+  },
+  {
+    "text": " A lot of a regard for the honor of the first prozelite has countens to the belief, the hope, the wish, that the Ebionites, or at least the Nazarens, were distinguished only by their obstinate perseverance in the practice of the Mozaia Grites.",
+    "corrected_text": "A lot of regard for the honor of the first proselyte has countenanced the belief, the hope, the wish, that the Ebionites, or at least the Nazarenes, were distinguished only by their obstinate perseverance in the practice of the Mosaic rites.",
+    "reference_transcription": "A LAUDABLE REGARD FOR THE HONOR OF THE FIRST PROSELYTE HAS COUNTENANCED THE BELIEF THE HOPE THE WISH THAT THE EBIONITES OR AT LEAST THE NAZARENES WERE DISTINGUISHED ONLY BY THEIR OBSTINATE PERSEVERANCE IN THE PRACTICE OF THE MOSAIC RITES",
+    "original_wer": 97.67,
+    "corrected_wer": 97.56,
+    "original_cer": 82.64,
+    "corrected_cer": 82.99
+  },
+  {
+    "text": " They were a good mini-sheep which I knew as two or three black use and a black glamour too, and several others which had some distinguishing mark whereby I could tell them.",
+    "corrected_text": "They were a good many sheep which I knew as two or three black ewes and a black ram too, and several others which had some distinguishing mark whereby I could tell them.",
+    "reference_transcription": "THERE WERE A GOOD MANY SHEEP WHICH I KNEW AS TWO OR THREE BLACK EWES AND A BLACK LAMB OR TWO AND SEVERAL OTHERS WHICH HAD SOME DISTINGUISHING MARK WHEREBY I COULD TELL THEM",
+    "original_wer": 100.0,
+    "corrected_wer": 96.97,
+    "original_cer": 81.4,
+    "corrected_cer": 81.66
+  },
+  {
+    "text": " For when I was a little girl, we always had logs of wood blazing in an open fire place And so did many other people and coal was just coming into use for fuel.",
+    "corrected_text": "For when I was a little girl, we always had logs of wood blazing in an open fireplace and so did many other people, and coal was just coming into use for fuel.",
+    "reference_transcription": "FOR WHEN I WAS A LITTLE GIRL WE ALWAYS HAD LOGS OF WOOD BLAZING IN AN OPEN FIREPLACE AND SO DID MANY OTHER PEOPLE AND COAL WAS JUST COMING INTO USE FOR FUEL",
+    "original_wer": 97.06,
+    "corrected_wer": 96.97,
+    "original_cer": 77.99,
+    "corrected_cer": 78.62
+  },
+  {
+    "text": " and so strong was my fantasy that I wept again and very truth and said with my true voice Oh, excellent soul. How blessed is he that now look at the pond?",
+    "corrected_text": "and so strong was my fantasy that I wept again and very truly said with my true voice Oh, excellent soul. How blessed is he that now looks at the pond?",
+    "reference_transcription": "AND SO STRONG WAS MY PHANTASY THAT I WEPT AGAIN IN VERY TRUTH AND SAID WITH MY TRUE VOICE O EXCELLENT SOUL HOW BLESSED IS HE THAT NOW LOOKETH UPON THEE",
+    "original_wer": 96.88,
+    "corrected_wer": 96.77,
+    "original_cer": 79.87,
+    "corrected_cer": 82.78
+  },
+  {
+    "text": " A harsh laugh from Conrad Asap and cut the tirade dead short in a sudden faltering of the tongue, and he bewildered unste heaviness of their apostles mildly exalted eyes.",
+    "corrected_text": "A harsh laugh from Conrad ASAP cut the tirade dead short in a sudden faltering of the tongue, and he bewildered unto heaviness of their apostles mildly exalted eyes.",
+    "reference_transcription": "A HARSH LAUGH FROM COMRADE OSSIPON CUT THE TIRADE DEAD SHORT IN A SUDDEN FALTERING OF THE TONGUE AND A BEWILDERED UNSTEADINESS OF THE APOSTLE'S MILDLY EXALTED EYES",
+    "original_wer": 96.67,
+    "corrected_wer": 96.55,
+    "original_cer": 84.12,
+    "corrected_cer": 84.24
+  },
+  {
+    "text": " I have not the slightest doubt that in high winds, its red tiles were blown out, to the great annoyance of the past or in congregation.",
+    "corrected_text": "I have not the slightest doubt that in high winds, its red tiles were blown off, to the great annoyance of the past or congregation.",
+    "reference_transcription": "I HAVE NOT THE SLIGHTEST DOUBT THAT IN HIGH WINDS ITS RED TILES WERE BLOWN OUT TO THE GREAT ANNOYANCE OF THE PASTOR AND CONGREGATION",
+    "original_wer": 96.15,
+    "corrected_wer": 96.0,
+    "original_cer": 82.22,
+    "corrected_cer": 83.33
+  },
+  {
+    "text": " I hope you like him better than the frost bitten old day for you first new and we're kind enough to love.",
+    "corrected_text": "I hope you like it better than the frostbitten old day for your first new and were kind enough to love.",
+    "reference_transcription": "I HOPE YOU'LL LIKE HIM BETTER THAN THE FROST BITTEN OLD DAVID YOU FIRST KNEW AND WERE KIND ENOUGH TO LOVE",
+    "original_wer": 95.45,
+    "corrected_wer": 95.24,
+    "original_cer": 83.81,
+    "corrected_cer": 86.41
+  },
+  {
+    "text": " I happen to have McConnell's box for tonight or there'd be no chance of our getting places.",
+    "corrected_text": "I happen to have McConnell's box for tonight or there'd be no chance of getting to our places.",
+    "reference_transcription": "I HAPPEN TO HAVE MAC CONNELL'S BOX FOR TONIGHT OR THERE'D BE NO CHANCE OF OUR GETTING PLACES",
+    "original_wer": 100.0,
+    "corrected_wer": 94.44,
+    "original_cer": 79.12,
+    "corrected_cer": 80.85
+  },
+  {
+    "text": " I have always delighted in and reverence to beauty, but I felt simply a baste in the presence of such a splendid type, a compound of all that is best in Egyptian Greek and Italian.",
+    "corrected_text": "I have always delighted in and reverence beauty, but I felt simply abased in the presence of such a splendid type, a compound of all that is best in Egyptian, Greek, and Italian.",
+    "reference_transcription": "I HAVE ALWAYS DELIGHTED IN AND REVERENCED BEAUTY BUT I FELT SIMPLY ABASHED IN THE PRESENCE OF SUCH A SPLENDID TYPE A COMPOUND OF ALL THAT IS BEST IN EGYPTIAN GREEK AND ITALIAN",
+    "original_wer": 94.29,
+    "corrected_wer": 93.94,
+    "original_cer": 79.44,
+    "corrected_cer": 80.34
+  },
+  {
+    "text": " We decided that Anthony I should ride dude home and I would walk.",
+    "corrected_text": "We decided that Anthony should ride due home and I would walk.",
+    "reference_transcription": "WE DECIDED THAT ANTONIA SHOULD RIDE DUDE HOME AND I WOULD WALK",
+    "original_wer": 92.31,
+    "corrected_wer": 91.67,
+    "original_cer": 78.46,
+    "corrected_cer": 79.03
+  },
+  {
+    "text": " I am a vid at. You know the responsibility resting on me.",
+    "corrected_text": "I am a vet. You know the responsibility resting on me.",
+    "reference_transcription": "I AM A VIDET YOU KNOW THE RESPONSIBILITY RESTING ON ME",
+    "original_wer": 91.67,
+    "corrected_wer": 90.91,
+    "original_cer": 78.95,
+    "corrected_cer": 79.63
+  },
+  {
+    "text": " I turn up the Earth by a way of pastime.",
+    "corrected_text": "I turn up the earth by way of pastime.",
+    "reference_transcription": "I TURN UP THE EARTH BY WAY OF PASTIME",
+    "original_wer": 90.0,
+    "corrected_wer": 88.89,
+    "original_cer": 75.0,
+    "corrected_cer": 76.32
+  }
+]
