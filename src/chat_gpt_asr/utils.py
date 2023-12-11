@@ -110,6 +110,22 @@ def confidence_score_lowest_word_level(trans , confidence = True):
     d["confidence_score"]=lowest
     return d
 
+def confidence_score_average_word_level(trans , confidence = True):
+    d={}
+    d["text"]= trans["text"]
+    words=[]
+    for i, seg in enumerate(trans["segments"]):
+        words.extend(seg["words"])
+    
+    avg_confidence_score = 0
+    count= 0
+    for word in words:
+        count += 1
+        avg_confidence_score += word["confidence"]
+         
+    d["confidence_score"]= avg_confidence_score/count
+    return d
+ 
     
 def confidence_score_word_level(trans, confidence = True):
     d={}
