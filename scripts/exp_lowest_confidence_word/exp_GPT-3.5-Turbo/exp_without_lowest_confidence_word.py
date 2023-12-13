@@ -14,7 +14,7 @@ Root = os.getenv("ROOT_PATH")
 delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_lowest_word_confidence/results_GPT-3.5-Turbo/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_lowest_confidence_words/results_GPT-3.5-Turbo/results_without_lowest_confidence_words/whisper_corrected_transcriptions.json")  
     
 def get_messages_exp(asr_transcription, delimiter="####"):
     messages = [

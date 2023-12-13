@@ -10,9 +10,9 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_lowest_word_confidence/results_GPT-3.5-Turbo/results_without_lowest_word_confidence/whisper_corrected_transcriptions.json")
-OUTPUT_FILE = os.path.join(Root,"results/results_lowest_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_lowest_word_confidence/results_whisper.md")
-output_file = os.path.join(Root,"results/results_lowest_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_lowest_word_confidence/plots/Wer_vs_confidence_plot.png")
+l=os.path.join(Root,"results/results_lowest_word_confidence/results_GPT-3.5-Turbo/results_without_lowest_confidence_words/whisper_corrected_transcriptions.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_lowest_confidence_words/results_GPT-3.5-Turbo/results_find_thresh_lowest_confidence_words/results_whisper.md")
+output_file = os.path.join(Root,"results/results_lowest_confidence_words/results_GPT-3.5-Turbo/results_find_thresh_lowest_confidence_words/plots/Wer_vs_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
