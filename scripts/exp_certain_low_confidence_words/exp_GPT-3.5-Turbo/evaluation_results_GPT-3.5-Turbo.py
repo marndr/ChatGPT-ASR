@@ -11,14 +11,15 @@ output_file = os.path.join(Root,"results/results_certain_low_confidence_words/re
 df = pd.read_csv("evaluation_results_GPT-3.5-Turbo.csv")
 
 
-with open("evaluation_results_GPT-3.5-Turbo.html", "w") as f:
-    f.write(df.to_html())
+#with open("evaluation_results_GPT-3.5-Turbo.html", "w") as f:
+    #f.write(df.to_html())
     
 df.to_excel("evaluation_results_GPT-3.5-Turbo.xlsx")
 
 plt.plot(df["Tresh"],df["WER_corrected"], "-ob")
 plt.xlabel("word confidence")
 plt.ylabel("Wer")
+plt.yticks([6,6.5,7,7.5,8,8.5,9])
 plt.title("Wer vs word confidence for GPT-3.5-Turbo in \n certain low confidence words")
 plt.savefig(output_file)
 
