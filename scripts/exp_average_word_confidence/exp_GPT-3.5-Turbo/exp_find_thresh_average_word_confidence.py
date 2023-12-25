@@ -12,7 +12,8 @@ Root = os.getenv("ROOT_PATH")
 
 l=os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_without_average_word_confidence/whisper_corrected_transcriptions.json")
 OUTPUT_FILE = os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_average_word_confidence/results_whisper.md")
-output_file = os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_average_word_confidence/plots/Wer_vs_confidence_plot.png")
+output_file_wer = os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_average_word_confidence/plots/Wer_vs_confidence_plot.png")
+output_file_cer = os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_find_thresh_average_word_confidence/plots/Cer_vs_confidence_plot.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -70,15 +71,28 @@ for thresh in thresholds:
 def plot(l):
 
     x = [dictionary["thresh"] for dictionary in l]
-    y = [dictionary["wer"] for dictionary in l]
+    y_wer = [dictionary["wer"] for dictionary in l]
     
-    plt.plot(x, y, "-ob", label="Wer")
+    plt.figure()
+    plt.plot(x, y_wer, "-ob", label="Wer")
     plt.xlabel("average word confidence")
     plt.ylabel("Wer")
     plt.title("Wer vs average word confidence for GPT-3.5-Turbo")
     plt.yticks([6,6.5,7,7.5,8,8.5,9])
     #plt.show()
-    plt.savefig(output_file)
+    plt.savefig(output_file_wer)
+    
+    
+    y_cer = [dictionary["cer"] for dictionary in l]
+    
+    plt.figure()
+    plt.plot(x, y_cer, "-or", label="Cer")
+    plt.xlabel("average word confidence")
+    plt.ylabel("Cer")
+    plt.title("Cer vs average word confidence for GPT-3.5-Turbo")
+    plt.yticks([2.5,3,3.5,4,4.5,5])
+    #plt.show()
+    plt.savefig(output_file_cer)
    
 plot(results)
 
