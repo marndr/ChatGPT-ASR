@@ -16,7 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
     parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence","exp_without_lowest_confidence_word",  "exp_without_average_word_confidence", "exp_without_sentence_confidence_GPT-4","exp_without_lowest_confidence_word_GPT-4", "exp_certain_low_confidence_words_Thresh_0.55","exp_certain_low_confidence_words_Thresh_0.6","exp_certain_low_confidence_words_Thresh_0.65","exp_certain_low_confidence_words_Thresh_0.7"
     ,"exp_certain_low_confidence_words_Thresh_0.75","exp_certain_low_confidence_words_Thresh_0.8","exp_certain_low_confidence_words_Thresh_0.85",
-    "exp_certain_low_confidence_words_Thresh_0.9","exp_certain_low_confidence_words_Thresh_0.95", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo", "exp_without_average_word_confidence_GPT-4","best_experiment","example_experiment"], help = "Select the experiment")
+    "exp_certain_low_confidence_words_Thresh_0.9","exp_certain_low_confidence_words_Thresh_0.95", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo", "exp_without_average_word_confidence_GPT-4"], help = "Select the experiment")
     args = parser.parse_args()
 
     if args.experiment == "exp_without_sentence_confidence":
@@ -45,39 +45,39 @@ if __name__ == "__main__":
             
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.55":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.55.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.55_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.55_single.md")   
             
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.6.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.6_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.6_single.md")   
         
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.65":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.65.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.65_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.65_single.md")   
     
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.7":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.7.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.7_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.7_single.md")   
     
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.75":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.75.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.75_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.75_single.md")   
     
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.8":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.8.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.8_single.md") 
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.8_single.md") 
                 
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.85":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.85.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.85_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.85_single.md")   
     
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.9":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.9.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.9_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.9_single.md")   
         
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.95":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.95.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/results_whisper_Thresh=0.95_single.md")   
+        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_single/results_whisper_Thresh=0.95_single.md")   
     
     elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo":
        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-4-Turbo/postprocessed_corrected_transcription_GPT-4-Turbo/whisper_corrected_transcriptions_processed_Thresh=0.6.json")
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                     """
                  )
 
-            elif (wer_corrected_chatgpt==0 and cer_corrected_chatgpt !=0) or (wer_original == 0 and cer_original !=0):
+            if (wer_corrected_chatgpt==0 and cer_corrected_chatgpt !=0) or (wer_original == 0 and cer_original !=0):
                 
                 f.write(
                     f"""
