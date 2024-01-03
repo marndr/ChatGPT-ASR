@@ -1,0 +1,81 @@
+import argparse
+import json
+import os
+
+from dotenv import load_dotenv
+import openai
+
+from chat_gpt_asr.chatgpt import multithread_parallelization
+from chat_gpt_asr.utils import confidence_score_sentence_level, read_dummy_transcriptions
+
+load_dotenv()
+Root = os.getenv("ROOT_PATH")
+
+delimiter = "####"
+
+TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_best_prompt/results_try_different_prompts/whisper_corrected_transcriptions_3.json")  
+    
+def get_messages_exp1(asr_transcription , delimiter = "####"):
+    messages = [
+        {
+            'role': 'system',
+            'content': f"""You are a helpful assistant that corrects ASR errors as a large language model.
+You will be presented with an ASR transcription of Librispeech data provided by the Whisper model, delimited by {delimiter} characters.
+Your task is to correct any errors in the transcription. Provide the most probable corrected transcription in string format.
+Additionally, correct errors using probable homophones when applicable. If you encounter grammatical errors, provide a corrected version adhering to proper grammar.
+Maintain the original case (lower or upper) in the transcription. Do not output any additional text that is not the corrected transcription.
+Avoid writing explanatory text that is not the corrected transcription.
+            """
+        },
+        {
+            'role': 'user',
+            'content': '{"text": "Meanwhile, how fair did it with the flowers?"}'
+        },
+        {'role': 'assistant', 'content': "Meanwhile, how fared did it with the flowers?"},
+        {'role': 'user', 'content': json.dumps(asr_transcription)}
+    ]
+    return messages
+
+
+if __name__ =="__main__": 
+     
+    parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
+    parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
+            default="librispeech", help="Select the dataset (librispeech or dummy)")
+    parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
+    args = parser.parse_args()
+
+    
+    # Load API key 
+    load_dotenv()
+    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+
+    if args.dataset == "librispeech":
+        transcription_file = TRANSCRIPTION_FILENAME
+        output_file = CORRECTED_TRANSCRIPTION_FILENAME
+        with open(transcription_file, "r") as f:
+            json_obj=f.read()
+            data=json.loads(json_obj)
+            
+        if args.num_data > 0:
+            data = data[:args.num_data]
+
+        # experiment 1
+        for i,d in enumerate(data):
+            asr_transcription = confidence_score_sentence_level(d["asr_transcription"] , confidence = True) 
+            reference_transcription= d["reference_transcription"]
+            data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
+            
+    elif args.dataset == "dummy":
+        data = read_dummy_transcriptions()
+        output_file = os.path.join(root,"results/experiment_without_confidence/dummy_corrected_transcriptions.json") 
+
+    l= multithread_parallelization(data, get_messages_fn= get_messages_exp1 , model = "gpt-3.5-turbo-1106" )
+ 
+ 
+ 
+    with open(output_file, "w") as f:
+        json_str = json.dumps(l, indent=2)
+        f.write(json_str)

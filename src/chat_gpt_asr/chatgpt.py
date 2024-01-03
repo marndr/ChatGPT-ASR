@@ -37,7 +37,7 @@ def get_chatgpt_response(d, get_messages_fn, model):
             response = openai.ChatCompletion.create(
                 model=model,
                 messages=messages,
-                temperature=0.1,
+                temperature=0.5,
                 request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message["content"]

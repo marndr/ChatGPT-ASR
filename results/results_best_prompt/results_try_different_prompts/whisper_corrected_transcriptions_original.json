@@ -1,0 +1,802 @@
+[
+  {
+    "asr_transcription": {
+      "text": " You surely cannot suppose that in a natural state, you would be forced to climb regularly up one tall bear stick, such as I see you upon now.",
+      "confidence_score": 0.916
+    },
+    "reference_transcription": "YOU SURELY CANNOT SUPPOSE THAT IN A NATURAL STATE YOU WOULD BE FORCED TO CLIMB REGULARLY UP ONE TALL BARE STICK SUCH AS I SEE YOU UPON NOW",
+    "corrected_asr_transcription": "you surely cannot suppose that in a natural state you would be forced to climb regularly up one tall birch stick such as I see you upon now"
+  },
+  {
+    "asr_transcription": {
+      "text": " Why not allow your silver tuff to luxuriate in a natural manner?",
+      "confidence_score": 0.66
+    },
+    "reference_transcription": "WHY NOT ALLOW YOUR SILVER TUFTS TO LUXURIATE IN A NATURAL MANNER",
+    "corrected_asr_transcription": "Why not allow your silver tufts to luxuriate in a natural manner?"
+  },
+  {
+    "asr_transcription": {
+      "text": " What a fuss is made about you, my dear little friends.",
+      "confidence_score": 0.85
+    },
+    "reference_transcription": "WHAT A FUSS IS MADE ABOUT YOU MY DEAR LITTLE FRIENDS",
+    "corrected_asr_transcription": "what a fuss is made about you, my dear little friends."
+  },
+  {
+    "asr_transcription": {
+      "text": " Still, the rose tree stood out that there must be some great advantages in a gardener's care, for she could not pretend to be ignorant of her own superiority to all her wild relations in the woods.",
+      "confidence_score": 0.8969999999999999
+    },
+    "reference_transcription": "STILL THE ROSE TREE STOOD OUT THAT THERE MUST BE SOME GREAT ADVANTAGES IN A GARDENER'S CARE FOR SHE COULD NOT PRETEND TO BE IGNORANT OF HER OWN SUPERIORITY TO ALL HER WILD RELATIONS IN THE WOODS",
+    "corrected_asr_transcription": "Still, the rose tree stood out that there must be some great advantages in a gardener's care, for she could not pretend to be ignorant of her own superiority to all her wild relations in the woods."
+  },
+  {
+    "asr_transcription": {
+      "text": " Your cousin, the wild convolvulus, whom I left in the fields this morning, does no such thing I assure you.",
+      "confidence_score": 0.768
+    },
+    "reference_transcription": "YOUR COUSIN THE WILD CONVOLVULUS WHOM I LEFT IN THE FIELDS THIS MORNING DOES NO SUCH THING I ASSURE YOU",
+    "corrected_asr_transcription": "your cousin, the wild convolvulus, whom I left in the fields this morning, does no such thing, I assure you."
+  },
+  {
+    "asr_transcription": {
+      "text": " Then the wind took another frog around the garden and made up to the large white lily, and who's refined ear he whispered aloud as to the necessity or advantage of her thick, powerful stem being propped up against a stupid ugly stick.",
+      "confidence_score": 0.8063333333333333
+    },
+    "reference_transcription": "THEN THE WIND TOOK ANOTHER FROLIC ROUND THE GARDEN AND MADE UP TO THE LARGE WHITE LILY INTO WHOSE REFINED EAR HE WHISPERED A DOUBT AS TO THE NECESSITY OR ADVANTAGE OF HER THICK POWERFUL STEM BEING PROPPED UP AGAINST A STUPID UGLY STICK",
+    "corrected_asr_transcription": "then the wind took another frolic around the garden and made up to the large white lily, and whose refined ear he whispered aloud as to the necessity or advantage of her thick, powerful stem being propped up against a stupid ugly stick."
+  },
+  {
+    "asr_transcription": {
+      "text": " He really grieved to see it.",
+      "confidence_score": 0.849
+    },
+    "reference_transcription": "HE REALLY GRIEVED TO SEE IT",
+    "corrected_asr_transcription": "He really grieved to see it."
+  },
+  {
+    "asr_transcription": {
+      "text": " echoed the flowers, tramulously as, with a sort of fearful pleasure, they awaited his approach.",
+      "confidence_score": 0.827
+    },
+    "reference_transcription": "ECHOED THE FLOWERS TREMULOUSLY AS WITH A SORT OF FEARFUL PLEASURE THEY AWAITED HIS APPROACH",
+    "corrected_asr_transcription": "echoed the flowers, tremulously as, with a sort of fearful pleasure, they awaited his approach."
+  },
+  {
+    "asr_transcription": {
+      "text": " Indeed, not a flower escaped his mischievous suggestions.",
+      "confidence_score": 0.883
+    },
+    "reference_transcription": "INDEED NOT A FLOWER ESCAPED HIS MISCHIEVOUS SUGGESTIONS",
+    "corrected_asr_transcription": "Indeed, not a flower escaped his mischievous suggestions."
+  },
+  {
+    "asr_transcription": {
+      "text": " My young plans require heat, or they would not live, and the pots we are kept in protect us from those cruel, wire worms who delight to destroy our roots.",
+      "confidence_score": 0.869
+    },
+    "reference_transcription": "MY YOUNG PLANTS REQUIRE HEAT OR THEY WOULD NOT LIVE AND THE POTS WE ARE KEPT IN PROTECT US FROM THOSE CRUEL WIRE WORMS WHO DELIGHT TO DESTROY OUR ROOTS",
+    "corrected_asr_transcription": "My young plants require heat, or they would not live, and the pots we are kept in protect us from those cruel wireworms who delight to destroy our roots."
+  },
+  {
+    "asr_transcription": {
+      "text": " Oh, that she were once more climbing up the friendly fur pole.",
+      "confidence_score": 0.862
+    },
+    "reference_transcription": "OH THAT SHE WERE ONCE MORE CLIMBING UP THE FRIENDLY FIR POLE",
+    "corrected_asr_transcription": "oh, that she were once more climbing up the friendly fir pole."
+  },
+  {
+    "asr_transcription": {
+      "text": " But for the sight that awaited him, he was not prepared at all.",
+      "confidence_score": 0.942
+    },
+    "reference_transcription": "BUT FOR THE SIGHT THAT AWAITED HIM HE WAS NOT PREPARED AT ALL",
+    "corrected_asr_transcription": "But for the sight that awaited him, he was not prepared at all."
+  },
+  {
+    "asr_transcription": {
+      "text": " Did that lovely creature suppose that nature, who had done so much for her, that the fame of her beauty extended throughout the world, had yet left her so weak and feeble, that she could not support herself in the position most calculated to give her ease and pleasure?",
+      "confidence_score": 0.9533333333333333
+    },
+    "reference_transcription": "DID THAT LOVELY CREATURE SUPPOSE THAT NATURE WHO HAD DONE SO MUCH FOR HER THAT THE FAME OF HER BEAUTY EXTENDED THROUGHOUT THE WORLD HAD YET LEFT HER SO WEAK AND FEEBLE THAT SHE COULD NOT SUPPORT HERSELF IN THE POSITION MOST CALCULATED TO GIVE HER EASE AND PLEASURE",
+    "corrected_asr_transcription": "Did that lovely creature suppose that nature, who had done so much for her, that the fame of her beauty extended throughout the world, had yet left her so weak and feeble, that she could not support herself in the position most calculated to give her ease and pleasure?"
+  },
+  {
+    "asr_transcription": {
+      "text": " The honeysequal escaped no better, and the carnation was ready to die of vexation, at finding that her coveted freedom had leveled her to the dirt.",
+      "confidence_score": 0.7975
+    },
+    "reference_transcription": "THE HONEYSUCKLE ESCAPED NO BETTER AND THE CARNATION WAS READY TO DIE OF VEXATION AT FINDING THAT HER COVETED FREEDOM HAD LEVELLED HER TO THE DIRT",
+    "corrected_asr_transcription": "the honeysuckle escaped no better, and the carnation was ready to die of vexation, at finding that her coveted freedom had leveled her to the dirt."
+  },
+  {
+    "asr_transcription": {
+      "text": " Meanwhile, how fair did it with the flowers?",
+      "confidence_score": 0.874
+    },
+    "reference_transcription": "MEANWHILE HOW FARED IT WITH THE FLOWERS",
+    "corrected_asr_transcription": "Meanwhile, how fare did it with the flowers?"
+  },
+  {
+    "asr_transcription": {
+      "text": " Before the day closed, the gardener came whistling from his farm work to look over his pretty charges.",
+      "confidence_score": 0.807
+    },
+    "reference_transcription": "BEFORE THE DAY CLOSED THE GARDENER CAME WHISTLING FROM HIS FARM WORK TO LOOK OVER HIS PRETTY CHARGES",
+    "corrected_asr_transcription": "Before the day closed, the gardener came whistling from his farm work to look over his pretty charges."
+  },
+  {
+    "asr_transcription": {
+      "text": " weeds mean while sprang up, and a dreary confusion rained in the once ordally and brilliant little garden.",
+      "confidence_score": 0.672
+    },
+    "reference_transcription": "WEEDS MEANWHILE SPRANG UP AND A DREARY CONFUSION REIGNED IN THE ONCE ORDERLY AND BRILLIANT LITTLE GARDEN",
+    "corrected_asr_transcription": "weeds meanwhile sprang up and a dreary confusion reigned in the once orderly and brilliant little garden"
+  },
+  {
+    "asr_transcription": {
+      "text": " Making a sort of edging circuit round the garden, he knocked over the convolvulus pole, tore the strips from the stick that held up the white lily, loosed all the carnation flowers from their fascinings, broke the rose tree down and levelled the sweet peas to the ground.",
+      "confidence_score": 0.855
+    },
+    "reference_transcription": "MAKING A SORT OF EDDYING CIRCUIT ROUND THE GARDEN HE KNOCKED OVER THE CONVOLVULUS POLE TORE THE STRIPS FROM THE STICK THAT HELD UP THE WHITE LILY LOOSED ALL THE CARNATION FLOWERS FROM THEIR FASTENINGS BROKE THE ROSE TREE DOWN AND LEVELLED THE SWEET PEAS TO THE GROUND",
+    "corrected_asr_transcription": "Making a sort of edging circuit round the garden, he knocked over the convolvulus pole, tore the strips from the stick that held up the white lily, loosed all the carnation flowers from their fascinings, broke the rose tree down and levelled the sweet peas to the ground."
+  },
+  {
+    "asr_transcription": {
+      "text": " The mistress had returned, and the young lady was with her, and hurried at once to her favorite garden.",
+      "confidence_score": 0.91
+    },
+    "reference_transcription": "THE MISTRESS HAD RETURNED AND THE YOUNG LADY WAS WITH HER AND HURRIED AT ONCE TO HER FAVOURITE GARDEN",
+    "corrected_asr_transcription": "The mistress had returned, and the young lady was with her, and hurried at once to her favorite garden."
+  },
+  {
+    "asr_transcription": {
+      "text": " After Jupiter had bound Prometheus on Mount Caucasus and had sent diseases and cares into the world, men became very, very wicked.",
+      "confidence_score": 0.851
+    },
+    "reference_transcription": "AFTER JUPITER HAD BOUND PROMETHEUS ON MOUNT CAUCASUS AND HAD SENT DISEASES AND CARES INTO THE WORLD MEN BECAME VERY VERY WICKED",
+    "corrected_asr_transcription": "After Jupiter had bound Prometheus on Mount Caucasus and had sent diseases and cares into the world, men became very, very wicked."
+  },
+  {
+    "asr_transcription": {
+      "text": " I'm not thinking about the garden mama, replied the young girl, without lifting up her face. We can plant new flowers and tie up even some of these afresh.",
+      "confidence_score": 0.915
+    },
+    "reference_transcription": "I AM NOT THINKING ABOUT THE GARDEN MAMMA REPLIED THE YOUNG GIRL WITHOUT LIFTING UP HER FACE WE CAN PLANT NEW FLOWERS AND TIE UP EVEN SOME OF THESE AFRESH",
+    "corrected_asr_transcription": "I'm not thinking about the garden, mama,\" replied the young girl, without lifting up her face. \"We can plant new flowers and tie up even some of these afresh.\""
+  },
+  {
+    "asr_transcription": {
+      "text": " No one but to Kaylion, the son of Prometheus, was ready for such a storm.",
+      "confidence_score": 0.788
+    },
+    "reference_transcription": "NO ONE BUT DEUCALION THE SON OF PROMETHEUS WAS READY FOR SUCH A STORM",
+    "corrected_asr_transcription": "No one but Deucalion, the son of Prometheus, was ready for such a storm."
+  },
+  {
+    "asr_transcription": {
+      "text": " In this position she remained until a gentle hand was laid upon her shoulder.",
+      "confidence_score": 0.933
+    },
+    "reference_transcription": "IN THIS POSITION SHE REMAINED UNTIL A GENTLE HAND WAS LAID UPON HER SHOULDER",
+    "corrected_asr_transcription": "In this position she remained until a gentle hand was laid upon her shoulder."
+  },
+  {
+    "asr_transcription": {
+      "text": " In those very early times, there was a man named Dukalian, and he was the son of Prometheus.",
+      "confidence_score": 0.823
+    },
+    "reference_transcription": "IN THOSE VERY EARLY TIMES THERE WAS A MAN NAMED DEUCALION AND HE WAS THE SON OF PROMETHEUS",
+    "corrected_asr_transcription": "In those very early times, there was a man named Dukalian, and he was the son of Prometheus."
+  },
+  {
+    "asr_transcription": {
+      "text": " The day he is coming, said Pomeethias. When Jupiter will send a flood the destroy mankind from the earth.",
+      "confidence_score": 0.696
+    },
+    "reference_transcription": "THE DAY IS COMING SAID PROMETHEUS WHEN JUPITER WILL SEND A FLOOD TO DESTROY MANKIND FROM THE EARTH",
+    "corrected_asr_transcription": "The day he is coming, said Prometheus. When Jupiter will send a flood to destroy mankind from the earth."
+  },
+  {
+    "asr_transcription": {
+      "text": " These men, he said to his mighty company, are nothing but a source of trouble.",
+      "confidence_score": 0.869
+    },
+    "reference_transcription": "THESE MEN HE SAID TO HIS MIGHTY COMPANY ARE NOTHING BUT A SOURCE OF TROUBLE",
+    "corrected_asr_transcription": "these men, he said to his mighty company, are nothing but a source of trouble."
+  },
+  {
+    "asr_transcription": {
+      "text": " But men kept on fighting and robbing, even while the rain was pouring down, and the sea was coming up over the land.",
+      "confidence_score": 0.9630000000000001
+    },
+    "reference_transcription": "BUT MEN KEPT ON FIGHTING AND ROBBING EVEN WHILE THE RAIN WAS POURING DOWN AND THE SEA WAS COMING UP OVER THE LAND",
+    "corrected_asr_transcription": "But men kept on fighting and robbing, even while the rain was pouring down, and the sea was coming up over the land."
+  },
+  {
+    "asr_transcription": {
+      "text": " Surely I do not know,\" said Duquesnean.",
+      "confidence_score": 0.522
+    },
+    "reference_transcription": "SURELY I DO NOT KNOW SAID DEUCALION",
+    "corrected_asr_transcription": "surely I do not know,\" said Duquesne."
+  },
+  {
+    "asr_transcription": {
+      "text": " What did he mean? Ask Pera.",
+      "confidence_score": 0.72
+    },
+    "reference_transcription": "WHAT DID HE MEAN ASKED PYRRHA",
+    "corrected_asr_transcription": "what did he mean ask pera"
+  },
+  {
+    "asr_transcription": {
+      "text": " When at last they reached the plane, they found themselves at the head of a noble company of human beings, all the eager to serve them.",
+      "confidence_score": 0.892
+    },
+    "reference_transcription": "WHEN AT LAST THEY REACHED THE PLAIN THEY FOUND THEMSELVES AT THE HEAD OF A NOBLE COMPANY OF HUMAN BEINGS ALL EAGER TO SERVE THEM",
+    "corrected_asr_transcription": "when at last they reached the plain they found themselves at the head of a noble company of human beings all eager to serve them"
+  },
+  {
+    "asr_transcription": {
+      "text": " Go on down the mountain, set Mercury, and as you go, cast the bones of your mother over your shoulders behind you. And with these words, he leapt into the air and with scene no more.",
+      "confidence_score": 0.9153333333333333
+    },
+    "reference_transcription": "GO ON DOWN THE MOUNTAIN SAID MERCURY AND AS YOU GO CAST THE BONES OF YOUR MOTHER OVER YOUR SHOULDERS BEHIND YOU AND WITH THESE WORDS HE LEAPED INTO THE AIR AND WAS SEEN NO MORE",
+    "corrected_asr_transcription": "go on down the mountain, set Mercury, and as you go, cast the bones of your mother over your shoulders behind you. And with these words, he leapt into the air and was seen no more."
+  },
+  {
+    "asr_transcription": {
+      "text": " But, Dukalion and Piro were very sad. For they knew that they were the only persons who were left alive in all the land.",
+      "confidence_score": 0.742
+    },
+    "reference_transcription": "BUT DEUCALION AND PYRRHA WERE VERY SAD FOR THEY KNEW THAT THEY WERE THE ONLY PERSONS WHO WERE LEFT ALIVE IN ALL THE LAND",
+    "corrected_asr_transcription": "But, Deucalion and Pyrrha were very sad. For they knew that they were the only persons who were left alive in all the land."
+  },
+  {
+    "asr_transcription": {
+      "text": " Is there anything that you wish he asked?",
+      "confidence_score": 0.826
+    },
+    "reference_transcription": "IS THERE ANYTHING THAT YOU WISH HE ASKED",
+    "corrected_asr_transcription": "Is there anything that you wish he asked?"
+  },
+  {
+    "asr_transcription": {
+      "text": " We should like above all things,\" said New Canyon. To see this land full of people once more, for without neighbors and friends, the world is a very lonely place indeed.",
+      "confidence_score": 0.87975
+    },
+    "reference_transcription": "WE SHOULD LIKE ABOVE ALL THINGS SAID DEUCALION TO SEE THIS LAND FULL OF PEOPLE ONCE MORE FOR WITHOUT NEIGHBORS AND FRIENDS THE WORLD IS A VERY LONELY PLACE INDEED",
+    "corrected_asr_transcription": "We should like above all things,\" said New Canon. To see this land full of people once more, for without neighbors and friends, the world is a very lonely place indeed."
+  },
+  {
+    "asr_transcription": {
+      "text": " When at last the Queen gave birth to a daughter, the King was so overjoyed that he gave a great christening feast, the like of which had never before been known.",
+      "confidence_score": 0.842
+    },
+    "reference_transcription": "WHEN AT LAST THE QUEEN GAVE BIRTH TO A DAUGHTER THE KING WAS SO OVERJOYED THAT HE GAVE A GREAT CHRISTENING FEAST THE LIKE OF WHICH HAD NEVER BEFORE BEEN KNOWN",
+    "corrected_asr_transcription": "When at last the Queen gave birth to a daughter, the King was so overjoyed that he gave a great christening feast, the like of which had never before been known."
+  },
+  {
+    "asr_transcription": {
+      "text": " The young prince at these words, felt himself on fire.",
+      "confidence_score": 0.876
+    },
+    "reference_transcription": "THE YOUNG PRINCE AT THESE WORDS FELT HIMSELF ON FIRE",
+    "corrected_asr_transcription": "the young prince at these words felt himself on fire"
+  },
+  {
+    "asr_transcription": {
+      "text": " One of the young fairies, overhearing her, and vansing she might work some mischief to the little baby, went and hid herself behind the hangings in the hall, so as to be able to have the last word and undo any harm the old fairy might wish to work.",
+      "confidence_score": 0.8879999999999999
+    },
+    "reference_transcription": "ONE OF THE YOUNG FAIRIES OVERHEARING HER AND FANCYING SHE MIGHT WORK SOME MISCHIEF TO THE LITTLE BABY WENT AND HID HERSELF BEHIND THE HANGINGS IN THE HALL SO AS TO BE ABLE TO HAVE THE LAST WORD AND UNDO ANY HARM THE OLD FAIRY MIGHT WISH TO WORK",
+    "corrected_asr_transcription": "One of the young fairies, overhearing her, and fearing she might work some mischief to the little baby, went and hid herself behind the hangings in the hall, so as to be able to have the last word and undo any harm the old fairy might wish to work."
+  },
+  {
+    "asr_transcription": {
+      "text": " The turn of the old fairy had now come, and she declared, while her head shook with malice, that the princess should pierce her hand with a spindle and die of the wound.",
+      "confidence_score": 0.8925000000000001
+    },
+    "reference_transcription": "THE TURN OF THE OLD FAIRY HAD NOW COME AND SHE DECLARED WHILE HER HEAD SHOOK WITH MALICE THAT THE PRINCESS SHOULD PIERCE HER HAND WITH A SPINDLE AND DIE OF THE WOUND",
+    "corrected_asr_transcription": "The turn of the old fairy had now come, and she declared, while her head shook with malice, that the princess should pierce her hand with a spindle and die of the wound."
+  },
+  {
+    "asr_transcription": {
+      "text": " She had no sooner taken up the spindle than being hasty and careless. She pierced her hand with the point of it and sang it away.",
+      "confidence_score": 0.8839999999999999
+    },
+    "reference_transcription": "SHE HAD NO SOONER TAKEN UP THE SPINDLE THAN BEING HASTY AND CARELESS SHE PIERCED HER HAND WITH THE POINT OF IT AND FAINTED AWAY",
+    "corrected_asr_transcription": "She had no sooner taken up the spindle than being hasty and careless. She pierced her hand with the point of it and sang it away."
+  },
+  {
+    "asr_transcription": {
+      "text": " It is true I can't entirely undo what my elder has done.",
+      "confidence_score": 0.842
+    },
+    "reference_transcription": "IT IS TRUE I CANNOT ENTIRELY UNDO WHAT MY ELDER HAS DONE",
+    "corrected_asr_transcription": "It is true I can't entirely undo what my elder has done."
+  },
+  {
+    "asr_transcription": {
+      "text": " Now 15 years after the princess was born, she was with the king and queen, not one of their castles, and as she was running about by herself, she came to a little chamber at the top of the tower, and there sad and honest old woman spinning, but she had never heard of the king's edict.",
+      "confidence_score": 0.8225
+    },
+    "reference_transcription": "NOW FIFTEEN YEARS AFTER THE PRINCESS WAS BORN SHE WAS WITH THE KING AND QUEEN AT ONE OF THEIR CASTLES AND AS SHE WAS RUNNING ABOUT BY HERSELF SHE CAME TO A LITTLE CHAMBER AT THE TOP OF A TOWER AND THERE SAT AN HONEST OLD WOMAN SPINNING FOR SHE HAD NEVER HEARD OF THE KING'S EDICT",
+    "corrected_asr_transcription": "Now 15 years after the princess was born, she was with the king and queen, not in one of their castles, and as she was running about by herself, she came to a little chamber at the top of the tower, and there sat an honest old woman spinning, but she had never heard of the king's edict."
+  },
+  {
+    "asr_transcription": {
+      "text": " He knew that she would not awake for a hundred years.",
+      "confidence_score": 0.924
+    },
+    "reference_transcription": "HE KNEW THAT SHE WOULD NOT AWAKE FOR A HUNDRED YEARS",
+    "corrected_asr_transcription": "He knew that she would not awake for a hundred years."
+  },
+  {
+    "asr_transcription": {
+      "text": " He entered a large forecourt and stood still with amazement and awe.",
+      "confidence_score": 0.803
+    },
+    "reference_transcription": "HE ENTERED A LARGE FORECOURT AND STOOD STILL WITH AMAZEMENT AND AWE",
+    "corrected_asr_transcription": "He entered a large forecourt and stood still with amazement and awe."
+  },
+  {
+    "asr_transcription": {
+      "text": " But the faces of the men were rosy, and the goblets by them had a few drops of wine left.",
+      "confidence_score": 0.924
+    },
+    "reference_transcription": "BUT THE FACES OF THE MEN WERE ROSY AND THE GOBLETS BY THEM HAD A FEW DROPS OF WINE LEFT",
+    "corrected_asr_transcription": "But the faces of the men were rosy, and the goblets beside them had a few drops of wine left."
+  },
+  {
+    "asr_transcription": {
+      "text": " One said it was an enchanted castle, another that witches list there. But most believe that it was occupied by great ogre, which carried their their all the children he could catch and ate them up one at a time, for nobody could get out of them through the wood.",
+      "confidence_score": 0.8745
+    },
+    "reference_transcription": "ONE SAID IT WAS AN ENCHANTED CASTLE ANOTHER THAT WITCHES LIVED THERE BUT MOST BELIEVED THAT IT WAS OCCUPIED BY A GREAT OGRE WHICH CARRIED THITHER ALL THE CHILDREN HE COULD CATCH AND ATE THEM UP ONE AT A TIME FOR NOBODY COULD GET AT HIM THROUGH THE WOOD",
+    "corrected_asr_transcription": "One said it was an enchanted castle, another that witches lived there. But most believe that it was occupied by a great ogre, which carried off all the children he could catch and ate them up one at a time, for nobody could get out of them through the wood."
+  },
+  {
+    "asr_transcription": {
+      "text": " He entered the guard room. There the guards stood drawn up in line with carbines at their shoulders, but they were sound asleep.",
+      "confidence_score": 0.9143333333333333
+    },
+    "reference_transcription": "HE ENTERED THE GUARD ROOM THERE THE GUARDS STOOD DRAWN UP IN LINE WITH CARBINES AT THEIR SHOULDERS BUT THEY WERE SOUND ASLEEP",
+    "corrected_asr_transcription": "He entered the guardroom. There the guards stood drawn up in line with carbines at their shoulders, but they were sound asleep."
+  },
+  {
+    "asr_transcription": {
+      "text": " They talked for four hours, and had not then said half that was in their heads to say.",
+      "confidence_score": 0.896
+    },
+    "reference_transcription": "THEY TALKED FOR FOUR HOURS AND HAD NOT THEN SAID HALF THAT WAS IN THEIR HEADS TO SAY",
+    "corrected_asr_transcription": "They talked for four hours, and had not then said half that was in their heads to say."
+  },
+  {
+    "asr_transcription": {
+      "text": " Scarcely had he come to the wood, when all the trees and thorns which had made such an impenetable thicket opened on one side in the other to offer him a path.",
+      "confidence_score": 0.857
+    },
+    "reference_transcription": "SCARCELY HAD HE COME TO THE WOOD WHEN ALL THE TREES AND THORNS WHICH HAD MADE SUCH AN IMPENETRABLE THICKET OPENED ON ONE SIDE AND THE OTHER TO OFFER HIM A PATH",
+    "corrected_asr_transcription": "scarcely had he come to the wood when all the trees and thorns which had made such an impenetrable thicket opened on one side and the other to offer him a path."
+  },
+  {
+    "asr_transcription": {
+      "text": " He passed through one apartment after another, where were ladies and gentlemen asleep in their chairs or standing.",
+      "confidence_score": 0.838
+    },
+    "reference_transcription": "HE PASSED THROUGH ONE APARTMENT AFTER ANOTHER WHERE WERE LADIES AND GENTLEMEN ASLEEP IN THEIR CHAIRS OR STANDING",
+    "corrected_asr_transcription": "He passed through one apartment after another, where were ladies and gentlemen asleep in their chairs or standing."
+  },
+  {
+    "asr_transcription": {
+      "text": " I have waited long for you.",
+      "confidence_score": 0.914
+    },
+    "reference_transcription": "I HAVE WAITED LONG FOR YOU",
+    "corrected_asr_transcription": "I have waited long for you."
+  },
+  {
+    "asr_transcription": {
+      "text": " He turned to show them the castle, but behold.",
+      "confidence_score": 0.972
+    },
+    "reference_transcription": "HE TURNED TO SHOW THEM THE CASTLE BUT BEHOLD",
+    "corrected_asr_transcription": "he turned to show them the castle, but behold."
+  },
+  {
+    "asr_transcription": {
+      "text": " The lady in waiting became very impatient, and at length announced the princess that they all waited for her.",
+      "confidence_score": 0.835
+    },
+    "reference_transcription": "THE LADY IN WAITING BECAME VERY IMPATIENT AND AT LENGTH ANNOUNCED TO THE PRINCESS THAT THEY ALL WAITED FOR HER",
+    "corrected_asr_transcription": "the lady-in-waiting became very impatient, and at length announced to the princess that they all waited for her."
+  },
+  {
+    "asr_transcription": {
+      "text": " On the last Saturday in April, the New York Times published an account of the strike complications which were delaying Alexander's New Jersey bridge and stated that the engineer himself was in town and at his office on West 10th Street.",
+      "confidence_score": 0.8856666666666667
+    },
+    "reference_transcription": "ON THE LAST SATURDAY IN APRIL THE NEW YORK TIMES PUBLISHED AN ACCOUNT OF THE STRIKE COMPLICATIONS WHICH WERE DELAYING ALEXANDER'S NEW JERSEY BRIDGE AND STATED THAT THE ENGINEER HIMSELF WAS IN TOWN AND AT HIS OFFICE ON WEST TENTH STREET",
+    "corrected_asr_transcription": "On the last Saturday in April, the New York Times published an account of the strike complications which were delaying Alexander's New Jersey bridge and stated that the engineer himself was in town and at his office on West 10th Street."
+  },
+  {
+    "asr_transcription": {
+      "text": " Meanwhile, all the rest of the people in the castle had been awakened at the same moment as the princess, and they were now extremely hungry.",
+      "confidence_score": 0.9545
+    },
+    "reference_transcription": "MEANWHILE ALL THE REST OF THE PEOPLE IN THE CASTLE HAD BEEN WAKENED AT THE SAME MOMENT AS THE PRINCESS AND THEY WERE NOW EXTREMELY HUNGRY",
+    "corrected_asr_transcription": "Meanwhile, all the rest of the people in the castle had been awakened at the same moment as the princess, and they were now extremely hungry."
+  },
+  {
+    "asr_transcription": {
+      "text": " The violins and hoboys played old but excellent pieces of music, and after supper to lose no time, the grand-almen are married the royal lovers and the chapel of the castle.",
+      "confidence_score": 0.8
+    },
+    "reference_transcription": "THE VIOLINS AND HAUT BOYS PLAYED OLD BUT EXCELLENT PIECES OF MUSIC AND AFTER SUPPER TO LOSE NO TIME THE GRAND ALMONER MARRIED THE ROYAL LOVERS IN THE CHAPEL OF THE CASTLE",
+    "corrected_asr_transcription": "The violins and oboes played old but excellent pieces of music, and after supper to lose no time, the grand almoner married the royal lovers in the chapel of the castle."
+  },
+  {
+    "asr_transcription": {
+      "text": " Then the prince took the princess by the hand. She was dressed in great splendor. But he did not hint that she looked as he had seen pictures of his great grandmother look. He thought her all the more charming for that.",
+      "confidence_score": 0.9273333333333333
+    },
+    "reference_transcription": "THEN THE PRINCE TOOK THE PRINCESS BY THE HAND SHE WAS DRESSED IN GREAT SPLENDOUR BUT HE DID NOT HINT THAT SHE LOOKED AS HE HAD SEEN PICTURES OF HIS GREAT GRANDMOTHER LOOK HE THOUGHT HER ALL THE MORE CHARMING FOR THAT",
+    "corrected_asr_transcription": "then the prince took the princess by the hand. she was dressed in great splendor. but he did not hint that she looked as he had seen pictures of his great-grandmother look. he thought her all the more charming for that."
+  },
+  {
+    "asr_transcription": {
+      "text": " Let me take off your coat and your boots, their oozing water.",
+      "confidence_score": 0.918
+    },
+    "reference_transcription": "LET ME TAKE OFF YOUR COAT AND YOUR BOOTS THEY'RE OOZING WATER",
+    "corrected_asr_transcription": "Let me take off your coat and your boots, they're oozing water."
+  },
+  {
+    "asr_transcription": {
+      "text": " Over the fireplace, there was a large old fashioned guilt mirror.",
+      "confidence_score": 0.854
+    },
+    "reference_transcription": "OVER THE FIREPLACE THERE WAS A LARGE OLD FASHIONED GILT MIRROR",
+    "corrected_asr_transcription": "Over the fireplace, there was a large old-fashioned gilt mirror."
+  },
+  {
+    "asr_transcription": {
+      "text": " He rose and crossed the room quickly.",
+      "confidence_score": 0.896
+    },
+    "reference_transcription": "HE ROSE AND CROSSED THE ROOM QUICKLY",
+    "corrected_asr_transcription": "He rose and crossed the room quickly."
+  },
+  {
+    "asr_transcription": {
+      "text": " Of course, I know Bartley, she said it last, that after this you won't only the least consideration. But we sail on Tuesday.",
+      "confidence_score": 0.8554999999999999
+    },
+    "reference_transcription": "OF COURSE I KNOW BARTLEY SHE SAID AT LAST THAT AFTER THIS YOU WON'T OWE ME THE LEAST CONSIDERATION BUT WE SAIL ON TUESDAY",
+    "corrected_asr_transcription": "of course, I know Bartleby said it last, that after this you won't get the least consideration. But we sail on Tuesday."
+  },
+  {
+    "asr_transcription": {
+      "text": " I told myself that if I were really thinking of you and not of myself, a letter would be better than nothing.",
+      "confidence_score": 0.935
+    },
+    "reference_transcription": "I TOLD MYSELF THAT IF I WERE REALLY THINKING OF YOU AND NOT OF MYSELF A LETTER WOULD BE BETTER THAN NOTHING",
+    "corrected_asr_transcription": "I told myself that if I were really thinking of you and not of myself, a letter would be better than nothing."
+  },
+  {
+    "asr_transcription": {
+      "text": " If you'd sent me a note or telephone to me or anything,",
+      "confidence_score": 0.891
+    },
+    "reference_transcription": "IF YOU'D SENT ME A NOTE OR TELEPHONED ME OR ANYTHING",
+    "corrected_asr_transcription": "if you'd sent me a note or telephoned me or anything"
+  },
+  {
+    "asr_transcription": {
+      "text": " He paused. They never did to me.",
+      "confidence_score": 0.908
+    },
+    "reference_transcription": "HE PAUSED THEY NEVER DID TO ME",
+    "corrected_asr_transcription": "He paused. They never did to me."
+  },
+  {
+    "asr_transcription": {
+      "text": " I saw that interview in the paper yesterday telling where you were and I thought I had to see you, that's all. Good night, I'm going now.",
+      "confidence_score": 0.9299999999999999
+    },
+    "reference_transcription": "I SAW THAT INTERVIEW IN THE PAPER YESTERDAY TELLING WHERE YOU WERE AND I THOUGHT I HAD TO SEE YOU THAT'S ALL GOOD NIGHT I'M GOING NOW",
+    "corrected_asr_transcription": "I saw that interview in the paper yesterday telling where you were and I thought I had to see you, that's all. Good night, I'm going now."
+  },
+  {
+    "asr_transcription": {
+      "text": " And I, she whispered, I felt that you were feeling that.",
+      "confidence_score": 0.904
+    },
+    "reference_transcription": "AND I SHE WHISPERED I FELT THAT YOU WERE FEELING THAT",
+    "corrected_asr_transcription": "And I, she whispered, I felt that you were feeling that."
+  },
+  {
+    "asr_transcription": {
+      "text": " He bent his face over her hair.",
+      "confidence_score": 0.97
+    },
+    "reference_transcription": "HE BENT HIS FACE OVER HER HAIR",
+    "corrected_asr_transcription": "he bent his face over her hair."
+  },
+  {
+    "asr_transcription": {
+      "text": " Alexander slipped his arm about her.",
+      "confidence_score": 0.96
+    },
+    "reference_transcription": "ALEXANDER SLIPPED HIS ARM ABOUT HER",
+    "corrected_asr_transcription": "alexander slipped his arm about her."
+  },
+  {
+    "asr_transcription": {
+      "text": " Oh Bartley, did you write to me?",
+      "confidence_score": 0.863
+    },
+    "reference_transcription": "OH BARTLEY DID YOU WRITE TO ME",
+    "corrected_asr_transcription": "oh bartley did you write to me"
+  },
+  {
+    "asr_transcription": {
+      "text": " Then when you're manager added two more weeks, I was already committed.",
+      "confidence_score": 0.862
+    },
+    "reference_transcription": "THEN WHEN YOUR MANAGER ADDED TWO MORE WEEKS I WAS ALREADY COMMITTED",
+    "corrected_asr_transcription": "then when your manager added two more weeks, I was already committed."
+  },
+  {
+    "asr_transcription": {
+      "text": " I think I have felt that you were coming.",
+      "confidence_score": 0.969
+    },
+    "reference_transcription": "I THINK I HAVE FELT THAT YOU WERE COMING",
+    "corrected_asr_transcription": "I think I have felt that you were coming."
+  },
+  {
+    "asr_transcription": {
+      "text": " I'm going to do what you asked me to do when you were in London.",
+      "confidence_score": 0.968
+    },
+    "reference_transcription": "I'M GOING TO DO WHAT YOU ASKED ME TO DO WHEN YOU WERE IN LONDON",
+    "corrected_asr_transcription": "I'm going to do what you asked me to do when you were in London."
+  },
+  {
+    "asr_transcription": {
+      "text": " I've been up in Canada with my bridge and I arranged not to come to New York until after you had gone.",
+      "confidence_score": 0.918
+    },
+    "reference_transcription": "I'VE BEEN UP IN CANADA WITH MY BRIDGE AND I ARRANGED NOT TO COME TO NEW YORK UNTIL AFTER YOU HAD GONE",
+    "corrected_asr_transcription": "I've been up in Canada with my bridge and I arranged not to come to New York until after you had gone."
+  },
+  {
+    "asr_transcription": {
+      "text": " But when I came, I thought I had been mistaken.",
+      "confidence_score": 0.947
+    },
+    "reference_transcription": "BUT WHEN I CAME I THOUGHT I HAD BEEN MISTAKEN",
+    "corrected_asr_transcription": "But when I came, I thought I had been mistaken."
+  },
+  {
+    "asr_transcription": {
+      "text": " On the I'll do it more completely.",
+      "confidence_score": 0.79
+    },
+    "reference_transcription": "ONLY I'LL DO IT MORE COMPLETELY",
+    "corrected_asr_transcription": "on the aisle do it more completely"
+  },
+  {
+    "asr_transcription": {
+      "text": " Then you don't know what you're talking about.",
+      "confidence_score": 0.953
+    },
+    "reference_transcription": "THEN YOU DON'T KNOW WHAT YOU'RE TALKING ABOUT",
+    "corrected_asr_transcription": "then you don't know what you're talking about."
+  },
+  {
+    "asr_transcription": {
+      "text": " Alexander flushed angrily.",
+      "confidence_score": 0.813
+    },
+    "reference_transcription": "ALEXANDER FLUSHED ANGRILY",
+    "corrected_asr_transcription": "alexander flushed angrily"
+  },
+  {
+    "asr_transcription": {
+      "text": " Yes, I know very well.",
+      "confidence_score": 0.981
+    },
+    "reference_transcription": "YES I KNOW VERY WELL",
+    "corrected_asr_transcription": "Yes, I know very well."
+  },
+  {
+    "asr_transcription": {
+      "text": " The room was empty when he entered.",
+      "confidence_score": 0.97
+    },
+    "reference_transcription": "THE ROOM WAS EMPTY WHEN HE ENTERED",
+    "corrected_asr_transcription": "The room was empty when he entered."
+  },
+  {
+    "asr_transcription": {
+      "text": " She blushed and smiled and fumbled his card in her confusion before she ran upstairs.",
+      "confidence_score": 0.898
+    },
+    "reference_transcription": "SHE BLUSHED AND SMILED AND FUMBLED HIS CARD IN HER CONFUSION BEFORE SHE RAN UPSTAIRS",
+    "corrected_asr_transcription": "she blushed and smiled and fumbled his card in her confusion before she ran upstairs."
+  },
+  {
+    "asr_transcription": {
+      "text": " The last two days of the voyage Bartley found almost intolerable.",
+      "confidence_score": 0.881
+    },
+    "reference_transcription": "THE LAST TWO DAYS OF THE VOYAGE BARTLEY FOUND ALMOST INTOLERABLE",
+    "corrected_asr_transcription": "the last two days of the voyage Bartley found almost intolerable."
+  },
+  {
+    "asr_transcription": {
+      "text": " Emerging at Houston at half past three o'clock in the afternoon, Alexander had his luggage sent to the Savoy and drove at once to bed for its square.",
+      "confidence_score": 0.8665
+    },
+    "reference_transcription": "EMERGING AT EUSTON AT HALF PAST THREE O'CLOCK IN THE AFTERNOON ALEXANDER HAD HIS LUGGAGE SENT TO THE SAVOY AND DROVE AT ONCE TO BEDFORD SQUARE",
+    "corrected_asr_transcription": "emerging at Houston at half past three o'clock in the afternoon, Alexander had his luggage sent to the Savoy and drove at once to Bedford Square."
+  },
+  {
+    "asr_transcription": {
+      "text": " She called his name on the threshold, but in her swift flight across the room she felt a change in him and caught herself up so definitely that he could not tell just when she did it.",
+      "confidence_score": 0.8795
+    },
+    "reference_transcription": "SHE CALLED HIS NAME ON THE THRESHOLD BUT IN HER SWIFT FLIGHT ACROSS THE ROOM SHE FELT A CHANGE IN HIM AND CAUGHT HERSELF UP SO DEFTLY THAT HE COULD NOT TELL JUST WHEN SHE DID IT",
+    "corrected_asr_transcription": "She called his name on the threshold, but in her swift flight across the room she felt a change in him and caught herself up so definitely that he could not tell just when she did it."
+  },
+  {
+    "asr_transcription": {
+      "text": " I don't know what I ought to say, but I don't believe you'd be happy, truly I don't. Aren't you trying to frighten me?",
+      "confidence_score": 0.974
+    },
+    "reference_transcription": "I DON'T KNOW WHAT I OUGHT TO SAY BUT I DON'T BELIEVE YOU'D BE HAPPY TRULY I DON'T AREN'T YOU TRYING TO FRIGHTEN ME",
+    "corrected_asr_transcription": "I don't know what I ought to say, but I don't believe you'd be happy, truly I don't. Aren't you trying to frighten me?"
+  },
+  {
+    "asr_transcription": {
+      "text": " A coal fire was crackling in the grate and the lamps were lit for it was already beginning to grow dark outside.",
+      "confidence_score": 0.862
+    },
+    "reference_transcription": "A COAL FIRE WAS CRACKLING IN THE GRATE AND THE LAMPS WERE LIT FOR IT WAS ALREADY BEGINNING TO GROW DARK OUTSIDE",
+    "corrected_asr_transcription": "A coal fire was crackling in the grate and the lamps were lit for it was already beginning to grow dark outside."
+  },
+  {
+    "asr_transcription": {
+      "text": " I never dreamed it would be you, Bartley.",
+      "confidence_score": 0.904
+    },
+    "reference_transcription": "I NEVER DREAMED IT WOULD BE YOU BARTLEY",
+    "corrected_asr_transcription": "I never dreamed it would be you, Bartley."
+  },
+  {
+    "asr_transcription": {
+      "text": " She looked at his heavy shoulders and big determined head, first forward like a catapult in leash.",
+      "confidence_score": 0.854
+    },
+    "reference_transcription": "SHE LOOKED AT HIS HEAVY SHOULDERS AND BIG DETERMINED HEAD THRUST FORWARD LIKE A CATAPULT IN LEASH",
+    "corrected_asr_transcription": "She looked at his heavy shoulders and big determined head, thrust forward like a catapult in leash."
+  },
+  {
+    "asr_transcription": {
+      "text": " She merely brushed his cheek with her lips and put a hand lightly and joyously on either shoulder.",
+      "confidence_score": 0.876
+    },
+    "reference_transcription": "SHE MERELY BRUSHED HIS CHEEK WITH HER LIPS AND PUT A HAND LIGHTLY AND JOYOUSLY ON EITHER SHOULDER",
+    "corrected_asr_transcription": "she merely brushed his cheek with her lips and put a hand lightly and joyously on either shoulder."
+  },
+  {
+    "asr_transcription": {
+      "text": " He pulled up a window as if the air were heavy.",
+      "confidence_score": 0.964
+    },
+    "reference_transcription": "HE PULLED UP A WINDOW AS IF THE AIR WERE HEAVY",
+    "corrected_asr_transcription": "He pulled up a window as if the air were heavy."
+  },
+  {
+    "asr_transcription": {
+      "text": " I'll do anything you wish me to, Bartley. She said chummylessly.",
+      "confidence_score": 0.734
+    },
+    "reference_transcription": "I'LL DO ANYTHING YOU WISH ME TO BARTLEY SHE SAID TREMULOUSLY",
+    "corrected_asr_transcription": "I'll do anything you wish me to, Bartley. She said charmingly."
+  },
+  {
+    "asr_transcription": {
+      "text": " It hasn't always made you miserable, has it?",
+      "confidence_score": 0.924
+    },
+    "reference_transcription": "IT IT HASN'T ALWAYS MADE YOU MISERABLE HAS IT",
+    "corrected_asr_transcription": "It hasn't always made you miserable, has it?"
+  },
+  {
+    "asr_transcription": {
+      "text": " Always, but it's worse now.",
+      "confidence_score": 0.871
+    },
+    "reference_transcription": "ALWAYS BUT IT'S WORSE NOW",
+    "corrected_asr_transcription": "always, but it's worse now."
+  },
+  {
+    "asr_transcription": {
+      "text": " Hilda watched him from her corner, trembling and scarcely breathing, dark shadows going about her eyes.",
+      "confidence_score": 0.8935
+    },
+    "reference_transcription": "HILDA WATCHED HIM FROM HER CORNER TREMBLING AND SCARCELY BREATHING DARK SHADOWS GROWING ABOUT HER EYES",
+    "corrected_asr_transcription": "Hilda watched him from her corner, trembling and scarcely breathing, dark shadows under her eyes."
+  },
+  {
+    "asr_transcription": {
+      "text": " When did you come, Bartley, and how did it happen? You haven't spoken a word.",
+      "confidence_score": 0.83
+    },
+    "reference_transcription": "WHEN DID YOU COME BARTLEY AND HOW DID IT HAPPEN YOU HAVEN'T SPOKEN A WORD",
+    "corrected_asr_transcription": "when did you come bartley and how did it happen you haven't spoken a word"
+  },
+  {
+    "asr_transcription": {
+      "text": " It's unbearable. It tortures me every minute.",
+      "confidence_score": 0.945
+    },
+    "reference_transcription": "IT'S UNBEARABLE IT TORTURES ME EVERY MINUTE",
+    "corrected_asr_transcription": "It's unbearable. It tortures me every minute."
+  },
+  {
+    "asr_transcription": {
+      "text": " I am not a man who can live two lives he went on feverishly. Each life spoils the other.",
+      "confidence_score": 0.9135
+    },
+    "reference_transcription": "I AM NOT A MAN WHO CAN LIVE TWO LIVES HE WENT ON FEVERISHLY EACH LIFE SPOILS THE OTHER",
+    "corrected_asr_transcription": "I am not a man who can live two lives,\" he went on feverishly. \"Each life spoils the other.\""
+  },
+  {
+    "asr_transcription": {
+      "text": " I get nothing but misery out of either.",
+      "confidence_score": 0.981
+    },
+    "reference_transcription": "I GET NOTHING BUT MISERY OUT OF EITHER",
+    "corrected_asr_transcription": "I get nothing but misery out of either."
+  },
+  {
+    "asr_transcription": {
+      "text": " There is this deception between me and everything.",
+      "confidence_score": 0.963
+    },
+    "reference_transcription": "THERE IS THIS DECEPTION BETWEEN ME AND EVERYTHING",
+    "corrected_asr_transcription": "There is this deception between me and everything."
+  },
+  {
+    "asr_transcription": {
+      "text": " She bit her lip and looked down at her hands, which were clasped tightly in front of her.",
+      "confidence_score": 0.93
+    },
+    "reference_transcription": "SHE BIT HER LIP AND LOOKED DOWN AT HER HANDS WHICH WERE CLASPED TIGHTLY IN FRONT OF HER",
+    "corrected_asr_transcription": "She bit her lip and looked down at her hands, which were clasped tightly in front of her."
+  },
+  {
+    "asr_transcription": {
+      "text": " Could you sit down and talk about it quietly, partly, as if I were a friend and not someone who had to be defied?",
+      "confidence_score": 0.884
+    },
+    "reference_transcription": "COULD YOU COULD YOU SIT DOWN AND TALK ABOUT IT QUIETLY BARTLEY AS IF I WERE A FRIEND AND NOT SOME ONE WHO HAD TO BE DEFIED",
+    "corrected_asr_transcription": "Could you sit down and talk about it quietly, partly, as if I were a friend and not someone who had to be defied?"
+  },
+  {
+    "asr_transcription": {
+      "text": " At that word, deception, spoken with such self-contempt, the color flashed back into Hildesface, as suddenly as if she had been struck by a whip flash.",
+      "confidence_score": 0.8109999999999999
+    },
+    "reference_transcription": "AT THAT WORD DECEPTION SPOKEN WITH SUCH SELF CONTEMPT THE COLOR FLASHED BACK INTO HILDA'S FACE AS SUDDENLY AS IF SHE HAD BEEN STRUCK BY A WHIPLASH",
+    "corrected_asr_transcription": "At that word, deception, spoken with such self-contempt, the color flashed back into Hildesface, as suddenly as if she had been struck by a whip lash."
+  }
+]
