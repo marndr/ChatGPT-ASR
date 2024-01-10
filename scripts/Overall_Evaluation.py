@@ -14,77 +14,83 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence","exp_without_lowest_confidence_word",  "exp_without_average_word_confidence", "exp_without_sentence_confidence_GPT-4","exp_without_lowest_confidence_word_GPT-4", "exp_certain_low_confidence_words_Thresh_0.55","exp_certain_low_confidence_words_Thresh_0.6","exp_certain_low_confidence_words_Thresh_0.65","exp_certain_low_confidence_words_Thresh_0.7"
-    ,"exp_certain_low_confidence_words_Thresh_0.75","exp_certain_low_confidence_words_Thresh_0.8","exp_certain_low_confidence_words_Thresh_0.85",
-    "exp_certain_low_confidence_words_Thresh_0.9","exp_certain_low_confidence_words_Thresh_0.95", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4", "exp_without_average_word_confidence_GPT-4"], help = "Select the experiment")
+    parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence_tiny","exp_without_lowest_word_confidence_tiny",  "exp_without_average_word_confidence_tiny", "exp_without_sentence_confidence_GPT-4-Turbo_tiny","exp_without_lowest_word_confidence_GPT-4_tiny", "exp_certain_low_confidence_words_Thresh_0.55_tiny","exp_certain_low_confidence_words_Thresh_0.6_tiny","exp_certain_low_confidence_words_Thresh_0.65_tiny",
+"exp_certain_low_confidence_words_Thresh_0.7_tiny","exp_certain_low_confidence_words_Thresh_0.75_tiny","exp_certain_low_confidence_words_Thresh_0.8_tiny",
+"exp_certain_low_confidence_words_Thresh_0.85_tiny","exp_certain_low_confidence_words_Thresh_0.9_tiny","exp_certain_low_confidence_words_Thresh_0.95_tiny", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo_tiny", "exp_without_average_word_confidence_GPT-4-Turbo_tiny", "exp_sentence_confidence_GPT-3.5_medium", "exp_lowest_word_confidence_GPT-3.5_medium"], help = "Select the experiment")
     args = parser.parse_args()
 
-    if args.experiment == "exp_without_sentence_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_sentence_confidence/results_GPT-3.5-Turbo/results_without_sentence_confidence/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_sentence_confidence/results_GPT-3.5-Turbo/results_without_sentence_confidence/results_whisper.md")
+    if args.experiment == "exp_without_sentence_confidence_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md")
     
-    elif args.experiment == "exp_without_sentence_confidence_GPT-4":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_sentence_confidence/results_GPT-4-Turbo/results_without_sentence_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_sentence_confidence/results_GPT-4-Turbo/results_without_sentence_confidence_GPT-4-Turbo/results_whisper.md")
+    elif args.experiment == "exp_without_sentence_confidence_GPT-4-Turbo_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_sentence_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_sentence_confidence_GPT-4-Turbo_tiny/results_overall_sentence_confidence_GPT-4-Turbo_tiny.md")
         
-    elif args.experiment == "exp_without_lowest_confidence_word":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_lowest_confidence_word/results_GPT-3.5-Turbo/results_without_lowest_confidence_word/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_lowest_confidence_word/results_GPT-3.5-Turbo/results_without_lowest_confidence_word/results_whisper.md")   
+    elif args.experiment == "exp_without_lowest_word_confidence_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_lowest_word_confidence_tiny/results_overall_lowest_word_confidence_tiny.md")   
     
-    elif args.experiment == "exp_without_lowest_confidence_word_GPT-4":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_lowest_confidence_word/results_GPT-4-Turbo/results_without_lowest_confidence_word_GPT-4-Turbo/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_lowest_confidence_word/results_GPT-4-Turbo/results_without_lowest_confidence_word_GPT-4-Turbo/results_whisper.md")
+    elif args.experiment == "exp_without_lowest_word_confidence_GPT-4-Turbo_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_lowest_word_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_lowest_word_confidence_GPT-4-Turbo_tiny/results_overall_lowest_word_confidence_GPT-4-Turbo_tiny.md")
     
-    elif args.experiment == "exp_without_average_word_confidence":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_without_average_word_confidence/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_average_word_confidence/results_GPT-3.5-Turbo/results_without_average_word_confidence/results_whisper.md") 
+    elif args.experiment == "exp_without_average_word_confidence_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_average_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_average_word_confidence_tiny/corrected_transcriptions_average_word_confidence_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_average_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/results_without_average_word_confidence_tiny/results_overall_average_word_confidence_tiny.md") 
         
-    elif args.experiment == "exp_without_average_word_confidence_GPT-4":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_average_word_confidence/results_GPT-4-Turbo/results_without_average_word_confidence_GPT-4-Turbo/whisper_corrected_transcriptions.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_average_word_confidence/results_GPT-4-Turbo/results_without_average_word_confidence_GPT-4-Turbo/results_whisper.md")     
+    elif args.experiment == "exp_without_average_word_confidence_GPT-4-Turbo_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_average_word_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_average_word_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_average_word_confidence_GPT-4-Turbo_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_average_word_confidence_tiny/results_GPT-4-Turbo_tiny/results_without_average_word_confidence_GPT-4-Turbo_tiny/results_overall_average_word_confidence_GPT-4-Turbo_tiny.md")     
             
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.55":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.55.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.55.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.55_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.55_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.55_tiny.md")   
             
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.6.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.6.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.6_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.6_tiny.md")   
         
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.65":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.65.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.65.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.65_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.65_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.65_tiny.md")   
     
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.7":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.7.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.7.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.7_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.7_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.7_tiny.md")   
     
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.75":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.75.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.75.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.75_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.75_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.75_tiny.md")   
     
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.8":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.8.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.8.md") 
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.8_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.8_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.8_tiny.md") 
                 
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.85":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.85.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.85.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.85_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.85_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.85_tiny.md")   
     
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.9":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.9.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.9.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.9_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.9_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.9_tiny.md")   
         
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.95":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/postprocessed_corrected_transcription/whisper_corrected_transcriptions_processed_Thresh=0.95.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-3.5-Turbo/evaluation_results/evaluation_overall/results_whisper_Thresh=0.95.md")   
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.95_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_Thresh=0.95_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/results_certain_low_confidence_words_thresh_tiny/results_certain_low_confidence_words_Thresh=0.95_tiny.md")   
     
-    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6_GPT-4":
-       CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-4-Turbo/postprocessed_corrected_transcription_GPT-4-Turbo/whisper_corrected_transcriptions_processed_Thresh=0.6.json")
-       OUTPUT_FILE = os.path.join(Root,"results/results_certain_low_confidence_words/results_GPT-4-Turbo/evaluation_results_GPT-4-Turbo/results_whisper_Thresh=0.6.md")
+    elif args.experiment == "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo_tiny":
+       CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-4-Turbo_tiny/postprocessed_corrected_transcriptions_certain_low_confidence_words_GPT-4-Turbo_tiny/postprocessed_corrected_transcriptions_Thresh=0.6_tiny.json")
+       OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-4-Turbo_tiny/results_certain_low_confidence_words_GPT-4-Turbo_tiny/results_certain_low_confidence_words_Thresh=0.6__GPT-4-Turbo_tiny.md")
     
     
-            
+    elif args.experiment == "exp_sentence_confidence_GPT-3.5_medium":
+       CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_sentence_confidence_medium/corrected_transcriptions_sentence_confidence_medium.json")
+       OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_sentence_confidence_medium/results_overall_sentence_confidence_medium.md")
+    
+    elif args.experiment == "exp_lowest_word_confidence_GPT-3.5_medium":
+       CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium.json")
+       OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_lowest_word_confidence_medium/results_overall_lowest_word_confidence_medium.md")        
       
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
