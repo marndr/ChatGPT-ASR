@@ -10,10 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")
-OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/results_thresh_sentence_confidence_GPT-4-Turbo_medium.md")
-output_file_wer = os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Wer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
-output_file_cer = os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Cer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
+l=os.path.join(Root,"results/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/results_lowest_word_confidence_new_prompts_medium/results_find_thresh_best_prompt_medium/results_thresh_lowest_word_confidence_prompt_1_medium.md")
+output_file_wer = os.path.join(Root,"results/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/results_lowest_word_confidence_new_prompts_medium/results_find_thresh_best_prompt_medium/plots_lowest_word_confidence_medium/Wer_vs_lowest_word_confidence_prompt_1_medium.png")
+output_file_cer = os.path.join(Root,"results/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/results_lowest_word_confidence_new_prompts_medium/results_find_thresh_best_prompt_medium/plots_lowest_word_confidence_medium/Cer_vs_lowest_word_confidence_prompt_1_medium.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -55,7 +55,7 @@ def evaluate_with_thresh(items, thresh):
     return wer, cer
 
 
-thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
 results = []
 
 
@@ -75,20 +75,19 @@ def plot(l):
     
     plt.figure()
     plt.plot(x, y_wer, "-ob", label="Wer")
-    plt.xlabel("sentence confidence")
+    plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
-    plt.title("Wer vs sentence confidence for GPT-4-Turbo(medium whisper model)")
+    plt.title("Wer vs lowest word confidence for GPT-3.5-Turbo (new prompt-2,tiny model)")
     plt.yticks([3,3.5,4,4.5,5,5.5])
-    #plt.show()
     plt.savefig(output_file_wer)
     
     
     y_cer = [dictionary["cer"] for dictionary in l]
     plt.figure()
     plt.plot(x, y_cer, "-or", label="Cer")
-    plt.xlabel("sentence confidence")
+    plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
-    plt.title("Cer vs sentence confidence for GPT-4-Turbo(medium whisper model)")
+    plt.title("Cer vs lowest word confidence for GPT-3.5-Turbo (new promt-2,tiny model)")
     plt.yticks([1,1.5,2,2.5])
     #plt.show()
     plt.savefig(output_file_cer)

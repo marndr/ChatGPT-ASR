@@ -16,7 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
     parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence_tiny","exp_without_lowest_word_confidence_tiny",  "exp_without_average_word_confidence_tiny", "exp_without_sentence_confidence_GPT-4-Turbo_tiny","exp_without_lowest_word_confidence_GPT-4_tiny", "exp_certain_low_confidence_words_Thresh_0.55_tiny","exp_certain_low_confidence_words_Thresh_0.6_tiny","exp_certain_low_confidence_words_Thresh_0.65_tiny",
 "exp_certain_low_confidence_words_Thresh_0.7_tiny","exp_certain_low_confidence_words_Thresh_0.75_tiny","exp_certain_low_confidence_words_Thresh_0.8_tiny",
-"exp_certain_low_confidence_words_Thresh_0.85_tiny","exp_certain_low_confidence_words_Thresh_0.9_tiny","exp_certain_low_confidence_words_Thresh_0.95_tiny", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo_tiny", "exp_without_average_word_confidence_GPT-4-Turbo_tiny", "exp_sentence_confidence_GPT-3.5_medium", "exp_lowest_word_confidence_GPT-3.5_medium"], help = "Select the experiment")
+"exp_certain_low_confidence_words_Thresh_0.85_tiny","exp_certain_low_confidence_words_Thresh_0.9_tiny","exp_certain_low_confidence_words_Thresh_0.95_tiny", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo_tiny", "exp_without_average_word_confidence_GPT-4-Turbo_tiny", "exp_sentence_confidence_GPT-3.5_medium", "exp_lowest_word_confidence_GPT-3.5_medium","exp_sentence_confidence_GPT-4_medium"], help = "Select the experiment")
     args = parser.parse_args()
 
     if args.experiment == "exp_without_sentence_confidence_tiny":
@@ -91,7 +91,11 @@ if __name__ == "__main__":
     elif args.experiment == "exp_lowest_word_confidence_GPT-3.5_medium":
        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium.json")
        OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/results_without_lowest_word_confidence_medium/results_overall_lowest_word_confidence_medium.md")        
-      
+    
+    elif args.experiment == "exp_sentence_confidence_GPT-4_medium":
+       CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")
+       OUTPUT_FILE = os.path.join(Root,"results/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/results_without_sentence_confidence_GPT-4-Turbo_medium/results_overall_sentence_confidence_GPT-4-Turbo_medium.md")
+         
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
