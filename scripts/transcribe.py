@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 
-from chat_gpt_asr.transcribe_whisper import transcribe
+from chat_gpt_asr.transcribe_whisper import Transcriber
 from chat_gpt_asr.utils import read_librispeech_transcriptions
 
 if __name__ == "__main__":
@@ -43,9 +43,10 @@ if __name__ == "__main__":
     l = []
     length = len(data)
 
+    whisper = Transcriber(whisper_model=args.whisper_model)
     for i, (audio_path, reference_transcription) in enumerate(data.items()):
         try:
-            asr_transcription = transcribe(audio_path, args.whisper_model)
+            asr_transcription = whisper.transcribe(audio_path)
             l.append(
                 {
                     "asr_transcription": asr_transcription,
