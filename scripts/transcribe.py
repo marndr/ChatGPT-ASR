@@ -12,19 +12,18 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="whisper model")
     parser.add_argument("-wm", "--whisper_model", choices=["tiny","base","small", "medium", "large-v3"], default="tiny", help="Select the Whisper model")
+    parser.add_argument("-s", "--subset", choices=["dev-clean", "dev-other"], default="dev-clean", help="Librispeech subset to transcribe")
     args = parser.parse_args()
-    
-    subset = "dev-clean"
-    
+
     load_dotenv()
     Root_Librispeech = os.getenv("ROOT_LIBRISPEECH")
     Root = os.getenv("ROOT_PATH")
     
     output_folder = os.path.join(Root, "data/transcriptions")
-    output_file = os.path.join(output_folder, f"whisper_{args.whisper_model}_librispeech_{subset}-full.json")
-    
+    output_file = os.path.join(output_folder, f"whisper_{args.whisper_model}_librispeech_{args.subset}-full.json")
 
-    data = read_librispeech_transcriptions(root_folder=os.path.join(Root_Librispeech,subset))
+
+    data = read_librispeech_transcriptions(root_folder=os.path.join(Root_Librispeech,args.subset))
     l = []
     length = len(data)
     
