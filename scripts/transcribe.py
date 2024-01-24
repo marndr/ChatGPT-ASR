@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-import json
 import argparse
-from dotenv import load_dotenv
+import json
 import os
 
+from dotenv import load_dotenv
+from tqdm import tqdm
 
 from chat_gpt_asr.transcribe_whisper import Transcriber
 from chat_gpt_asr.utils import read_librispeech_transcriptions
@@ -41,10 +42,9 @@ if __name__ == "__main__":
         root_folder=os.path.join(Root_Librispeech, args.subset)
     )
     l = []
-    length = len(data)
-
     whisper = Transcriber(whisper_model=args.whisper_model)
-    for i, (audio_path, reference_transcription) in enumerate(data.items()):
+
+    for audio_path, reference_transcription in tqdm(data.items()):
         try:
             asr_transcription = whisper.transcribe(audio_path)
             l.append(
@@ -53,8 +53,7 @@ if __name__ == "__main__":
                     "reference_transcription": reference_transcription,
                 }
             )
-            print(f"{len(l)}/{length} completed!")
-        except:
+        except Exception:
             continue
 
     with open(output_file, "w") as f:

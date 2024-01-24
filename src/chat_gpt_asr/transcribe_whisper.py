@@ -7,5 +7,5 @@ class Transcriber:
 
     def transcribe(self, audio_filename):
         audio = whisper.load_audio(audio_filename)
-        result = whisper.transcribe(self.model, audio, language="en")
+        result = whisper.transcribe(self.model, audio, language="en", verbose=None)
         return result
