@@ -26,6 +26,7 @@ if __name__ == "__main__":
         default="dev-clean",
         help="Librispeech subset to transcribe",
     )
+    parser.add_argument("-d", "--device", choices=["cpu", "cuda"], default="cpu")
     args = parser.parse_args()
 
     load_dotenv()
@@ -42,7 +43,7 @@ if __name__ == "__main__":
         root_folder=os.path.join(Root_Librispeech, args.subset)
     )
     l = []
-    whisper = Transcriber(whisper_model=args.whisper_model)
+    whisper = Transcriber(whisper_model=args.whisper_model, device=args.device)
 
     for audio_path, reference_transcription in tqdm(data.items()):
         try:
