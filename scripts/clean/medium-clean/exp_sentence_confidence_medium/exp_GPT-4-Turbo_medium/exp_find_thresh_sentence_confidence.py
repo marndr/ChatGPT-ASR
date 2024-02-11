@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")
+l=os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/results_thresh_sentence_confidence_GPT-4-Turbo_medium.md")
+OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/results_thresh_sentence_confidence_GPT-4-Turbo_medium.md")
 
-output_file_wer = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Wer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
+output_file_wer = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Wer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
 
-output_file_cer = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Cer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
+output_file_cer = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_medium/plots_sentence_confidence_GPT-4-Turbo_medium/Cer_vs_sentence_confidence_GPT-4-Turbo_plot_medium.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

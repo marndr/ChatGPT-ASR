@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_medium","exp_new_prompt_lowest_word_confidence_1_medium"])
+    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_medium","exp_new_prompt_lowest_word_confidence_1_medium", "exp_new_prompt_sentence_confidence_1_GPT-4-Turbo_medium"])
     args = parser.parse_args()
     
     
@@ -28,7 +28,12 @@ if __name__ == "__main__":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json")
         
         OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_lowest_word_confidence_prompt_1_medium.md") 
-                                       
+    
+    if args.experiment =="exp_new_prompt_sentence_confidence_1_GPT-4-Turbo_medium":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_prompt_1.json")
+        
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_sentence_confidence_prompt_1_medium.md")                                   
+    
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()

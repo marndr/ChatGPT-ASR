@@ -10,8 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_large-v3/results_lowest_confidence_word_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_large-v3.json")
+l=os.path.join(Root,"results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_large-v3.json")
+
 OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/results_thresh_lowest_word_confidence_large-v3.json")
+
 output_file_wer = os.path.join(Root,"results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/plots_lowest_word_confidence_GPT-4-Turbo_large-v3/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_large-v3.png")
 output_file_cer = os.path.join(Root,"results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/plots_lowest_word_confidence_GPT-4-Turbo_large-v3/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_large-v3.png")
 

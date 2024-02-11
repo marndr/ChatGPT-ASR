@@ -13,7 +13,7 @@ Root = os.getenv("ROOT_PATH")
 
 
 TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_medium_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json")  
     
 def get_messages_exp1(asr_transcription):
     messages = [
@@ -58,8 +58,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
 
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
@@ -79,7 +79,7 @@ if __name__ =="__main__":
             
     
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-4-1106-preview" )
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-4-0125-preview" )
  
  
  

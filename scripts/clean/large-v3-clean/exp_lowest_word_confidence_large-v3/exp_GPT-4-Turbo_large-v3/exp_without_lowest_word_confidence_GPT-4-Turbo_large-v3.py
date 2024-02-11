@@ -11,19 +11,19 @@ from chat_gpt_asr.utils import confidence_score_lowest_word_level
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v3_librispeech_dev-clean-full.json") 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json") 
     
-def get_messages_exp1(asr_transcription, delimiter="####"):
+def get_messages_exp1(asr_transcription):
     messages = [
         {
             'role': 'system',
             'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription delimited by {delimiter} characters,\
-            and your task is to rectify any errors in it. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model. \
+            Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
+            If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\                                                                                                                  
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
@@ -42,7 +42,7 @@ def get_messages_exp1(asr_transcription, delimiter="####"):
 if __name__ =="__main__": 
      
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
-    parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
+    parser.add_argument("-d", "--dataset", choices=["librispeech"], \
             default="librispeech", help="Select the dataset (librispeech or dummy)")
     parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
     args = parser.parse_args()
@@ -50,8 +50,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
 
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME

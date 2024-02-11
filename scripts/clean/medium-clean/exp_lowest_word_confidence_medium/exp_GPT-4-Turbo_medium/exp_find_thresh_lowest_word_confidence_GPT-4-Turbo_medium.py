@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_medium/results_lowest_confidence_word_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_without_lowest_word_confidence_GPT-4-Turbo_medium/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_medium.json")
+l=os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_medium/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_medium.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/results_thresh_lowest_word_confidence_medium.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/results_thresh_lowest_word_confidence_medium.json")
 
-output_file_wer = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png")
+output_file_wer = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png")
 
-output_file_cer = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png")
+output_file_cer = os.path.join(Root,"results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -81,7 +81,7 @@ def plot(l):
     plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
     plt.title("Wer vs lowest word confidence for GPT-4-Turbo")
-    plt.yticks([6,6.5,7,7.5,8,8.5,9])
+    plt.yticks([3,3.5,4,4.5,5,5.5])
     #plt.show()
     plt.savefig(output_file_wer)
     
@@ -92,7 +92,7 @@ def plot(l):
     plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
     plt.title("Cer vs lowest word confidence for GPT-4-Turbo")
-    plt.yticks([2.5,3,3.5,4,4.5,5])
+    plt.yticks([1,1.5,2,2.5])
     #plt.show()
     plt.savefig(output_file_cer)
    
