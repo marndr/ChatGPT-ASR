@@ -1,7 +1,7 @@
 import os
 from chat_gpt_asr.utils import remove_punctuations, ser
 import json
-from jiwer import cer, wer
+from jiwer import cer, wer,  compute_measures
 from tqdm import tqdm
 import argparse
 from dotenv import load_dotenv
@@ -58,10 +58,12 @@ if __name__ == "__main__":
     
     
     
-    wer_corrected_chatgpt= wer(hyp_l,ref_l) * 100
-    wer_original= wer(hyp_l_original, ref_l) * 100
-    cer_corrected_chatgpt=cer(hyp_l,ref_l) * 100
-    cer_original = cer(hyp_l_original, ref_l) * 100
+    wer_corrected_chatgpt= wer(ref_l, hyp_l) * 100
+    wer_original= wer(ref_l, hyp_l_original) * 100
+    cer_corrected_chatgpt=cer(ref_l,hyp_l) * 100
+    cer_original = cer(ref_l, hyp_l_original) * 100
+    
+    measures=compute_measures(ref_l, hyp_l)
     
     ser_corrected_chatgpt /=count
     ser_original /= count
@@ -73,6 +75,7 @@ if __name__ == "__main__":
     print(f"CER_corrected_chatgpt is:       {cer_corrected_chatgpt:.04f}\n")
     print(f"SER_original is:                {ser_original:.04f}\n")
     print(f"SER_corrected_chatgpt is:       {ser_corrected_chatgpt:.04f}\n")
+    print(f"measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}, wer: {measures['wer']}")
     
     with open(output_filename, "w") as f:
         f.write(f"""
@@ -83,5 +86,6 @@ if __name__ == "__main__":
         CER_corrected_chatgpt:          {cer_corrected_chatgpt:.04f}%
         SER_original:                   {ser_original:.04f}%    
         SER_corrected_chatgpt:          {ser_corrected_chatgpt:.04f}%
+        measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']} 
         ---
     """)
