@@ -11,7 +11,7 @@ load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
 l=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
-OUTPUT_FILE = os.path.join(Root,"results/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/results_thresh_sentence_confidence_tiny.md")
+OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/results_thresh_sentence_confidence_tiny.md")
 output_file_wer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Wer_vs_sentence_confidence_plot_tiny.png")
 output_file_cer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Cer_vs_sentence_confidence_plot_tiny.png")
 
