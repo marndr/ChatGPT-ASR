@@ -1,11 +1,12 @@
 import os
-from chat_gpt_asr.utils import remove_punctuations, ser
+from chat_gpt_asr.utils import ser
 import json
-import jiwer 
+from jiwer import cer, wer, compute_measures, RemovePunctuation
 from tqdm import tqdm
 import argparse
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv
+
 
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
@@ -31,31 +32,27 @@ def evaluate_with_thresh(items, thresh):
         
         if item["corrected_asr_transcription"] is None:
             continue 
-           
-
-        asr_transcription = item["asr_transcription"]["text"]
-        confidence = item["asr_transcription"]["confidence_score"] 
-        ref_transcription = item["reference_transcription"]  
-        cor_transcription = item ["corrected_asr_transcription"]
+       
         
-        # remove punc and lower
-        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
-        ref_transcription = remove_punctuations(item["reference_transcription"].lower())
-        cor_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
+        ref_transcription=RemovePunctuation()(item["reference_transcription"].lower())
+        cor_transcription=RemovePunctuation()(item["corrected_asr_transcription"].lower())
+        asr_transcription=RemovePunctuation()(item["asr_transcription"]["text"].lower())
+        confidence = item["asr_transcription"]["confidence_score"] 
+        
         
         ref_l.append(ref_transcription)
         
         # check confidence and append the suitable value to hyp_l       
-        if confidence < thresh:
+        if confidence <= thresh:
             hyp_l.append(cor_transcription)
             
         else:
             hyp_l.append(asr_transcription)
             
-    wer = jiwer.wer(hyp_l, ref_l) * 100
-    cer = jiwer.cer(hyp_l , ref_l) * 100
+    WER = wer(ref_l, hyp_l) * 100
+    CER = cer(ref_l, hyp_l) * 100
     
-    return wer, cer
+    return WER, CER
 
 
 thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
@@ -80,8 +77,8 @@ def plot(l):
     plt.plot(x, y_wer, "-ob", label="Wer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
-    plt.title("Wer vs lowest word confidence for GPT-3.5-Turbo (new prompt-2, large-v3)")
-    plt.yticks([3,3.5,4,4.5,5,5.5,6])
+    plt.title("Wer vs lowest word confidence for GPT-3.5-Turbo (new prompt-2, large-v3, clean)")
+    #plt.yticks([3,3.5,4,4.5,5,5.5,6])
     plt.savefig(output_file_wer)
     
     
@@ -90,8 +87,8 @@ def plot(l):
     plt.plot(x, y_cer, "-or", label="Cer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
-    plt.title("Cer vs lowest word confidence for GPT-3.5-Turbo (new promt-2, large-v3)")
-    plt.yticks([1,1.5,2,2.5,3])
+    plt.title("Cer vs lowest word confidence for GPT-3.5-Turbo (new promt-2, large-v3, clean)")
+    #plt.yticks([1,1.5,2,2.5,3])
     #plt.show()
     plt.savefig(output_file_cer)
    

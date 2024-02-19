@@ -66,7 +66,7 @@ def read_librispeech_transcriptions(root_folder="."):
 
 
 def remove_punctuations(s):
-    l = list(filter(None, re.split(r'[ ,.!?]+', s)))
+    l = list(filter(None, re.split(r'[ ",.!?]+', s)))
     return " ".join(l)
 
 

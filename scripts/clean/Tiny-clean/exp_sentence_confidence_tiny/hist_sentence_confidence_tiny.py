@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
+l=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
 OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/hist_sentence_confidence_tiny.png")
 
 with open(l , "r") as f:

@@ -1,11 +1,11 @@
 
         Number of evaluated audio files:  2702
-        WER_original:                   4.5612%    
-        WER_corrected_chatgpt:          4.8663%
-        CER_original:                   1.9587%    
-        CER_corrected_chatgpt:          1.9968%
-        SER_original:                   39.0081%    
-        SER_corrected_chatgpt:          47.4463%
-        measures for substitution: 1777, insertions: 418, deletions: 452 
+        WER_original:                   4.1218%    
+        WER_corrected_chatgpt:          3.9894%
+        CER_original:                   1.7856%    
+        CER_corrected_chatgpt:          1.7356%
+        SER_original:                   35.7883%    
+        SER_corrected_chatgpt:          42.3390%
+        measures for substitution: 1498, insertions: 205, deletions: 467 
         ---
     

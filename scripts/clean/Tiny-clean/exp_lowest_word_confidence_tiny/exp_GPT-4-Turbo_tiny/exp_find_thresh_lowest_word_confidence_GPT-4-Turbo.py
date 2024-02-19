@@ -1,7 +1,7 @@
 import os
-from chat_gpt_asr.utils import remove_punctuations, ser
+from chat_gpt_asr.utils import ser
 import json
-import jiwer 
+from jiwer import cer, wer, compute_measures, RemovePunctuation
 from tqdm import tqdm
 import argparse
 import matplotlib.pyplot as plt
@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_without_lowest_word_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_tiny.json")
+l=os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_tiny.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/results_thresh_lowest_word_confidence_GPT-4-Turbo_tiny.md")
+OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/results_thresh_lowest_word_confidence_GPT-4-Turbo_tiny.md")
 
-output_file_wer = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/plots_lowest_word_confidence_GPT-4-Turbo_tiny/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_tiny.png")
+output_file_wer = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/plots_lowest_word_confidence_GPT-4-Turbo_tiny/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_tiny.png")
 
-output_file_cer = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/plots_lowest_word_confidence_GPT-4-Turbo_tiny/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_tiny.png")
+output_file_cer = os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_tiny/plots_lowest_word_confidence_GPT-4-Turbo_tiny/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_tiny.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -31,29 +31,25 @@ def evaluate_with_thresh(items, thresh):
         
         if item["corrected_asr_transcription"] is None:
             continue 
-           
-
-        asr_transcription = item["asr_transcription"]["text"]
-        confidence = item["asr_transcription"]["confidence_score"] 
-        ref_transcription = item["reference_transcription"]  
-        cor_transcription = item ["corrected_asr_transcription"]
+       
         
-        # remove punc and lower
-        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
-        ref_transcription = remove_punctuations(item["reference_transcription"].lower())
-        cor_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
+        ref_transcription=RemovePunctuation()(item["reference_transcription"].lower())
+        cor_transcription=RemovePunctuation()(item["corrected_asr_transcription"].lower())
+        asr_transcription=RemovePunctuation()(item["asr_transcription"]["text"].lower())
+        confidence = item["asr_transcription"]["confidence_score"] 
+        
         
         ref_l.append(ref_transcription)
         
         # check confidence and append the suitable value to hyp_l       
-        if confidence < thresh:
+        if confidence <= thresh:
             hyp_l.append(cor_transcription)
             
         else:
             hyp_l.append(asr_transcription)
             
-    wer = jiwer.wer(hyp_l, ref_l) * 100
-    cer = jiwer.cer(hyp_l , ref_l) * 100
+    wer = wer(ref_l, hyp_l) * 100
+    cer = cer(ref_l, hyp_l) * 100
     
     return wer, cer
 
@@ -80,7 +76,7 @@ def plot(l):
     plt.plot(x, y_wer, "-ob", label="Wer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
-    plt.title("Wer vs lowest word confidence for GPT-4-Turbo")
+    plt.title("Wer vs lowest word confidence for GPT-4-Turbo (tiny, clean)")
     plt.yticks([6,6.5,7,7.5,8,8.5,9])
     #plt.show()
     plt.savefig(output_file_wer)
@@ -91,7 +87,7 @@ def plot(l):
     plt.plot(x, y_cer, "-or", label="Cer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
-    plt.title("Cer vs lowest word confidence for GPT-4-Turbo")
+    plt.title("Cer vs lowest word confidence for GPT-4-Turbo (tiny, clean)")
     plt.yticks([2.5,3,3.5,4,4.5,5])
     #plt.show()
     plt.savefig(output_file_cer)

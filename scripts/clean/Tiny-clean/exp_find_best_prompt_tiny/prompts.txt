@@ -26,3 +26,24 @@ prompt_3: """You are a helpful assistant that corrects ASR errors. \
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription."""
+            
+prompt_4:messages = [
+        {
+            'role': 'system',
+            'content': f"""You are a helpful assistant that corrects ASR errors. \
+            You will be presented with an ASR transcription delimited by {delimiter} characters,\
+            and your task is to rectify any errors in it. \
+            Provide the most probable corrected transcription in string format. \
+            Do not change the case, for example, lower case or upper case, in the transcription. \
+            Do not output any additional text that is not the corrected transcription. \
+            Do not write any explanatory text that is not the corrected transcription.
+            """
+        },
+        {
+            'role': 'user',
+            'content': '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?"}'
+        },
+        {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
+        {'role': 'user', 'content': json.dumps(asr_transcription)}
+    ]
+

@@ -1,7 +1,7 @@
 import os
-from chat_gpt_asr.utils import remove_punctuations, ser
+from chat_gpt_asr.utils import ser
 import json
-import jiwer 
+from jiwer import cer, wer, compute_measures, RemovePunctuation
 from tqdm import tqdm
 import argparse
 import matplotlib.pyplot as plt
@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_without_sentence_confidence_noisy_large-v3/corrected_transcriptions_sentence_confidence_noisy_large-v3.json")
+l=os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_noisy_large-v3/corrected_transcriptions_sentence_confidence_noisy_large-v3.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/results_thresh_sentence_confidence_noisy_large-v3.md")
+OUTPUT_FILE = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/results_thresh_sentence_confidence_noisy_large-v3.md")
 
-output_file_wer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_plot_noisy_large-v3.png")
+output_file_wer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_plot_noisy_large-v3.png")
 
-output_file_cer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_plot_noisy_large-v3.png")
+output_file_cer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_plot_noisy_large-v3.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -31,31 +31,28 @@ def evaluate_with_thresh(items, thresh):
         
         if item["corrected_asr_transcription"] is None:
             continue 
-           
-
-        asr_transcription = item["asr_transcription"]["text"]
-        confidence = item["asr_transcription"]["confidence_score"] 
-        ref_transcription = item["reference_transcription"]  
-        cor_transcription = item ["corrected_asr_transcription"]
+       
         
-        # remove punc and lower
-        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
-        ref_transcription = remove_punctuations(item["reference_transcription"].lower())
-        cor_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
+        ref_transcription=RemovePunctuation()(item["reference_transcription"].lower())
+        cor_transcription=RemovePunctuation()(item["corrected_asr_transcription"].lower())
+        asr_transcription=RemovePunctuation()(item["asr_transcription"]["text"].lower())
+        confidence = item["asr_transcription"]["confidence_score"] 
+        
         
         ref_l.append(ref_transcription)
         
         # check confidence and append the suitable value to hyp_l       
-        if confidence < thresh:
+        if confidence <= thresh:
             hyp_l.append(cor_transcription)
             
         else:
             hyp_l.append(asr_transcription)
             
-    wer = jiwer.wer(hyp_l, ref_l) * 100
-    cer = jiwer.cer(hyp_l , ref_l) * 100
+    WER = wer(ref_l, hyp_l) * 100
+    CER = cer(ref_l, hyp_l) * 100
     
-    return wer, cer
+    return WER, CER
+
 
 
 thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
@@ -81,7 +78,7 @@ def plot(l):
     plt.xlabel("sentence confidence")
     plt.ylabel("Wer")
     plt.title("Wer vs sentence confidence for GPT-3.5-Turbo(large-v3, noisy)")
-    plt.yticks([5.5, 6, 6.5, 7, 7.5, 8])
+    #plt.yticks([5.5, 6, 6.5, 7, 7.5, 8])
     #plt.show()
     plt.savefig(output_file_wer)
     
@@ -92,7 +89,7 @@ def plot(l):
     plt.xlabel("sentence confidence")
     plt.ylabel("Cer")
     plt.title("Cer vs sentence confidence for GPT-3.5-Turbo(large-v3, noisy)")
-    plt.yticks([1.5,2,2.5,3,3.5,4])
+    #plt.yticks([1.5,2,2.5,3,3.5,4])
     #plt.show()
     plt.savefig(output_file_cer)
    

@@ -1,7 +1,7 @@
 import os
-from chat_gpt_asr.utils import remove_punctuations, ser
+from chat_gpt_asr.utils import ser
 import json
-import jiwer 
+from jiwer import cer, wer, compute_measures, RemovePunctuation
 from tqdm import tqdm
 import argparse
 import matplotlib.pyplot as plt
@@ -31,29 +31,25 @@ def evaluate_with_thresh(items, thresh):
         
         if item["corrected_asr_transcription"] is None:
             continue 
-           
-
-        asr_transcription = item["asr_transcription"]["text"]
-        confidence = item["asr_transcription"]["confidence_score"] 
-        ref_transcription = item["reference_transcription"]  
-        cor_transcription = item ["corrected_asr_transcription"]
+       
         
-        # remove punc and lower
-        asr_transcription = remove_punctuations(item["asr_transcription"]["text"].lower())
-        ref_transcription = remove_punctuations(item["reference_transcription"].lower())
-        cor_transcription = remove_punctuations(item["corrected_asr_transcription"].lower())
+        ref_transcription=RemovePunctuation()(item["reference_transcription"].lower())
+        cor_transcription=RemovePunctuation()(item["corrected_asr_transcription"].lower())
+        asr_transcription=RemovePunctuation()(item["asr_transcription"]["text"].lower())
+        confidence = item["asr_transcription"]["confidence_score"] 
+        
         
         ref_l.append(ref_transcription)
         
         # check confidence and append the suitable value to hyp_l       
-        if confidence < thresh:
+        if confidence <= thresh:
             hyp_l.append(cor_transcription)
             
         else:
             hyp_l.append(asr_transcription)
             
-    wer = jiwer.wer(hyp_l, ref_l) * 100
-    cer = jiwer.cer(hyp_l , ref_l) * 100
+    wer = wer(ref_l, hyp_l) * 100
+    cer = cer(ref_l, hyp_l) * 100
     
     return wer, cer
 
@@ -81,7 +77,7 @@ def plot(l):
     plt.xlabel("sentence confidence")
     plt.ylabel("Wer")
     plt.title("Wer vs sentence confidence for GPT-3.5-Turbo (new prompt-2, tiny, clean)")
-    plt.yticks([6,6.5,7,7.5,8,8.5,9])
+    #plt.yticks([6,6.5,7,7.5,8,8.5,9])
     plt.savefig(output_file_wer)
     
     
@@ -91,7 +87,7 @@ def plot(l):
     plt.xlabel("sentence confidence")
     plt.ylabel("Cer")
     plt.title("Cer vs sentence confidence for GPT-3.5-Turbo (new promt-2, tiny, clean)")
-    plt.yticks([2.5,3,3.5,4,4.5,5])
+    #plt.yticks([2.5,3,3.5,4,4.5,5])
     #plt.show()
     plt.savefig(output_file_cer)
    

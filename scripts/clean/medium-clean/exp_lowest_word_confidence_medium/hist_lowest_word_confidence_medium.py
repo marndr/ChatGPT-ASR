@@ -28,7 +28,7 @@ plt.hist(confidences, bins=20)
 
 plt.xlabel("lowest-word confidence")
 plt.ylabel("count")
-plt.title("Histogram of lowest-word confidence")
+plt.title("Histogram of lowest-word confidence (medium, clean)")
 plt.yticks([0,100,200,300,400,500,600,700,800,900])
 
 plt.savefig(OUTPUT_FILE)
