@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_tiny","exp_new_prompt_sentence_confidence_2_tiny", "exp_new_prompt_sentence_confidence_3_tiny","exp_new_prompt_lowest_word_confidence_2_tiny"])
+    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_tiny","exp_new_prompt_sentence_confidence_2_tiny", "exp_new_prompt_sentence_confidence_3_tiny","exp_new_prompt_sentence_confidence_4_tiny","exp_new_prompt_lowest_word_confidence_2_tiny", "exp_new_prompt_lowest_word_confidence_4_tiny", "exp_GPT_4_new_prompt_sentence_confidence_4_tiny", "exp_GPT_4_new_prompt_lowest_word_confidence_4_tiny"])
     args = parser.parse_args()
     
     if args.experiment == "exp_new_prompt_sentence_confidence_1_tiny":
@@ -30,10 +30,25 @@ if __name__ == "__main__":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_3.json")
         OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_sentence_confidence_prompt_3_tiny.md")    
     
+    if args.experiment == "exp_new_prompt_sentence_confidence_4_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_4.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_sentence_confidence_prompt_4_tiny.md")   
+        
     if args.experiment == "exp_new_prompt_lowest_word_confidence_2_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_2.json")
         OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_2_tiny.md") 
-                                    
+    
+    if args.experiment == "exp_new_prompt_lowest_word_confidence_4_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_4.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_4_tiny.md") 
+                                        
+    if args.experiment == "exp_GPT_4_new_prompt_sentence_confidence_4_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_prompt_4.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_sentence_confidence_prompt_4_tiny.md")   
+    
+    if args.experiment == "exp_GPT_4_new_prompt_lowest_word_confidence_4_tiny":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_prompt_4_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_4_tiny.md") 
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
@@ -97,6 +112,7 @@ if __name__ == "__main__":
     print(f"SER_original is:                {ser_original:.04f}\n")
     print(f"SER_corrected_chatgpt is:       {ser_corrected_chatgpt:.04f}\n")
     print(f"measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}, wer: {measures['wer']}")
+    print(f"measures_original for substitution: {measures_original['substitutions']}, insertions: {measures_original['insertions']}, deletions: {measures_original['deletions']}, wer: {measures_original['wer']}")
     
     with open(output_filename, "w") as f:
         f.write(f"""
@@ -108,5 +124,6 @@ if __name__ == "__main__":
         SER_original:                   {ser_original:.04f}%    
         SER_corrected_chatgpt:          {ser_corrected_chatgpt:.04f}%
         measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']} 
+        measures_original for substitution: {measures_original['substitutions']}, insertions: {measures_original['insertions']}, deletions: {measures_original['deletions']} 
         ---
     """)

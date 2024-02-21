@@ -98,6 +98,7 @@ if __name__ == "__main__":
     print(f"SER_original is:                {ser_original:.04f}\n")
     print(f"SER_corrected_chatgpt is:       {ser_corrected_chatgpt:.04f}\n")
     print(f"measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}, wer: {measures['wer']}")
+    print(f"measures_original for substitution: {measures_original['substitutions']}, insertions: {measures_original['insertions']}, deletions: {measures_original['deletions']}, wer: {measures_original['wer']}")
     
     with open(output_filename, "w") as f:
         f.write(f"""
@@ -108,6 +109,7 @@ if __name__ == "__main__":
         CER_corrected_chatgpt:          {cer_corrected_chatgpt:.04f}%
         SER_original:                   {ser_original:.04f}%    
         SER_corrected_chatgpt:          {ser_corrected_chatgpt:.04f}%
-        measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']} 
+        measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}
+        measures_original for substitution: {measures_original['substitutions']}, insertions: {measures_original['insertions']}, deletions: {measures_original['deletions']}  
         ---
     """)
