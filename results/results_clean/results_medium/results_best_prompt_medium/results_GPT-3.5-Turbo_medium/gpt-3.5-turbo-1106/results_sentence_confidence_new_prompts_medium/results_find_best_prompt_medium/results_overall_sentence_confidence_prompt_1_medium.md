@@ -6,6 +6,7 @@
         CER_corrected_chatgpt:          1.4529%
         SER_original:                   35.7883%    
         SER_corrected_chatgpt:          36.8986%
-        measures for substitution: 1428, insertions: 108, deletions: 411 
+        measures for substitution: 1428, insertions: 108, deletions: 411
+        measures_original for substitution: 1450, insertions: 396, deletions: 396  
         ---
     
