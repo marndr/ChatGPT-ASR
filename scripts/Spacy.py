@@ -1,5 +1,5 @@
 import spacy
-from jiwer import compute_measures
+from jiwer import compute_measures, RemovePunctuation
 import pandas as pd
 import json
 import os
@@ -16,6 +16,7 @@ nlp = spacy.load(SPACY_MODEL)
 def tokenizer_fn(texts):
     tokens = []
     for text in texts:
+        text = RemovePunctuation()(text.lower().strip())
         tokens.append([t.text for t in nlp.tokenizer(text)])
     return tokens
 def extract_words(measures):
@@ -104,14 +105,14 @@ if __name__ == "__main__":
     assert all([type(r) == str for r in corrected_transcriptions]) == True, "transcriptions should be a list of str!"
     
     # __main__
-    meas = compute_measures(transcriptions, corrected_transcriptions, 
+    meas = compute_measures(truth=transcriptions, hypothesis=corrected_transcriptions, 
                  truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)
     meas['truth_texts'] = transcriptions
     meas['hypothesis_texts'] = corrected_transcriptions
     words, pos, operations = extract_words(meas)
     
     df = create_table(pos, operations)
-    df = df.drop(["SYM", "PUNCT", "SPACE"], axis=1) 
-    
+    #df = df.drop(["SYM", "PUNCT", "SPACE", "X"], axis=1) 
+    df = (df.div(df.sum(axis=1), axis=0)*100).round(2)
     df.to_markdown(OUTPUT_FILE)
 
