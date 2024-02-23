@@ -7,31 +7,26 @@ from chat_gpt_asr.utils import read_dummy_transcriptions, confidence_score_sente
 from dotenv import load_dotenv
 import json
 import time
-
-#import multiprocessing
 import concurrent.futures
-#import asyncio
 import traceback
-      
+
 def print_error(error_code):
     exc_type, exc_value, exc_traceback = sys.exc_info()
     if error_code <= 1:
         print(f"Exception type: {exc_type}")
-    if 1 < error_code <= 2:
+    if error_code <= 2:
         print(f"Exception message: {exc_value}")
-    if 2<error_code <= 3:
-        print(f"Exception traceback: {exc_traceback}" )
-    if 3<error_code <= 4:
+    if error_code <= 3:
+        print(f"Exception traceback: {exc_traceback}")
+    if error_code <= 4:
         traceback.print_tb(exc_traceback)
-        
+
 def get_chatgpt_response(d, get_messages_fn, model):
-    
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
     messages = get_messages_fn(asr_transcription)
-    #print(messages)
-        
-    retries = 5 
+
+    retries = 3  # Limiting retries to avoid infinite loops
     while retries > 0:
         try:
             response = openai.ChatCompletion.create(
@@ -41,66 +36,49 @@ def get_chatgpt_response(d, get_messages_fn, model):
                 request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message["content"]
-            _ = {"text":corrected_asr_transcription}
-            retries = -1
+            return {
+                "asr_transcription": asr_transcription,
+                "reference_transcription": reference_transcription,
+                "corrected_asr_transcription": corrected_asr_transcription
+            }
 
-        except openai.error.Timeout: # timeout try again a few seconds later
+        except openai.error.Timeout:  # Timeout, retry after a delay
+            print_error(1)
+            retries -= 1
+            time.sleep(10)  # Wait for a short period before retrying
+
+        except openai.error.RateLimitError:  # Quota exceeded, retry after a delay
             print_error(1)
             retries -= 1
             time.sleep(60)
-            _ = {"text":None}
-
-        except openai.error.RateLimitError: # quota exceeded
-            print_error(1)
-            _ = {"text":None}
-            sys.exit(1)
-
-        except json.decoder.JSONDecodeError:
-            print_error(1)
-            print(f"transcription: {asr_transcription}\nChatGPT raw output: {corrected_asr_transcription}\n")
-            _ = {"text":None}
-            retries = -1
 
         except Exception as e:
             print_error(4)
-            _ = {"text":None}
-            sys.exit(1)
+            retries -= 1
+            time.sleep(10)
 
-        finally:
-            corrected_asr_transcription = _["text"]  
-    
+    # If all retries fail, return None for this item
     return {
-            "asr_transcription":asr_transcription,
-            "reference_transcription":reference_transcription,
-            "corrected_asr_transcription": corrected_asr_transcription
-            }
+        "asr_transcription": asr_transcription,
+        "reference_transcription": reference_transcription,
+        "corrected_asr_transcription": None
+    }
 
-
-def multithread_parallelization(data, get_messages_fn, model ="gpt-3.5-turbo", num_workers= 8):
-    ### multithread parallelization 
+def multithread_parallelization(data, get_messages_fn, model="gpt-3.5-turbo", num_workers=8):
     l = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
-        futures = {executor.submit(get_chatgpt_response, item, get_messages_fn, model):item for item in data}
+        futures = {executor.submit(get_chatgpt_response, item, get_messages_fn, model): item for item in data}
         for future in concurrent.futures.as_completed(futures):
             item = futures[future]
             try:
                 d = future.result()
                 l.append(d)
             except Exception as exc:
-                exc_type, exc_value, exc_traceback = sys.exc_info()
-                print(f"Exception type: {exc_type}")
-                print(f"Exception message: {exc_value}")
-                print(f"Exception traceback: {exc_traceback}" )
-                traceback.print_tb(exc_traceback)
-                print('%r generated an exception: %s' % (item, exc))
-    return l 
+                print_error(4)
+                print(f'{item} generated an exception: {exc}')
+    return l
 
-    ### asyncio parallelization
-    # loop = asyncio.get_event_loop()
-    # l = loop.run_until_complete(asyncio.gather(*(get_chatgpt_response(item) for item in data)))
-
-    ### no parallelization
-    # l =[]
-    # for d in tqdm(data):
-    #     l.append(get_chatgpt_response(d))
+# Example usage:
+# result = multithread_parallelization(data, get_messages_fn)
+# print(result)
 
