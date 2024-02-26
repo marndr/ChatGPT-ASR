@@ -6,6 +6,7 @@ import os
 
 import argparse
 from dotenv import load_dotenv
+import matplotlib.pyplot as plt
 
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
@@ -79,29 +80,55 @@ def create_table(pos, ops):
 
     return df.T
 
+def create_table_wide(pos, operations):
+    # Flatten the nested lists of pos and ops
+    flat_pos = [pos_row for sublist in pos for pos_row in sublist]
+    flat_ops = [ops_row for sublist in operations for ops_row in sublist]
+
+    # Get unique parts of speech
+    unique_pos = sorted(set(flat_pos))
+    unique_ops = set(flat_ops)
+    unique_ops.difference_update({'equal'})
+
+    # Create an empty DataFrame
+    df = pd.DataFrame(index=range(len(pos)), columns=[(op, pos_) for op in unique_ops for pos_ in unique_pos])
+    
+    # Iterate over the examples, counting occurrences of each unique combination
+    for i, (p, o) in enumerate(zip(pos, operations)):
+        for pos_, op in zip(p, o):
+            if (op, pos_) in df.columns:
+                df.at[i, (op, pos_)] = df.at[i, (op, pos_)] + 1 if not pd.isna(df.at[i, (op, pos_)]) else 1
+    
+    # Fill missing values with zeros
+    df.fillna(0, inplace=True)
+    return df
+
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence_tiny","exp_without_lowest_word_confidence_tiny",  "exp_without_average_word_confidence_tiny", "exp_without_sentence_confidence_GPT-4-Turbo_tiny","exp_without_lowest_word_confidence_GPT-4_tiny", "exp_certain_low_confidence_words_Thresh_0.55_tiny","exp_certain_low_confidence_words_Thresh_0.6_tiny","exp_certain_low_confidence_words_Thresh_0.65_tiny",
-"exp_certain_low_confidence_words_Thresh_0.7_tiny","exp_certain_low_confidence_words_Thresh_0.75_tiny","exp_certain_low_confidence_words_Thresh_0.8_tiny",
-"exp_certain_low_confidence_words_Thresh_0.85_tiny","exp_certain_low_confidence_words_Thresh_0.9_tiny","exp_certain_low_confidence_words_Thresh_0.95_tiny", "exp_certain_low_confidence_words_Thresh_0.6_GPT-4-Turbo_tiny", "exp_without_average_word_confidence_GPT-4-Turbo_tiny", "exp_sentence_confidence_GPT-3.5_medium", "exp_lowest_word_confidence_GPT-3.5_medium","exp_sentence_confidence_GPT-4_medium", "exp_sentence_confidence_GPT-3.5_large-v3", "exp_lowest_word_confidence_GPT-3.5_large-v3", "exp_sentence_confidence_GPT-4_large-v3", "exp_sentence_confidence_GPT-3.5_noisy_large-v3","exp_lowest_word_confidence_GPT-3.5_noisy_large-v3","exp_sentence_confidence_GPT-4_noisy_large-v3", "exp_lowest_word_confidence_GPT-4_noisy_large-v3","exp_lowest_word_confidence_GPT-4_medium","exp_lowest_word_confidence_GPT-4_large-v3", "exp_without_sentence_confidence_noisy_tiny","exp_without_sentence_confidence_GPT-4-Turbo_noisy_tiny","exp_without_lowest_word_confidence_noisy_tiny","exp_without_lowest_word_confidence_GPT-4_noisy_tiny", "exp_sentence_confidence_GPT-3.5_noisy_medium", "exp_lowest_word_confidence_GPT-3.5_noisy_medium", "exp_sentence_confidence_GPT-4_noisy_medium", "exp_lowest_word_confidence_GPT-4_noisy_medium"], help = "Select the experiment")
+    parser.add_argument("-e","--experiment", choices = ["exp_without_sentence_confidence_tiny","exp_without_lowest_word_confidence_tiny",  "exp_without_average_word_confidence_tiny", "exp_without_sentence_confidence_GPT-4-Turbo_tiny","exp_without_lowest_word_confidence_GPT-4_tiny", "exp_without_average_word_confidence_GPT-4-Turbo_tiny", "exp_sentence_confidence_GPT-3.5_medium", "exp_lowest_word_confidence_GPT-3.5_medium","exp_sentence_confidence_GPT-4_medium", "exp_sentence_confidence_GPT-3.5_large-v3", "exp_lowest_word_confidence_GPT-3.5_large-v3", "exp_sentence_confidence_GPT-4_large-v3", "exp_sentence_confidence_GPT-3.5_noisy_large-v3","exp_lowest_word_confidence_GPT-3.5_noisy_large-v3","exp_sentence_confidence_GPT-4_noisy_large-v3", "exp_lowest_word_confidence_GPT-4_noisy_large-v3","exp_lowest_word_confidence_GPT-4_medium","exp_lowest_word_confidence_GPT-4_large-v3", "exp_without_sentence_confidence_noisy_tiny","exp_without_sentence_confidence_GPT-4-Turbo_noisy_tiny","exp_without_lowest_word_confidence_noisy_tiny","exp_without_lowest_word_confidence_GPT-4_noisy_tiny", "exp_sentence_confidence_GPT-3.5_noisy_medium", "exp_lowest_word_confidence_GPT-3.5_noisy_medium", "exp_sentence_confidence_GPT-4_noisy_medium", "exp_lowest_word_confidence_GPT-4_noisy_medium"], help = "Select the experiment")
     args = parser.parse_args()
 
     if args.experiment == "exp_without_sentence_confidence_noisy_tiny":
         path=os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_spacy_sentence_confidence_tiny.md")
+        OUTPUT_FILE_1 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_table_spacy_sentence_confidence_tiny.md")
+        OUTPUT_FILE_2 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_wide_table_spacy_sentence_confidence_tiny.md")
 
-
-
+        OUTPUT_FILE_3 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_groupby_improved_table_spacy_sentence_confidence_tiny.md")
+        OUTPUT_FILE_4 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_visualization_spacy_sentence_confidence_tiny.png")
+        OUTPUT_FILE_5 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_groupby_size_spacy_sentence_confidence_tiny.md")
+        
     with open(path, "r") as f:
         data = json.load(f)
 
     transcriptions = [d["asr_transcription"]["text"] for d in data]
+    reference_transcriptions = [d["reference_transcription"] for d in data]
     corrected_transcriptions = [d["corrected_asr_transcription"] for d in data]
     
     assert all([type(r) == str for r in transcriptions]) == True, "transcriptions should be a list of str!"
+    assert all([type(r) == str for r in reference_transcriptions]) == True, "transcriptions should be a list of str!"
     assert all([type(r) == str for r in corrected_transcriptions]) == True, "transcriptions should be a list of str!"
     
     # __main__
@@ -112,7 +139,98 @@ if __name__ == "__main__":
     words, pos, operations = extract_words(meas)
     
     df = create_table(pos, operations)
-    #df = df.drop(["SYM", "PUNCT", "SPACE", "X"], axis=1) 
+    #df = df.drop(["SYM", "PUNCT", "SPACE", "X"], axis=1)
+     
     df = (df.div(df.sum(axis=1), axis=0)*100).round(2)
-    df.to_markdown(OUTPUT_FILE)
+    
+    condition = df.sum(axis=0) < 2
+    columns_to_delete = [k for k,v in dict(condition).items() if v]
+    df = df.drop(columns=columns_to_delete)
+    
+    df.to_markdown(OUTPUT_FILE_1)
+    
+    df_wide = create_table_wide(pos, operations)
+    wer_l = []
+    for idx in df_wide.index:
+        wer1 = compute_measures(reference_transcriptions[idx], corrected_transcriptions[idx], 
+                         truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)['wer']
+        wer2 = compute_measures(reference_transcriptions[idx], transcriptions[idx], 
+                         truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)['wer']
+        wer_l.append([wer1, wer2, wer1 < wer2])
 
+    # df_wide_percent = (df_wide.div(df_wide.sum(axis=1), axis=0)*100).round(2)
+    df_wide['wer_reference_and_corrected_transcription'] = [_[0] for _ in wer_l]
+    df_wide['wer_reference_and_transcription'] = [_[1] for _ in wer_l]
+    df_wide['improved'] = [_[2] for _ in wer_l]
+
+    #df_wide.to_markdown(OUTPUT_FILE_2)
+    
+    df_wide.groupby('improved').size().to_markdown(OUTPUT_FILE_5)
+    df_wide.groupby('improved').mean().T.to_markdown(OUTPUT_FILE_3)
+    
+    selected_columns = [('insert', 'ADJ'),
+    ('insert', 'ADP'),
+    ('insert', 'ADV'),
+    ('insert', 'AUX'),
+    ('insert', 'CCONJ'),
+    ('insert', 'DET'),
+    ('insert', 'INTJ'),
+    ('insert', 'NOUN'),
+    ('insert', 'NUM'),
+    ('insert', 'PART'),
+    ('insert', 'PRON'),
+    ('insert', 'PROPN'),
+    ('insert', 'PUNCT'),
+    ('insert', 'SCONJ'),
+    ('insert', 'SPACE'),
+    ('insert', 'VERB'),
+    ('insert', 'X'),
+    ('substitute', 'ADJ'),
+    ('substitute', 'ADP'),
+    ('substitute', 'ADV'),
+    ('substitute', 'AUX'),
+    ('substitute', 'CCONJ'),
+    ('substitute', 'DET'),
+    ('substitute', 'INTJ'),
+    ('substitute', 'NOUN'),
+    ('substitute', 'NUM'),
+    ('substitute', 'PART'),
+    ('substitute', 'PRON'),
+    ('substitute', 'PROPN'),
+    ('substitute', 'PUNCT'),
+    ('substitute', 'SCONJ'),
+    ('substitute', 'SPACE'),
+    ('substitute', 'VERB'),
+    ('substitute', 'X'),
+    ('delete', 'ADJ'),
+    ('delete', 'ADP'),
+    ('delete', 'ADV'),
+    ('delete', 'AUX'),
+    ('delete', 'CCONJ'),
+    ('delete', 'DET'),
+    ('delete', 'INTJ'),
+    ('delete', 'NOUN'),
+    ('delete', 'NUM'),
+    ('delete', 'PART'),
+    ('delete', 'PRON'),
+    ('delete', 'PROPN'),
+    ('delete', 'PUNCT'),
+    ('delete', 'SCONJ'),
+    ('delete', 'SPACE'),
+    ('delete', 'VERB'),
+    ('delete', 'X')]
+
+    tt = df_wide.groupby('improved').mean()
+    x = [ f"{i}_{j}" for i, j in selected_columns]
+    plt.figure(figsize=(15,3), constrained_layout=True, dpi=500)
+    plt.plot(x, tt.loc[False, selected_columns].values, "ro", label="Not improved")
+    plt.plot(x, tt.loc[True, selected_columns].values, "go", label="Improved")
+    plt.xticks(rotation=45)
+    plt.ylabel("value [%]")
+    plt.legend()
+    
+    plt.savefig(OUTPUT_FILE_4, bbox_inches="tight")
+    
+    
+    
+    
