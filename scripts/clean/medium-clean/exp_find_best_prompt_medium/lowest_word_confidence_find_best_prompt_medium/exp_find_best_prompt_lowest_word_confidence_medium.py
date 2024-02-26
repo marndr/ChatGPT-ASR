@@ -11,36 +11,42 @@ from chat_gpt_asr.utils import confidence_score_lowest_word_level
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-delimiter = "####"
 
 TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_medium_librispeech_dev-clean-full.json") 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json")  
     
-def get_messages_exp1(asr_transcription, delimiter = "####"):
+def get_messages_exp1(asr_transcription):
     messages = [
         {
-            'role': 'system',
-            'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription delimited by {delimiter} characters,\
+        'role': 'system',
+        'content': f"""You are a helpful assistant that corrects ASR errors. \
+            You will be presented with an ASR transcription in json format with key: text \
             and your task is to correct any errors in it. \
             Provide the most probable corrected transcription in string format. \
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
-            """
+        """
         },
         {
-            'role': 'user',
-            'content': '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?"}'
+        'role': 'user',
+        'content': '{"text":"Why not allow your silver tuff to luxuriate in a natural manner?"}'
         },
-        {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
-        
         {
-            'role': 'user',
-            'content': '{"text": "Meanwhile, how fair did it with the flowers?"}'
+        'role': 'assistant', 
+        'content': "why not allow your silver tufts to luxuriate in a natural manner?"
+        },    
+        {
+        'role': 'user',
+        'content': '{"text": "Meanwhile, how fair did it with the flowers?"}'
         },
-        {'role': 'assistant', 'content': "Meanwhile, how fared did it with the flowers?"},
-        {'role': 'user', 'content': json.dumps(asr_transcription)}
+        {
+        'role': 'assistant', 
+        'content': "Meanwhile, how fared did it with the flowers?"
+        },
+        {
+        'role': 'user', 
+        'content': json.dumps(asr_transcription)}
     ]
     return messages
 

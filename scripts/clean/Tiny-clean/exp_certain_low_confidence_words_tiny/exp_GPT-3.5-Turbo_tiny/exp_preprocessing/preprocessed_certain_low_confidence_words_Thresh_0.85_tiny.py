@@ -12,12 +12,12 @@ load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
 THRESH = 0.85
-delimiter = "####"
+
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.85_tiny.json")
     
-def get_messages_exp(asr_transcription, delimiter="####"):
+def get_messages_exp(asr_transcription):
     messages = [
         {
             'role': 'system',

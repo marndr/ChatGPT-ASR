@@ -18,28 +18,35 @@ CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_noisy/resu
 def get_messages_exp1(asr_transcription):
     messages = [
         {
-            'role': 'system',
-            'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription delimited by {delimiter} characters,\
+        'role': 'system',
+        'content': f"""You are a helpful assistant that corrects ASR errors. \
+            You will be presented with an ASR transcription in json format with key: text \
             and your task is to correct any errors in it. \
             Provide the most probable corrected transcription in string format. \
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
-            """
+        """
         },
         {
-            'role': 'user',
-            'content': '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?"}'
+        'role': 'user',
+        'content': '{"text":"Why not allow your silver tuff to luxuriate in a natural manner?"}'
         },
-        {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
-        
         {
-            'role': 'user',
-            'content': '{"text": "Meanwhile, how fair did it with the flowers?"}'
+        'role': 'assistant', 
+        'content': "why not allow your silver tufts to luxuriate in a natural manner?"
+        },    
+        {
+        'role': 'user',
+        'content': '{"text": "Meanwhile, how fair did it with the flowers?"}'
         },
-        {'role': 'assistant', 'content': "Meanwhile, how fared did it with the flowers?"},
-        {'role': 'user', 'content': json.dumps(asr_transcription)}
+        {
+        'role': 'assistant', 
+        'content': "Meanwhile, how fared did it with the flowers?"
+        },
+        {
+        'role': 'user', 
+        'content': json.dumps(asr_transcription)}
     ]
     return messages
 
