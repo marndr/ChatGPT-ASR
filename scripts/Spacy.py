@@ -7,6 +7,7 @@ import os
 import argparse
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
+import re
 
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
@@ -14,56 +15,87 @@ Root = os.getenv("ROOT_PATH")
 SPACY_MODEL = "en_core_web_sm"
 nlp = spacy.load(SPACY_MODEL)
 
-def tokenizer_fn(texts):
-    tokens = []
-    for text in texts:
-        text = RemovePunctuation()(text.lower().strip())
-        tokens.append([t.text for t in nlp.tokenizer(text)])
-    return tokens
+def wrapper(remove_punct=True, return_texts=False, return_pos=False):
+    def tokenizer_fn(texts):
+        tokens = []
+        texts_new = []
+        poses = []
+        for text in texts:
+            if remove_punct:
+                # remove punctuation
+                text = re.sub("[\s]+", " ", text).strip().lower()
+                tokens.append([token.text for token in nlp(text) if token.pos_ != "PUNCT"])
+                poses.append([token.pos_ for token in nlp(text) if token.pos_ != "PUNCT"])
+                text = "".join([token.text_with_ws if token.pos_ != "PUNCT" else " "  for token in nlp(text) ])
+                text = re.sub("[\s]+", " ", text).strip().lower()
+                # text = RemovePunctuation()(text.lower().strip())
+                texts_new.append(text)
+            else:
+                text = re.sub("[\s]+", " ", text).strip().lower()
+                tokens.append([token.text for token in nlp(text)])
+                poses.append([token.pos_ for token in nlp(text)])
+                text = "".join([token.text_with_ws for token in nlp(text) ])
+                text = re.sub("[\s]+", " ", text).strip().lower()
+                texts_new.append(text)
+
+        if (return_texts == False) and (return_pos == False):
+            return tokens
+            
+        out = [tokens, None, None]
+        if return_texts:
+            out[1] = texts_new
+        if return_pos:
+            out[2] = poses
+        return out
+        
+    return tokenizer_fn
+
+# extract the tokens and their parts of speech
 def extract_words(measures):
 
-    truths, hypotheses, ops = measures['truth_texts'], measures['hypothesis_texts'], measures['ops']
+    truths_pos, hypotheses_pos, ops, truths, hypotheses = measures['truth_pos'], measures['hypothesis_pos'], measures['ops'], \
+                                            measures['truth'], measures['hypothesis']
     n_samples = len(truths)
     words = [[] for i in range(n_samples)]
     pos = [[] for i in range(n_samples)]
     operations = [[] for i in range(n_samples)]
     
     for idx in range(n_samples):
-        truth_doc = nlp(truths[idx])
-        truth_text = [token.text for token in truth_doc]
-        truth_pos = [token.pos_ for token in truth_doc]
-        
-        hypothesis_doc = nlp(hypotheses[idx])
-        hypothesis_text = [token.text for token in hypothesis_doc]
-        hypothesis_pos = [token.pos_ for token in hypothesis_doc]
+        truth_pos = truths_pos[idx]
+        truth = truths[idx]
+
+        hypothesis = hypotheses[idx]
+        hypothesis_pos = hypotheses_pos[idx]
 
         for op in ops[idx]:
             if op.type == "delete":
-                words[idx].extend(truth_text[op.ref_start_idx:op.ref_end_idx])
+                words[idx].extend(truth[op.ref_start_idx:op.ref_end_idx])
                 pos[idx].extend(truth_pos[op.ref_start_idx:op.ref_end_idx])
                 operations[idx].extend(["delete" for _ in truth_pos[op.ref_start_idx:op.ref_end_idx]])
                 
             elif op.type == "insert":
-                words[idx].extend(hypothesis_text[op.hyp_start_idx:op.hyp_end_idx])
+                words[idx].extend(hypothesis[op.hyp_start_idx:op.hyp_end_idx])
                 pos[idx].extend(hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx])
                 operations[idx].extend(["insert" for _ in hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx]])
                 
             elif op.type == "substitute":
                 # words[idx].extend(truth_text[op.ref_start_idx:op.ref_end_idx])
                 # pos[idx].extend(truth_pos[op.ref_start_idx:op.ref_end_idx])
-                words[idx].extend(hypothesis_text[op.hyp_start_idx:op.hyp_end_idx])
+                words[idx].extend(hypothesis[op.hyp_start_idx:op.hyp_end_idx])
                 pos[idx].extend(hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx])
                 operations[idx].extend(["substitute" for _ in hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx]])
                 
             elif op.type == "equal":
                 # words[idx].extend(truth_text[op.ref_start_idx:op.ref_end_idx])
                 # pos[idx].extend(truth_pos[op.ref_start_idx:op.ref_end_idx])
-                words[idx].extend(hypothesis_text[op.hyp_start_idx:op.hyp_end_idx])
+                words[idx].extend(hypothesis[op.hyp_start_idx:op.hyp_end_idx])
                 pos[idx].extend(hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx])
                 operations[idx].extend(["equal" for _ in hypothesis_pos[op.hyp_start_idx:op.hyp_end_idx]])
 
-    return words, pos, operations
-       
+    return words, pos, operations    
+
+# create table where rows are operations (delete, substitute, insert, equal)
+# and columns are part of speech
 def create_table(pos, ops):
     # Flatten the nested lists of pos and ops
     flat_pos = [pos_row for sublist in pos for pos_row in sublist]
@@ -80,6 +112,8 @@ def create_table(pos, ops):
 
     return df.T
 
+# create table where rows are the data examples and columns are 
+# combinations of operations (delete, substitute, insert, equal) and pos (for example, VERB, NOUN...)
 def create_table_wide(pos, operations):
     # Flatten the nested lists of pos and ops
     flat_pos = [pos_row for sublist in pos for pos_row in sublist]
@@ -114,7 +148,7 @@ if __name__ == "__main__":
     if args.experiment == "exp_without_sentence_confidence_noisy_tiny":
         path=os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
         OUTPUT_FILE_1 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_table_spacy_sentence_confidence_tiny.md")
-        OUTPUT_FILE_2 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_wide_table_spacy_sentence_confidence_tiny.md")
+        #OUTPUT_FILE_2 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_wide_table_spacy_sentence_confidence_tiny.md")
 
         OUTPUT_FILE_3 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_groupby_improved_table_spacy_sentence_confidence_tiny.md")
         OUTPUT_FILE_4 = os.path.join(Root,"results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_visualization_spacy_sentence_confidence_tiny.png")
@@ -132,30 +166,39 @@ if __name__ == "__main__":
     assert all([type(r) == str for r in corrected_transcriptions]) == True, "transcriptions should be a list of str!"
     
     # __main__
-    meas = compute_measures(truth=transcriptions, hypothesis=corrected_transcriptions, 
-                 truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)
-    meas['truth_texts'] = transcriptions
-    meas['hypothesis_texts'] = corrected_transcriptions
+    meas = compute_measures(transcriptions, corrected_transcriptions, 
+                truth_transform=wrapper(), hypothesis_transform=wrapper())
+    trans_tokens, trans_texts, trans_poses = wrapper(return_texts=True,return_pos=True)(transcriptions)
+    c_trans_tokens, c_trans_texts, c_trans_poses = wrapper(return_texts=True,return_pos=True)(corrected_transcriptions)
+    meas['truth_pos'] = trans_poses 
+    meas['hypothesis_pos'] = c_trans_poses 
+
+    # extract changed words and poses
     words, pos, operations = extract_words(meas)
-    
+
+    # create table
     df = create_table(pos, operations)
-    #df = df.drop(["SYM", "PUNCT", "SPACE", "X"], axis=1)
-     
+
+    # convert to percentage
     df = (df.div(df.sum(axis=1), axis=0)*100).round(2)
     
-    condition = df.sum(axis=0) < 2
-    columns_to_delete = [k for k,v in dict(condition).items() if v]
-    df = df.drop(columns=columns_to_delete)
+    # sort columns based on the sum of ops delete, substitute, and insert
+    k = df.shape[1] - 1
+    selected_ops = ['delete','substitute','insert']
+    sorted_sum_of_selected_ops = df.loc[selected_ops].sum().sort_values(ascending=False)
+    df[sorted_sum_of_selected_ops.index[:k]].to_markdown(OUTPUT_FILE_1)
     
-    df.to_markdown(OUTPUT_FILE_1)
-    
+    # create a wide table
     df_wide = create_table_wide(pos, operations)
     wer_l = []
     for idx in df_wide.index:
+        # calculate WER for reference vs. corrected transcription
         wer1 = compute_measures(reference_transcriptions[idx], corrected_transcriptions[idx], 
-                         truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)['wer']
+                         truth_transform=wrapper(), hypothesis_transform=wrapper())['wer']
+        # calculate WER for reference vs. original transcription
         wer2 = compute_measures(reference_transcriptions[idx], transcriptions[idx], 
-                         truth_transform=tokenizer_fn, hypothesis_transform=tokenizer_fn)['wer']
+                         truth_transform=wrapper(), hypothesis_transform=wrapper())['wer']
+        # check if corrected transcription has lower WER (improvement)
         wer_l.append([wer1, wer2, wer1 < wer2])
 
     # df_wide_percent = (df_wide.div(df_wide.sum(axis=1), axis=0)*100).round(2)
@@ -163,73 +206,43 @@ if __name__ == "__main__":
     df_wide['wer_reference_and_transcription'] = [_[1] for _ in wer_l]
     df_wide['improved'] = [_[2] for _ in wer_l]
 
-    #df_wide.to_markdown(OUTPUT_FILE_2)
-    
+    # grouping data by whether or not chatgpt improved transcription (reduced WER) 
+    # and count the number of improved and not improved examples
     df_wide.groupby('improved').size().to_markdown(OUTPUT_FILE_5)
-    df_wide.groupby('improved').mean().T.to_markdown(OUTPUT_FILE_3)
     
-    selected_columns = [('insert', 'ADJ'),
-    ('insert', 'ADP'),
-    ('insert', 'ADV'),
-    ('insert', 'AUX'),
-    ('insert', 'CCONJ'),
-    ('insert', 'DET'),
-    ('insert', 'INTJ'),
-    ('insert', 'NOUN'),
-    ('insert', 'NUM'),
-    ('insert', 'PART'),
-    ('insert', 'PRON'),
-    ('insert', 'PROPN'),
-    ('insert', 'PUNCT'),
-    ('insert', 'SCONJ'),
-    ('insert', 'SPACE'),
-    ('insert', 'VERB'),
-    ('insert', 'X'),
-    ('substitute', 'ADJ'),
-    ('substitute', 'ADP'),
-    ('substitute', 'ADV'),
-    ('substitute', 'AUX'),
-    ('substitute', 'CCONJ'),
-    ('substitute', 'DET'),
-    ('substitute', 'INTJ'),
-    ('substitute', 'NOUN'),
-    ('substitute', 'NUM'),
-    ('substitute', 'PART'),
-    ('substitute', 'PRON'),
-    ('substitute', 'PROPN'),
-    ('substitute', 'PUNCT'),
-    ('substitute', 'SCONJ'),
-    ('substitute', 'SPACE'),
-    ('substitute', 'VERB'),
-    ('substitute', 'X'),
-    ('delete', 'ADJ'),
-    ('delete', 'ADP'),
-    ('delete', 'ADV'),
-    ('delete', 'AUX'),
-    ('delete', 'CCONJ'),
-    ('delete', 'DET'),
-    ('delete', 'INTJ'),
-    ('delete', 'NOUN'),
-    ('delete', 'NUM'),
-    ('delete', 'PART'),
-    ('delete', 'PRON'),
-    ('delete', 'PROPN'),
-    ('delete', 'PUNCT'),
-    ('delete', 'SCONJ'),
-    ('delete', 'SPACE'),
-    ('delete', 'VERB'),
-    ('delete', 'X')]
+    # sorting based on selected columns (all columns except for wer_reference_and_corrected_transcription,
+    # wer_reference_and_transcription, and improved)
+    selected_columns = list(set(df_wide.columns).difference({
+    'wer_reference_and_corrected_transcription',
+    'wer_reference_and_transcription',
+    'improved'
+     }))
 
+    # take the average value of changes (for example insert_VERB, ...)
+    # for both improved and not improved cases and take the top 5 improtant changes 
     tt = df_wide.groupby('improved').mean()
-    x = [ f"{i}_{j}" for i, j in selected_columns]
-    plt.figure(figsize=(15,3), constrained_layout=True, dpi=500)
-    plt.plot(x, tt.loc[False, selected_columns].values, "ro", label="Not improved")
-    plt.plot(x, tt.loc[True, selected_columns].values, "go", label="Improved")
-    plt.xticks(rotation=45)
-    plt.ylabel("value [%]")
-    plt.legend()
+    # Calculate the sum of each column in the subset
+    subset_sum = tt[selected_columns].sum()
+    # Sort the summed values in descending order
+    sorted_subset_sum = subset_sum.sort_values(ascending=False)
+    # Define the value of k
+    k = 5  # Change this to your desired value
+    # Select the top k columns
+    top_k_columns = sorted_subset_sum.head(k)
     
-    plt.savefig(OUTPUT_FILE_4, bbox_inches="tight")
+    tt1 = tt[top_k_columns.index.tolist() + ["wer_reference_and_corrected_transcription", "wer_reference_and_transcription"]]
+    tt1.T.to_markdown(OUTPUT_FILE_3)
+    
+    # draw top 5 improtant changes that chatgpt has made
+    x = [ f"{i}_{j}" for i, j in top_k_columns.index.tolist()]
+    plt.figure(figsize=(6,5), constrained_layout=True)
+    plt.plot(x, tt1.loc[False, top_k_columns.index.tolist()].values, "r-o", label="Not improved")
+    plt.plot(x, tt1.loc[True, top_k_columns.index.tolist()].values, "g-o", label="Improved")
+    plt.xticks(rotation=45)
+    plt.ylabel("Avg value")
+    plt.title(f'top {k} ChatGPT changes')
+    plt.legend()
+    plt.savefig(OUTPUT_FILE_4, bbox_inches="tight", dpi=200)
     
     
     
