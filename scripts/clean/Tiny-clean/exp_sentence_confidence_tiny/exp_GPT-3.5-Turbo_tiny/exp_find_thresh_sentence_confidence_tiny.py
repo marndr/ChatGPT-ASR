@@ -10,10 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
-OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_tiny/results_thresh_sentence_confidence_tiny.md")
-output_file_wer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Wer_vs_sentence_confidence_plot_tiny.png")
-output_file_cer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Cer_vs_sentence_confidence_plot_tiny.png")
+l=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
+OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/results_thresh_sentence_confidence_tiny.md")
+output_file_wer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Wer_vs_sentence_confidence_plot_tiny.png")
+output_file_cer = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_tiny/plots_sentence_confidence_tiny/Cer_vs_sentence_confidence_plot_tiny.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -45,10 +45,10 @@ def evaluate_with_thresh(items, thresh):
         else:
             hyp_l.append(asr_transcription)
             
-    wer = wer(ref_l, hyp_l) * 100
-    cer = cer(ref_l, hyp_l) * 100
+    WER = wer(ref_l, hyp_l) * 100
+    CER = cer(ref_l, hyp_l) * 100
     
-    return wer, cer
+    return WER, CER
 
 
 thresholds = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]

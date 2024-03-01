@@ -48,10 +48,10 @@ def evaluate_with_thresh(items, thresh):
         else:
             hyp_l.append(asr_transcription)
             
-    wer = wer(ref_l, hyp_l) * 100
-    cer = cer(ref_l, hyp_l) * 100
+    WER = wer(ref_l, hyp_l) * 100
+    CER = cer(ref_l, hyp_l) * 100
     
-    return wer, cer
+    return WER, CER
 
 
 thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
@@ -77,7 +77,7 @@ def plot(l):
     plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
     plt.title("Wer vs lowest word confidence for GPT-4-Turbo (tiny, clean)")
-    plt.yticks([6,6.5,7,7.5,8,8.5,9])
+    #plt.yticks([6,6.5,7,7.5,8,8.5,9])
     #plt.show()
     plt.savefig(output_file_wer)
     
@@ -88,7 +88,7 @@ def plot(l):
     plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
     plt.title("Cer vs lowest word confidence for GPT-4-Turbo (tiny, clean)")
-    plt.yticks([2.5,3,3.5,4,4.5,5])
+    #plt.yticks([2.5,3,3.5,4,4.5,5])
     #plt.show()
     plt.savefig(output_file_cer)
    

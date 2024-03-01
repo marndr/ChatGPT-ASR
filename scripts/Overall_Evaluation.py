@@ -21,12 +21,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.experiment == "exp_without_sentence_confidence_tiny":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md")
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md")
     
     elif args.experiment == "exp_without_sentence_confidence_GPT-4-Turbo_tiny":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_without_sentence_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_tiny.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_without_sentence_confidence_GPT-4-Turbo_tiny/results_overall_sentence_confidence_GPT-4-Turbo_tiny.md")
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_tiny.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_tiny/results_overall_sentence_confidence_GPT-4-Turbo_tiny.md")
         
     elif args.experiment == "exp_without_lowest_word_confidence_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json")
