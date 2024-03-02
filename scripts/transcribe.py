@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-s",
         "--subset",
-        choices=["dev-clean", "dev-other"],
+        choices=["dev-clean", "dev-other", "test-clean", "test-other"],
         default="dev-clean",
         help="Librispeech subset to transcribe",
     )
@@ -48,14 +48,15 @@ if __name__ == "__main__":
     for audio_path, reference_transcription in tqdm(data.items()):
         try:
             asr_transcription = whisper.transcribe(audio_path)
-            l.append(
-                {
-                    "asr_transcription": asr_transcription,
-                    "reference_transcription": reference_transcription,
-                }
-            )
-        except Exception:
-            continue
+        except Exception as e:
+            asr_transcription = ""
+            print(e)
+        l.append(
+            {
+                "asr_transcription": asr_transcription,
+                "reference_transcription": reference_transcription,
+            }
+        )
 
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
