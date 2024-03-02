@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-s",
         "--subset",
-        choices=["dev-clean", "dev-other"],
+        choices=["dev-clean", "dev-other", "test-clean", "test-other"],
         default="dev-clean",
         help="Librispeech subset to transcribe",
     )
