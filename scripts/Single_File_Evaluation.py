@@ -202,37 +202,37 @@ if __name__ == "__main__":
             cer_original = cer( [ref],[hyp_original]) * 100
             
             # np.sqrt(wer_original**2) <= EPSILON means zero
-            if ( wer_original <= EPSILON and wer_corrected_chatgpt > EPSILON):
-                f.write(
-                    f"""
-                    data with this condition ( wer_original <= EPSILON and wer_corrected_chatgpt > EPSILON)
-                    ASR Transcription:        {hyp_original}
-                    Reference Transcription:  {ref}
-                    Corrected Transcription:  {hyp}
-                
-                    WER_original:             {wer_original:.04f}%
-                    WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
-                
-                    ---
-                    """
-                 )
-            #if (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original):
-            
+            #if ( wer_original <= EPSILON and wer_corrected_chatgpt > EPSILON):
                 #f.write(
                     #f"""
-                    #data with this condition (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original)
-                    #ASR Transcription:        {d["asr_transcription"]["text"]}
-                    #Reference Transcription:  {d["reference_transcription"]}
-                    #Corrected Transcription:  {d["corrected_asr_transcription"]}
+                    #data with this condition ( wer_original <= EPSILON and wer_corrected_chatgpt > EPSILON)
+                    #ASR Transcription:        {hyp_original}
+                    #Reference Transcription:  {ref}
+                    #Corrected Transcription:  {hyp}
                 
-                    #WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
                     #WER_original:             {wer_original:.04f}%
-                    #CER_corrected_chatgpt:    {cer_corrected_chatgpt:.04f}%
-                    #CER_original:             {cer_original:.04f}%
+                    #WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
                 
                     #---
                     #"""
                  #)
+            if (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original):
+            
+                f.write(
+                    f"""
+                    data with this condition (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original)
+                    ASR Transcription:        {d["asr_transcription"]["text"]}
+                    Reference Transcription:  {d["reference_transcription"]}
+                    Corrected Transcription:  {d["corrected_asr_transcription"]}
+                
+                    WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
+                    WER_original:             {wer_original:.04f}%
+                    CER_corrected_chatgpt:    {cer_corrected_chatgpt:.04f}%
+                    CER_original:             {cer_original:.04f}%
+                
+                    ---
+                    """
+                 )
 
             #if (wer_corrected_chatgpt==0 and cer_corrected_chatgpt !=0) or (wer_original == 0 and cer_original !=0):
                 

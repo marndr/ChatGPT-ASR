@@ -63,8 +63,8 @@ if __name__ == "__main__":
     
     for d in tqdm(data):
         
-        if d["corrected_asr_transcription"] is None:
-            continue 
+        #if d["corrected_asr_transcription"] is None:
+            #continue 
             
         ref=RemovePunctuation()(d["reference_transcription"].lower())
         hyp=RemovePunctuation()(d["corrected_asr_transcription"].lower())
