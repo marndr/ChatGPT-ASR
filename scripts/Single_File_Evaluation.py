@@ -221,9 +221,9 @@ if __name__ == "__main__":
                 f.write(
                     f"""
                     data with this condition (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original)
-                    ASR Transcription:        {d["asr_transcription"]["text"]}
-                    Reference Transcription:  {d["reference_transcription"]}
-                    Corrected Transcription:  {d["corrected_asr_transcription"]}
+                    ASR Transcription:        {hyp_original}
+                    Reference Transcription:  {ref}
+                    Corrected Transcription:  {hyp}
                 
                     WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
                     WER_original:             {wer_original:.04f}%
