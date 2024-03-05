@@ -15,7 +15,7 @@ Root = os.getenv("ROOT_PATH")
 TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_tiny_librispeech_test-clean-full.json") 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results-test-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json")  
     
-def get_messages_exp(asr_transcription):
+def get_messages_exp1(asr_transcription):
     messages = [
         {
             'role': 'system',
@@ -66,6 +66,7 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]

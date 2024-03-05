@@ -68,16 +68,16 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]
 
         # experiment 1
         for i,d in enumerate(data):
-            asr_transcription = confidence_score_sentence_level(d["asr_transcription"] , confidence = True) 
+            asr_transcription = confidence_score_sentence_level(d["asr_transcription"] , confidence = True)        
             reference_transcription= d["reference_transcription"]
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
-            
     
 
     l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-3.5-turbo-0125" )

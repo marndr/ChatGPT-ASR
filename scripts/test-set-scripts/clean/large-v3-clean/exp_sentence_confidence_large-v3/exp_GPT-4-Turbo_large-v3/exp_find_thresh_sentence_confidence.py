@@ -11,13 +11,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-1106-preview/results_without_sentence_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_large-v3.json")
+l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_large-v3.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/results_thresh_sentence_confidence_GPT-4-Turbo_large-v3.md")
+OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/results_thresh_sentence_confidence_GPT-4-Turbo_large-v3.md")
 
-output_file_wer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/plots_sentence_confidence_GPT-4-Turbo_large-v3/Wer_vs_sentence_confidence_GPT-4-Turbo_plot_large-v3.png")
+output_file_wer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/plots_sentence_confidence_GPT-4-Turbo_large-v3/Wer_vs_sentence_confidence_GPT-4-Turbo_plot_large-v3.png")
 
-output_file_cer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-1106-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/plots_sentence_confidence_GPT-4-Turbo_large-v3/Cer_vs_sentence_confidence_GPT-4-Turbo_plot_large-v3.png")
+output_file_cer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_large-v3/plots_sentence_confidence_GPT-4-Turbo_large-v3/Cer_vs_sentence_confidence_GPT-4-Turbo_plot_large-v3.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -95,7 +95,7 @@ def plot(l):
     plt.savefig(output_file_cer)
    
    
-plot(results)
+#plot(results)
 
 
 # Sort results based on WER

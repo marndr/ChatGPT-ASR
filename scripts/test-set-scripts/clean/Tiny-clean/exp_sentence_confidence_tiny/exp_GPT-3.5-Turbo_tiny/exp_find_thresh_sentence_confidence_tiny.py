@@ -97,7 +97,7 @@ def plot(l):
 
 
 # Sort results based on WER
-results.sort(key=lambda x: x["wer"])
+#results.sort(key=lambda x: x["wer"])
 
 # Print results
 for result in results:
