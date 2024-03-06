@@ -36,46 +36,42 @@ if __name__ == "__main__":
  
         
    
-    ref_l, hyp_l, hyp_l_original = [], [], []
+    ref_l, hyp_l = [], []
     ser_corrected_chatgpt, ser_original = 0.,0.
     count = 0
+    
+    hyp_l_original = []
+    ref_l_orig = []
     
     for d in tqdm(data):
         
         if d["corrected_asr_transcription"] is None:
-            continue 
             
-        ref=RemovePunctuation()(d["reference_transcription"].lower())
-        hyp=RemovePunctuation()(d["corrected_asr_transcription"].lower())
-        hyp_original=RemovePunctuation()(d["asr_transcription"]["text"].lower())
-        
-        
-            
-        #ref_l.append(remove_punctuations(d["reference_transcription"].lower()))
-        #hyp_l.append(remove_punctuations(d["corrected_asr_transcription"].lower()))
-        #hyp_l_original.append(remove_punctuations(d["asr_transcription"]["text"].lower()))  
-        
-        
-        SER_chatgpt_, SER_original_ = ser(hyp_original, hyp, ref)
-    
-
-        count += 1
-        ser_corrected_chatgpt += SER_chatgpt_
-        ser_original += SER_original_
-        
-        ref_l.append(ref)
-        hyp_l.append(hyp)
-        hyp_l_original.append(hyp_original)
-    
-    
+            ref_l_orig.append(RemovePunctuation()(d["reference_transcription"].lower()))
+            hyp_l_original.append(RemovePunctuation()(d["asr_transcription"]["text"].lower()))
+         
+        else:
+            ref=RemovePunctuation()(d["reference_transcription"].lower())
+            hyp=RemovePunctuation()(d["corrected_asr_transcription"].lower())
+            hyp_original=RemovePunctuation()(d["asr_transcription"]["text"].lower())
+            ref_l.append(ref)
+            hyp_l.append(hyp)
+            hyp_l_original.append(hyp_original)
+            ref_l_orig.append(ref)
+            SER_chatgpt_, SER_original_ = ser(hyp_original, hyp, ref)
+            count += 1
+            ser_corrected_chatgpt += SER_chatgpt_
+            ser_original += SER_original_
+     
+    wer_original = wer( ref_l_orig, hyp_l_original) * 100
     wer_corrected_chatgpt = wer(ref_l,hyp_l) * 100
-    wer_original = wer( ref_l, hyp_l_original) * 100
+  
     cer_corrected_chatgpt = cer(ref_l, hyp_l) * 100
-    cer_original = cer(ref_l,hyp_l_original) * 100
+    cer_original = cer(ref_l_orig,hyp_l_original) * 100
             
     
     measures=compute_measures(ref_l, hyp_l)
-    measures_original = compute_measures(ref_l, hyp_l_original)
+    measures_original = compute_measures(ref_l_orig, hyp_l_original)
 
     
     
