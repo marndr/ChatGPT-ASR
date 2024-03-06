@@ -92,7 +92,7 @@ def plot(l):
     #plt.show()
     plt.savefig(output_file_cer)
    
-plot(results)
+#plot(results)
 
 
 # Sort results based on WER

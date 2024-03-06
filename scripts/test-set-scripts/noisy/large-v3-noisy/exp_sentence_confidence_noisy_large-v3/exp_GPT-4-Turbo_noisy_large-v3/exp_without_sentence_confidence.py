@@ -59,8 +59,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
 
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
@@ -68,6 +68,7 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]

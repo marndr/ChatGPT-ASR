@@ -11,13 +11,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json")
+l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/results_thresh_lowest_word_confidence_large-v3.json")
+OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_large-v3/results_thresh_lowest_word_confidence_large-v3.json")
 
-output_file_wer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_plot_large-v3.png")
+output_file_wer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_plot_large-v3.png")
 
-output_file_cer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_plot_large-v3.png")
+output_file_cer = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_plot_large-v3.png")
 
 with open(l , "r") as f:
     json_obj=f.read()

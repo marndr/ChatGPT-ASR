@@ -10,13 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_noisy_large-v3/corrected_transcriptions_sentence_confidence_noisy_large-v3.json")
+l=os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_without_sentence_confidence_noisy_large-v3/corrected_transcriptions_sentence_confidence_noisy_large-v3.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/results_thresh_sentence_confidence_noisy_large-v3.md")
+OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/results_thresh_sentence_confidence_noisy_large-v3.md")
 
-output_file_wer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_plot_noisy_large-v3.png")
+output_file_wer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_plot_noisy_large-v3.png")
 
-output_file_cer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_plot_noisy_large-v3.png")
+output_file_cer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_plot_noisy_large-v3.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -94,7 +94,7 @@ def plot(l):
     plt.savefig(output_file_cer)
    
    
-plot(results)
+#plot(results)
 
 
 # Sort results based on WER

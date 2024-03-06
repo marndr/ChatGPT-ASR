@@ -11,13 +11,13 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json")
+l=os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json")
 
-OUTPUT_FILE = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_noisy_large-v3/results_thresh_lowest_word_confidence_noisy_large-v3.json")
+OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_noisy_large-v3/results_thresh_lowest_word_confidence_noisy_large-v3.json")
 
-output_file_wer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_noisy_large-v3/plots_lowest_word_confidence_noisy_large-v3/Wer_vs_lowest_word_confidence_plot_noisy_large-v3.png")
+output_file_wer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_noisy_large-v3/plots_lowest_word_confidence_noisy_large-v3/Wer_vs_lowest_word_confidence_plot_noisy_large-v3.png")
 
-output_file_cer = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_noisy_large-v3/plots_lowest_word_confidence_noisy_large-v3/Cer_vs_lowest_word_confidence_plot_noisy_large-v3.png")
+output_file_cer = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_noisy_large-v3/plots_lowest_word_confidence_noisy_large-v3/Cer_vs_lowest_word_confidence_plot_noisy_large-v3.png")
 
 with open(l , "r") as f:
     json_obj=f.read()
@@ -54,7 +54,7 @@ def evaluate_with_thresh(items, thresh):
     
     return WER, CER
 
-thresholds = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+thresholds = [0.7]
 results = []
 
 
@@ -92,7 +92,7 @@ def plot(l):
     #plt.show()
     plt.savefig(output_file_cer)
    
-plot(results)
+#plot(results)
 
 
 # Sort results based on WER

@@ -16,7 +16,7 @@ TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v
 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json") 
     
-def get_messages_exp(asr_transcription):
+def get_messages_exp1(asr_transcription):
     messages = [
         {
             'role': 'system',
@@ -50,7 +50,7 @@ if __name__ =="__main__":
      
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], \
-            default="librispeech", help="Select the dataset (librispeech or dummy)")
+            default="librispeech", help="Select the dataset (librispeech)")
     parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
     args = parser.parse_args()
 

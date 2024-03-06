@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
-l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_large-v3.json")
+l=os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json")
 
 OUTPUT_FILE = os.path.join(Root,"results/results-test-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/results_thresh_lowest_word_confidence_large-v3.json")
 
@@ -91,7 +91,7 @@ def plot(l):
     #plt.show()
     plt.savefig(output_file_cer)
    
-plot(results)
+#plot(results)
 
 
 # Sort results based on WER

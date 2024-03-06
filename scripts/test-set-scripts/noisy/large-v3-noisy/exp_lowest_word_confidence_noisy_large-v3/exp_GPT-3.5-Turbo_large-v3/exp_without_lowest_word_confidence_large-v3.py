@@ -12,8 +12,8 @@ load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
 
-TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v3_librispeech_dev-other-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json")  
+TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v3_librispeech_test-other-full.json") 
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json")  
     
 def get_messages_exp1(asr_transcription):
     messages = [
@@ -56,8 +56,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
 
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME

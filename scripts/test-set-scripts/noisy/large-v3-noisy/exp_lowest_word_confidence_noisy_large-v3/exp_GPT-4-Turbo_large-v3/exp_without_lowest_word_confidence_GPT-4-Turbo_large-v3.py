@@ -12,8 +12,8 @@ load_dotenv()
 Root = os.getenv("ROOT_PATH")
 
 
-TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v3_librispeech_dev-other-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-4-Turbo_noisy_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json") 
+TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_large-v3_librispeech_test-other-full.json") 
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results-test-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-4-Turbo_noisy_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json") 
     
 def get_messages_exp1(asr_transcription):
     messages = [
@@ -42,16 +42,16 @@ def get_messages_exp1(asr_transcription):
 if __name__ =="__main__": 
      
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
-    parser.add_argument("-d", "--dataset", choices=["librispeech", "dummy"], \
-            default="librispeech", help="Select the dataset (librispeech or dummy)")
+    parser.add_argument("-d", "--dataset", choices=["librispeech"], \
+            default="librispeech", help="Select the dataset (librispeech)")
     parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
     args = parser.parse_args()
 
     
     # Load API key 
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
+    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")    
 
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
@@ -59,6 +59,7 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]
