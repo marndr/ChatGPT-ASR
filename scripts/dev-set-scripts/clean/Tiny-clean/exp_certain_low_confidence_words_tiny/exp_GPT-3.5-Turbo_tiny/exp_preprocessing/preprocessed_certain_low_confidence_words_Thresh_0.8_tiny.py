@@ -15,28 +15,41 @@ THRESH = 0.8
 
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.8_tiny.json")
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcriptions_certain_low_confidence_words_tiny_new/preprocessed_corrected_transcriptions_Thresh=0.8_tiny.json")
     
 def get_messages_exp(asr_transcription):
     messages = [
         {
             'role': 'system',
             'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription and low confidence words in that transcription. \
-            the input will be formatted as json with keys text and low_confidence_words,\
-            where the text is the ASR transcription and low_confidence_words contains the list of words with low asr confidence. \
-            your task is to check if the low confidence words make sense in the transcription and if they do not, replace them with better words. \
-            provide your output as a string. \
-            Do not change the case, for example, lower case or upper case, in the transcription. \
-            Do not output any additional text that is not the corrected transcription. \
-            Do not write any explanatory text that is not the corrected transcription.
-            """
+             You will be presented with an ASR transcription (from Librispeech data provided by the Whisper model) and a list of words in the transcription with low confidence scores. \ 
+             The input will be formatted as json with keys: text and low_confidence_words,\
+             where the text is the ASR transcription and low_confidence_words contains the list of words in the transcription with low confidence scores. \
+             Your task is to correct any errors in the transcription.
+             If you come across errors in ASR transcription, make sure that \
+             you correct only words from within the low_confidence_words list and \
+             your corrections should closely match the original transcription acoustically or phonetically.\
+             Provide the most probable corrected transcription in string format. \
+             Do not change the case, for example, lower case or upper case, in the transcription. \
+             Do not output any additional text that is not the corrected transcription. \
+             Do not write any explanatory text that is not the corrected transcription.
+             """
         },
         {
             'role': 'user',
             'content': '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?", "low_confidence_words":["tuff"]}'
         },
         {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
+        
+        {
+        'role': 'user',
+        'content': '{"text": "Meanwhile, how fair did it with the flowers?", "low_confidence_words":["fared"]}'
+        },
+        {
+        'role': 'assistant', 
+        'content': "Meanwhile, how fared did it with the flowers?"
+        },
+        
         {'role': 'user', 'content': json.dumps(asr_transcription)}
     ]
     return messages
@@ -87,6 +100,8 @@ if __name__ =="__main__":
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
+        
+        
         
         
         

@@ -1,0 +1,122 @@
+[
+  {
+    "asr_transcription": {
+      "text": " Parme a nays overall, chill and serve.",
+      "low_confidence_words": [
+        "a"
+      ]
+    },
+    "reference_transcription": "POUR MAYONNAISE OVER ALL CHILL AND SERVE",
+    "corrected_asr_transcription": "Parmesan overall, chill and serve."
+  },
+  {
+    "asr_transcription": {
+      "text": " Take a crumbled turn over and wait to sleep again.",
+      "low_confidence_words": [
+        "Take"
+      ]
+    },
+    "reference_transcription": "STACY GRUMBLED TURNED OVER AND WENT TO SLEEP AGAIN",
+    "corrected_asr_transcription": "take a crumbled turn over and wait to sleep again."
+  },
+  {
+    "asr_transcription": {
+      "text": " We never play on the Tumit and when we met.",
+      "low_confidence_words": [
+        "the"
+      ]
+    },
+    "reference_transcription": "WE NEVER PLANNED TO MEET AND WHEN WE MET",
+    "corrected_asr_transcription": "We never play on Tumit and when we met."
+  },
+  {
+    "asr_transcription": {
+      "text": " You say, gem no the law.",
+      "low_confidence_words": [
+        "the"
+      ]
+    },
+    "reference_transcription": "YOU SEE JIM KNOWED THE LAW",
+    "corrected_asr_transcription": "You say, gem no the law."
+  },
+  {
+    "asr_transcription": {
+      "text": " We should like above all things,\" said New Canyon. To see this land full of people once more, for without neighbors and friends, the world is a very lonely place indeed.",
+      "low_confidence_words": [
+        "New"
+      ]
+    },
+    "reference_transcription": "WE SHOULD LIKE ABOVE ALL THINGS SAID DEUCALION TO SEE THIS LAND FULL OF PEOPLE ONCE MORE FOR WITHOUT NEIGHBORS AND FRIENDS THE WORLD IS A VERY LONELY PLACE INDEED",
+    "corrected_asr_transcription": "We should like above all things,\" said Nu Canyon. To see this land full of people once more, for without neighbors and friends, the world is a very lonely place indeed."
+  },
+  {
+    "asr_transcription": {
+      "text": " Brianna saw something close to panic on his opponent's face when the man finally recognized his error.",
+      "low_confidence_words": [
+        "Brianna"
+      ]
+    },
+    "reference_transcription": "BRION SAW SOMETHING CLOSE TO PANIC ON HIS OPPONENT'S FACE WHEN THE MAN FINALLY RECOGNIZED HIS ERROR",
+    "corrected_asr_transcription": "Briana saw something close to panic on his opponent's face when the man finally recognized his error."
+  },
+  {
+    "asr_transcription": {
+      "text": " The horses of the outfit saved those that were on night duty and two or three others that had developed a habit of straying had been turned loose early in the evening for animals on the trail are seldom sick down.",
+      "low_confidence_words": [
+        "sick"
+      ]
+    },
+    "reference_transcription": "THE HORSES OF THE OUTFIT SAVE THOSE THAT WERE ON NIGHT DUTY AND TWO OR THREE OTHERS THAT HAD DEVELOPED A HABIT OF STRAYING HAD BEEN TURNED LOOSE EARLY IN THE EVENING FOR ANIMALS ON THE TRAIL ARE SELDOM STAKED DOWN",
+    "corrected_asr_transcription": "The horses of the outfit saved those that were on night duty and two or three others that had developed a habit of straying had been turned loose early in the evening for animals on the trail are seldom sick down."
+  },
+  {
+    "asr_transcription": {
+      "text": " When a married woman has followers, and the husband don't go the wrong side of the post too, or it ain't proved a guy name that he do, they'll never let her have nothing to do with the children.",
+      "low_confidence_words": [
+        "guy"
+      ]
+    },
+    "reference_transcription": "WHEN A MARRIED WOMAN HAS FOLLOWERS AND THE HUSBAND DON'T GO THE WRONG SIDE OF THE POST TOO OR IT AIN'T PROVED AGAIN HIM THAT HE DO THEY'LL NEVER LET HER HAVE NOTHING TO DO WITH THE CHILDREN",
+    "corrected_asr_transcription": "When a married woman has followers, and the husband don't go the wrong side of the post too, or it ain't proved a guy name that he do, they'll never let her have nothing to do with the children."
+  },
+  {
+    "asr_transcription": {
+      "text": " And, presently, against one of those banks, I saw a sort of shed, attached with the same wine colored grass that grew everywhere.",
+      "low_confidence_words": [
+        "And,"
+      ]
+    },
+    "reference_transcription": "PRESENTLY AGAINST ONE OF THOSE BANKS I SAW A SORT OF SHED THATCHED WITH THE SAME WINE COLORED GRASS THAT GREW EVERYWHERE",
+    "corrected_asr_transcription": ", presently, against one of those banks, I saw a sort of shed, attached with the same wine colored grass that grew everywhere."
+  },
+  {
+    "asr_transcription": {
+      "text": " The sustainable pout of combat occupants thick lips accentuated the negrotype of his face.",
+      "low_confidence_words": [
+        "sustainable"
+      ]
+    },
+    "reference_transcription": "THE DISDAINFUL POUT OF COMRADE OSSIPON'S THICK LIPS ACCENTUATED THE NEGRO TYPE OF HIS FACE",
+    "corrected_asr_transcription": "The sustainable pout of combat occupants thick lips accentuated the negrotypes of his face."
+  },
+  {
+    "asr_transcription": {
+      "text": " You would call that latitude gentleman would you? My mum will miss to verlock.",
+      "low_confidence_words": [
+        "gentleman"
+      ]
+    },
+    "reference_transcription": "YOU WOULD CALL THAT LAD A DEGENERATE WOULD YOU MUMBLED MISTER VERLOC",
+    "corrected_asr_transcription": "You would call that latitude, gentleman, would you? My mum will miss to verlock."
+  },
+  {
+    "asr_transcription": {
+      "text": " with a shot, the boy's stash pale male to meet the pack train, and falling in behind the slow moving burrows, herched them on with the risks of shots and sundry resounding slaps on the animal's flanks.",
+      "low_confidence_words": [
+        "risks"
+      ]
+    },
+    "reference_transcription": "WITH A SHOUT THE BOYS DASHED PELL MELL TO MEET THE PACK TRAIN AND FALLING IN BEHIND THE SLOW MOVING BURROS URGED THEM ON WITH DERISIVE SHOUTS AND SUNDRY RESOUNDING SLAPS ON THE ANIMALS FLANKS",
+    "corrected_asr_transcription": "with a shot, the boy's stashed pale male to meet the pack train, and falling in behind the slow moving burros, herded them on with the ricks of shots and sundry resounding slaps on the animal's flanks."
+  }
+]

@@ -33,7 +33,7 @@ for i,d in enumerate(data_1):
                            "corrected_asr_transcription": asr_transcription["text"]})
 
 
-corrected_transcription_file = os.path.join(Root, "results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.9_tiny.json")   
+corrected_transcription_file = os.path.join(Root, "results/results-dev-set/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcriptions_certain_low_confidence_words_tiny_new/preprocessed_corrected_transcriptions_Thresh=0.9_tiny.json")   
    
 with open(corrected_transcription_file , "r") as f:
     json_obj=f.read()
@@ -42,7 +42,7 @@ with open(corrected_transcription_file , "r") as f:
         	
 data_total = data_list_1 + data_list_2
 
-output_file= os.path.join(Root, "results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/postprocessed_corrected_transcription_certain_low_confidence_words_tiny/postprocessed_corrected_transcriptions_processed_Thresh=0.9_tiny.json") 
+output_file= os.path.join(Root, "results/results-dev-set/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/postprocessed_corrected_transcriptions_certain_low_confidence_words_tiny_new/postprocessed_corrected_transcriptions_processed_Thresh=0.9_tiny.json") 
 
 with open(output_file, "w") as f:
     json_str = json.dumps(data_total, indent=2)

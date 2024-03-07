@@ -39,8 +39,8 @@ if __name__ == "__main__":
         OUTPUT_FILE = os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_2_tiny.md") 
     
     if args.experiment == "exp_new_prompt_lowest_word_confidence_4_tiny":
-        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_4.json")
-        OUTPUT_FILE = os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-1106-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_4_tiny.md") 
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_4.json")
+        OUTPUT_FILE = os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_4_tiny.md") 
                                         
     if args.experiment == "exp_GPT_4_new_prompt_sentence_confidence_4_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_prompt_4.json")

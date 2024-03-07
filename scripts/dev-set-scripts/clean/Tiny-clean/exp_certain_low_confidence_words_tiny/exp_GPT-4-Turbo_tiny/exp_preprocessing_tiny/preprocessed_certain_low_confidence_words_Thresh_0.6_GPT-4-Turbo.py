@@ -15,7 +15,7 @@ THRESH = 0.6
 
 
 TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.6_tiny.json")
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root, "results/results-dev-set/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-4-Turbo_tiny/gpt-4-1106-preview/preprocessed_corrected_transcription_certain_low_confidence_words_tiny_new/preprocessed_corrected_transcriptions_Thresh=0.6_tiny.json")
     
 def get_messages_exp(asr_transcription):
     messages = [
@@ -53,8 +53,8 @@ if __name__ =="__main__":
     
     # Load API key 
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")  
+    #openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
+    openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")  
     
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
