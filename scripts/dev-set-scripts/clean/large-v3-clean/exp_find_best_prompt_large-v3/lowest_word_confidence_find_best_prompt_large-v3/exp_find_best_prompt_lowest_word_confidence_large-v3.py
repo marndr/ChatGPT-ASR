@@ -13,20 +13,22 @@ Root = os.getenv("ROOT_PATH")
 
 
 TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_large-v3_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_1.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_2.json")  
     
 def get_messages_exp1(asr_transcription):
     messages = [
         {
         'role': 'system',
         'content': f"""You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription in json format with key: text \
-            and your task is to correct any errors in it. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model. \
+            Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
+            If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\        
+            If you encounter grammatical errors, do not correct them.\                                                                                            
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
-        """
+            """
         },
         {
         'role': 'user',
@@ -71,6 +73,7 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]
@@ -82,7 +85,7 @@ if __name__ =="__main__":
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
             
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-3.5-turbo-1106" )
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-3.5-turbo-0125" )
  
  
  

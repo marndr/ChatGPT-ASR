@@ -13,7 +13,7 @@ Root = os.getenv("ROOT_PATH")
 
 
 TRANSCRIPTION_FILENAME = os.path.join(Root,"data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_2.json")  
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_2.json")  
     
 def get_messages_exp1(asr_transcription):
     messages = [
@@ -65,6 +65,7 @@ if __name__ =="__main__":
         with open(transcription_file, "r") as f:
             json_obj=f.read()
             data=json.loads(json_obj)
+            data = [d for d in data if d["asr_transcription"]]
             
         if args.num_data > 0:
             data = data[:args.num_data]
@@ -76,7 +77,7 @@ if __name__ =="__main__":
             data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
             
 
-    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-3.5-turbo-1106" )
+    l= multithread_parallelization(data, get_messages_fn=get_messages_exp1 , model = "gpt-4-0125-preview" )
  
  
  

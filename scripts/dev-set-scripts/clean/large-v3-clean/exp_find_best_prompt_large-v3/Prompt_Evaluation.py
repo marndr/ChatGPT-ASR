@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
     parser.add_argument("-d", "--dataset", choices=["librispeech"], default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_large-v3","exp_new_prompt_lowest_word_confidence_1_large-v3"])
+    parser.add_argument("-e","--experiment", choices = ["exp_new_prompt_sentence_confidence_1_large-v3","exp_new_prompt_lowest_word_confidence_1_large-v3", "exp_new_prompt_lowest_word_confidence_2_large-v3"])
     args = parser.parse_args()
     
     
@@ -29,7 +29,12 @@ if __name__ == "__main__":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_1.json")
         
         OUTPUT_FILE = os.path.join(Root,"results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/results_overall_lowest_word_confidence_prompt_1_large-v3.md") 
-                                       
+    
+    if args.experiment =="exp_new_prompt_lowest_word_confidence_2_large-v3":
+        CORRECTED_TRANSCRIPTIONS_LIBRISPEECH=os.path.join(Root,"results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_2.json")
+        
+        OUTPUT_FILE = os.path.join(Root,"results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/results_overall_lowest_word_confidence_prompt_2_large-v3.md") 
+                                           
     if args.dataset == "librispeech":
         with open(CORRECTED_TRANSCRIPTIONS_LIBRISPEECH, "r") as f:
             json_obj=f.read()
@@ -80,7 +85,6 @@ if __name__ == "__main__":
     
     ser_corrected_chatgpt /=count
     ser_original /= count
-    
     print(f"Number of audio files:  {count:}\n")
     print(f"WER_original is:                {wer_original:.04f}\n")
     print(f"WER_corrected_chatgpt is:       {wer_corrected_chatgpt:.04f}\n")
