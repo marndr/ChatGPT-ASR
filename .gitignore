@@ -17,8 +17,6 @@ build/
 
 .env
 
-*.ipynb
-
 .ipynb_checkpoints/
 
 src/transcribe_whisper_parallel.py

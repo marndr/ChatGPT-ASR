@@ -15,6 +15,9 @@ conda create -n chat-gpt-asr python=3.10
 conda activate chat-gpt-asr
 pip install -r requirements.txt
 pip install -e .
+
+# Download Spacy model for POS tag analysis
+python -m spacy download en_core_web_sm
 ```
 
 4. Make a copy of the example environment variables file:
