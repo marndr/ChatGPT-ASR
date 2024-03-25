@@ -26,13 +26,16 @@ with open(l , "r") as f:
         
 def evaluate_with_thresh(items, thresh):
     hyp_l, ref_l = [], []
+    count = 0
+    count_2=0
+   
    
     for item in items:
         
         if item["corrected_asr_transcription"] is None:
             continue 
        
-        
+        count_2+=1
         ref_transcription=RemovePunctuation()(item["reference_transcription"].lower())
         cor_transcription=RemovePunctuation()(item["corrected_asr_transcription"].lower())
         asr_transcription=RemovePunctuation()(item["asr_transcription"]["text"].lower())
@@ -44,6 +47,7 @@ def evaluate_with_thresh(items, thresh):
         # check confidence and append the suitable value to hyp_l       
         if confidence <= thresh:
             hyp_l.append(cor_transcription)
+            count+=1
             
         else:
             hyp_l.append(asr_transcription)
@@ -51,6 +55,7 @@ def evaluate_with_thresh(items, thresh):
     WER = wer(ref_l, hyp_l) * 100
     CER = cer(ref_l, hyp_l) * 100
     
+    print(count,count_2)
     return WER, CER
 
 
