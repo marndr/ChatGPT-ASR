@@ -55,7 +55,7 @@ def align3(a: str, b: str, c: str) -> tuple[list[str], list[str], list[str]]:
         i, j, k = i + di, j + dj, k + dk
         out.append((a[i] if di == -1 else "", b[j] if dj == -1 else "", c[k] if dk == -1 else ""))
     out.reverse()
-    return list(zip(*out))
+    return tuple(map(list, zip(*out)))
 
 def print_alignment(alignment: tuple[list[str], ...]) -> None:
     print(pd.DataFrame(alignment))
