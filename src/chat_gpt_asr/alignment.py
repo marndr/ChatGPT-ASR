@@ -33,7 +33,7 @@ def align3(a: str, b: str, c: str) -> tuple[list[str], list[str], list[str]]:
 
     def _is_valid(move: tuple[int, int, int], i: int, j: int, k: int) -> bool:
         """Return whether the given move is valid for the given current indices."""
-        return all(x + y >= 0 for x, y in zip(move, [i, j, k]))
+        return all(x + y >= 0 for x, y in zip(move, [i, j, k], strict=False))
 
     def _mean_cer(move: tuple[int, int, int], i: int, j: int, k: int) -> float:
         di, dj, dk = move
@@ -73,7 +73,7 @@ def align3(a: str, b: str, c: str) -> tuple[list[str], list[str], list[str]]:
             )
         )
     out.reverse()
-    return tuple(map(list, zip(*out)))
+    return tuple(map(list, zip(*out, strict=False)))
 
 
 def print_alignment(alignment: tuple[list[str], ...]) -> None:

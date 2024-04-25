@@ -3,7 +3,7 @@ import re
 
 
 def read_dummy_transcriptions():
-    dataset = [
+    return [
         {
             "asr_transcription": "I prefer see over coffee.",
             "reference_transcription": "I prefer tea over coffee.",
@@ -49,7 +49,6 @@ def read_dummy_transcriptions():
             "reference_transcription": "The sun sets at the beach are always stunning.",
         },
     ]
-    return dataset
 
 
 # Function to read audio filenames and their corresponding transcriptions
@@ -125,7 +124,7 @@ def confidence_score_lowest_word_level(trans, confidence=True):
     d = {}
     d["text"] = trans["text"]
     words = []
-    for i, seg in enumerate(trans["segments"]):
+    for seg in trans["segments"]:
         words.extend(seg["words"])
 
     lowest = 10000.0
@@ -141,7 +140,7 @@ def confidence_score_average_word_level(trans, confidence=True):
     d = {}
     d["text"] = trans["text"]
     words = []
-    for i, seg in enumerate(trans["segments"]):
+    for seg in trans["segments"]:
         words.extend(seg["words"])
 
     avg_confidence_score = 0

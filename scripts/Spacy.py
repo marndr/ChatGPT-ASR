@@ -137,7 +137,11 @@ def create_table(pos, ops):
     # Create a dictionary to store the cumulative sums for each operation and part of speech
     data = {
         op: {
-            p: sum(1 for i, j in zip(flat_pos, flat_ops) if i == p and j == op)
+            p: sum(
+                1
+                for i, j in zip(flat_pos, flat_ops, strict=False)
+                if i == p and j == op
+            )
             for p in unique_pos
         }
         for op in unique_ops
@@ -168,8 +172,8 @@ def create_table_wide(pos, operations):
     )
 
     # Iterate over the examples, counting occurrences of each unique combination
-    for i, (p, o) in enumerate(zip(pos, operations)):
-        for pos_, op in zip(p, o):
+    for i, (p, o) in enumerate(zip(pos, operations, strict=False)):
+        for pos_, op in zip(p, o, strict=False):
             if (op, pos_) in df.columns:
                 df.at[i, (op, pos_)] = (
                     df.at[i, (op, pos_)] + 1 if not pd.isna(df.at[i, (op, pos_)]) else 1
@@ -256,13 +260,13 @@ if __name__ == "__main__":
     corrected_transcriptions = [d["corrected_asr_transcription"] for d in data]
 
     assert all(
-        [isinstance(r, str) for r in transcriptions]
+        isinstance(r, str) for r in transcriptions
     ), "transcriptions should be a list of str!"
     assert all(
-        [isinstance(r, str) for r in reference_transcriptions]
+        isinstance(r, str) for r in reference_transcriptions
     ), "transcriptions should be a list of str!"
     assert all(
-        [isinstance(r, str) for r in corrected_transcriptions]
+        isinstance(r, str) for r in corrected_transcriptions
     ), "transcriptions should be a list of str!"
 
     # __main__

@@ -27,7 +27,7 @@ def identify_edit_type(ref, asr, llm):
     edits = {"A": [], "B": [], "C": [], "D": []}
     rr, aa, ll = align3(ref, asr, llm)
     if len(rr) == len(aa) == len(ll):
-        for r, a, l in zip(rr, aa, ll):  # noqa: E741
+        for r, a, l in zip(rr, aa, ll, strict=False):  # noqa: E741
             if a == l == r:
                 edit_types.append("C")  # left it correct
                 edits["C"].append((a, l, r))
@@ -47,7 +47,9 @@ def identify_edit_type(ref, asr, llm):
 
 data = []
 for i, (ref, asr, llm) in enumerate(
-    zip(reference_transcriptions, transcriptions, corrected_transcriptions)
+    zip(
+        reference_transcriptions, transcriptions, corrected_transcriptions, strict=False
+    )
 ):
     # if i > 10:
     #     break
