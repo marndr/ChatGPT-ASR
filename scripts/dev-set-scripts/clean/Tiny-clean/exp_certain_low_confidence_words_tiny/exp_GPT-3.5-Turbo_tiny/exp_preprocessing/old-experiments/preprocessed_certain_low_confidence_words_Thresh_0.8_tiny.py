@@ -2,11 +2,10 @@ import argparse
 import json
 import os
 
-from dotenv import load_dotenv
 import openai
-
 from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_word_level
+from dotenv import load_dotenv
 
 load_dotenv()
 Root = os.getenv("ROOT_PATH")
@@ -14,14 +13,20 @@ Root = os.getenv("ROOT_PATH")
 THRESH = 0.8
 
 
-TRANSCRIPTION_FILENAME = os.path.join(Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json") 
-CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(Root,"results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.8_tiny.json")
-    
+TRANSCRIPTION_FILENAME = os.path.join(
+    Root, "data/transcriptions/whisper_tiny_librispeech_dev-clean-full.json"
+)
+CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
+    Root,
+    "results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/preprocessed_corrected_transcription_certain_low_confidence_words_tiny/preprocessed_corrected_transcriptions_Thresh=0.8_tiny.json",
+)
+
+
 def get_messages_exp(asr_transcription):
     messages = [
         {
-            'role': 'system',
-            'content': f"""You are a helpful assistant that corrects ASR errors. \
+            "role": "system",
+            "content": """You are a helpful assistant that corrects ASR errors. \
             You will be presented with an ASR transcription and low confidence words in that transcription. \
             the input will be formatted as json with keys text and low_confidence_words,\
             where the text is the ASR transcription and low_confidence_words contains the list of words with low asr confidence. \
@@ -30,63 +35,81 @@ def get_messages_exp(asr_transcription):
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
-            """
+            """,
         },
         {
-            'role': 'user',
-            'content': '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?", "low_confidence_words":["tuff"]}'
+            "role": "user",
+            "content": '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?", "low_confidence_words":["tuff"]}',
         },
-        {'role': 'assistant', 'content': "why not allow your silver tufts to luxuriate in a natural manner?"},
-        {'role': 'user', 'content': json.dumps(asr_transcription)}
+        {
+            "role": "assistant",
+            "content": "why not allow your silver tufts to luxuriate in a natural manner?",
+        },
+        {"role": "user", "content": json.dumps(asr_transcription)},
     ]
     return messages
 
 
-if __name__ =="__main__":  
-    
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="ChatGPT ASR Correction")
-    parser.add_argument("-d", "--dataset", choices=["librispeech"], \
-            default="librispeech", help="Select the dataset (librispeech)")
-    parser.add_argument("-n", "--num_data" , type = int, default = -1, help = "Select the number of data")
+    parser.add_argument(
+        "-d",
+        "--dataset",
+        choices=["librispeech"],
+        default="librispeech",
+        help="Select the dataset (librispeech)",
+    )
+    parser.add_argument(
+        "-n", "--num_data", type=int, default=-1, help="Select the number of data"
+    )
     args = parser.parse_args()
 
-    
-    # Load API key 
+    # Load API key
     load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")  
-    #openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")  
-    
+    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")
+    # openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")
+
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
         output_file = CORRECTED_TRANSCRIPTION_FILENAME
-        with open(transcription_file, "r") as f:
-            json_obj=f.read()
-            data=json.loads(json_obj)
-            
+        with open(transcription_file) as f:
+            json_obj = f.read()
+            data = json.loads(json_obj)
+
         if args.num_data > 0:
-            data = data[:args.num_data]
+            data = data[: args.num_data]
 
         data1 = []
-        for i,d in enumerate(data):
-            asr_transcription = confidence_score_word_level(d["asr_transcription"], confidence = True) 
+        for i, d in enumerate(data):
+            asr_transcription = confidence_score_word_level(
+                d["asr_transcription"], confidence=True
+            )
 
-            low_confidence_words = [word["text"] for word in asr_transcription["words"] 
-                                    if word["confidence"] <= THRESH]
+            low_confidence_words = [
+                word["text"]
+                for word in asr_transcription["words"]
+                if word["confidence"] <= THRESH
+            ]
             if len(low_confidence_words) > 0:
-                                       
-            	asr_transcription = {"text": asr_transcription["text"], "low_confidence_words": low_confidence_words}
-    
-            	reference_transcription= d["reference_transcription"]
+                asr_transcription = {
+                    "text": asr_transcription["text"],
+                    "low_confidence_words": low_confidence_words,
+                }
 
-            	# data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
-            	data1.append({"asr_transcription": asr_transcription, "reference_transcription": reference_transcription})
-   
+                reference_transcription = d["reference_transcription"]
 
-    l= multithread_parallelization(data1, get_messages_fn=get_messages_exp,model = "gpt-3.5-turbo-1106")
- 
+                # data[i] = {"asr_transcription": asr_transcription, "reference_transcription": reference_transcription}
+                data1.append(
+                    {
+                        "asr_transcription": asr_transcription,
+                        "reference_transcription": reference_transcription,
+                    }
+                )
+
+    l = multithread_parallelization(
+        data1, get_messages_fn=get_messages_exp, model="gpt-3.5-turbo-1106"
+    )
+
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
-        
-        
-        

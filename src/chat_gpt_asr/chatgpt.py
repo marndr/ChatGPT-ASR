@@ -1,14 +1,10 @@
-import openai
-from tqdm import tqdm
-import os
-import sys
-import argparse
-from chat_gpt_asr.utils import read_dummy_transcriptions, confidence_score_sentence_level
-from dotenv import load_dotenv
-import json
-import time
 import concurrent.futures
+import sys
+import time
 import traceback
+
+import openai
+
 
 def print_error(error_code):
     exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -21,6 +17,7 @@ def print_error(error_code):
     if error_code <= 4:
         traceback.print_tb(exc_traceback)
 
+
 def get_chatgpt_response(d, get_messages_fn, model):
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
@@ -30,16 +27,13 @@ def get_chatgpt_response(d, get_messages_fn, model):
     while retries > 0:
         try:
             response = openai.ChatCompletion.create(
-                model=model,
-                messages=messages,
-                temperature=0,
-                request_timeout=60
+                model=model, messages=messages, temperature=0, request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message["content"]
             return {
                 "asr_transcription": asr_transcription,
                 "reference_transcription": reference_transcription,
-                "corrected_asr_transcription": corrected_asr_transcription
+                "corrected_asr_transcription": corrected_asr_transcription,
             }
 
         except openai.error.Timeout:  # Timeout, retry after a delay
@@ -52,7 +46,7 @@ def get_chatgpt_response(d, get_messages_fn, model):
             retries -= 1
             time.sleep(60)
 
-        except Exception as e:
+        except Exception:
             print_error(4)
             retries -= 1
             time.sleep(10)
@@ -61,24 +55,30 @@ def get_chatgpt_response(d, get_messages_fn, model):
     return {
         "asr_transcription": asr_transcription,
         "reference_transcription": reference_transcription,
-        "corrected_asr_transcription": None
+        "corrected_asr_transcription": None,
     }
 
-def multithread_parallelization(data, get_messages_fn, model="gpt-3.5-turbo", num_workers=8):
-    l = []
+
+def multithread_parallelization(
+    data, get_messages_fn, model="gpt-3.5-turbo", num_workers=8
+):
+    outputs = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
-        futures = {executor.submit(get_chatgpt_response, item, get_messages_fn, model): item for item in data}
+        futures = {
+            executor.submit(get_chatgpt_response, item, get_messages_fn, model): item
+            for item in data
+        }
         for future in concurrent.futures.as_completed(futures):
             item = futures[future]
             try:
                 d = future.result()
-                l.append(d)
+                outputs.append(d)
             except Exception as exc:
                 print_error(4)
-                print(f'{item} generated an exception: {exc}')
-    return l
+                print(f"{item} generated an exception: {exc}")
+    return outputs
+
 
 # Example usage:
 # result = multithread_parallelization(data, get_messages_fn)
 # print(result)
-

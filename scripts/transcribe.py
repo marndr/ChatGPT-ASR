@@ -4,11 +4,10 @@ import argparse
 import json
 import os
 
-from dotenv import load_dotenv
-from tqdm import tqdm
-
 from chat_gpt_asr.transcribe_whisper import Transcriber
 from chat_gpt_asr.utils import read_librispeech_transcriptions
+from dotenv import load_dotenv
+from tqdm import tqdm
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="whisper model")
