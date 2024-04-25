@@ -36,3 +36,37 @@ save the output in `data/transcriptions/`:
 ```bash
 python scripts/transcribe.py
 ```
+
+## Development
+
+Install the dev requirements.
+
+```bash
+pip install -r requirements.dev.txt
+```
+
+The code is formatted and linted with [ruff](https://docs.astral.sh/ruff/). It runs
+automatically in [pre-commit hooks](.pre-commit-config.yaml) by the CI, but you
+can also install them for local use:
+
+```bash
+pre-commit install
+```
+
+The following then automatically formats your code and tells you whether any further
+changes are required to pass the lint checks:
+
+```bash
+pre-commit run --all-files
+```
+
+Documentation of all lint rules included with ruff:
+https://docs.astral.sh/ruff/rules Specific rules can be ignored with a `noqa`
+comment:
+
+```python
+path = "chat-gpt-asr/results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json"  # noqa: E501
+```
+
+Also see the the `pyproject.toml` file on how to turn on/off rules in general or
+for specific folders.
