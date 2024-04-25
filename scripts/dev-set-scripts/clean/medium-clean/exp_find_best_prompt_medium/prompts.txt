@@ -5,5 +5,3 @@ prompt_1:"""You are a helpful assistant that corrects ASR errors. \
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription."""
-            
-
