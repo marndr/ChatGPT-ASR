@@ -24,7 +24,7 @@ def wrapper(remove_punct=True, return_texts=False, return_pos=False):
         for text in texts:
             if remove_punct:
                 # remove punctuation
-                text = re.sub("[\s]+", " ", text).strip().lower()
+                text = re.sub(r"[\s]+", " ", text).strip().lower()
                 tokens.append(
                     [token.text for token in nlp(text) if token.pos_ != "PUNCT"]
                 )
@@ -37,15 +37,15 @@ def wrapper(remove_punct=True, return_texts=False, return_pos=False):
                         for token in nlp(text)
                     ]
                 )
-                text = re.sub("[\s]+", " ", text).strip().lower()
+                text = re.sub(r"[\s]+", " ", text).strip().lower()
                 # text = RemovePunctuation()(text.lower().strip())
                 texts_new.append(text)
             else:
-                text = re.sub("[\s]+", " ", text).strip().lower()
+                text = re.sub(r"[\s]+", " ", text).strip().lower()
                 tokens.append([token.text for token in nlp(text)])
                 poses.append([token.pos_ for token in nlp(text)])
                 text = "".join([token.text_with_ws for token in nlp(text)])
-                text = re.sub("[\s]+", " ", text).strip().lower()
+                text = re.sub(r"[\s]+", " ", text).strip().lower()
                 texts_new.append(text)
 
         if not return_texts and not return_pos:

@@ -10,6 +10,7 @@ lint.select = [
     "F",
     "I",
     "UP",
+    "W",
 ]
 
 [tool.ruff.lint.per-file-ignores]
