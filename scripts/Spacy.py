@@ -48,7 +48,7 @@ def wrapper(remove_punct=True, return_texts=False, return_pos=False):
                 text = re.sub("[\s]+", " ", text).strip().lower()
                 texts_new.append(text)
 
-        if (return_texts == False) and (return_pos == False):
+        if not return_texts and not return_pos:
             return tokens
 
         out = [tokens, None, None]
@@ -255,14 +255,14 @@ if __name__ == "__main__":
     reference_transcriptions = [d["reference_transcription"] for d in data]
     corrected_transcriptions = [d["corrected_asr_transcription"] for d in data]
 
-    assert (
-        all([type(r) == str for r in transcriptions]) == True
+    assert all(
+        [isinstance(r, str) for r in transcriptions]
     ), "transcriptions should be a list of str!"
-    assert (
-        all([type(r) == str for r in reference_transcriptions]) == True
+    assert all(
+        [isinstance(r, str) for r in reference_transcriptions]
     ), "transcriptions should be a list of str!"
-    assert (
-        all([type(r) == str for r in corrected_transcriptions]) == True
+    assert all(
+        [isinstance(r, str) for r in corrected_transcriptions]
     ), "transcriptions should be a list of str!"
 
     # __main__

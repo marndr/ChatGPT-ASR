@@ -4,18 +4,21 @@ import os
 
 import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
-from chat_gpt_asr.utils import confidence_score_sentence_level
+from chat_gpt_asr.utils import (
+    confidence_score_sentence_level,
+    read_dummy_transcriptions,
+)
 from dotenv import load_dotenv
 
 load_dotenv()
-Root = os.getenv("ROOT_PATH")
+ROOT = os.getenv("ROOT_PATH")
 
 
 TRANSCRIPTION_FILENAME = os.path.join(
-    Root, "data/transcriptions/whisper_tiny_librispeech_dev-other-full.json"
+    ROOT, "data/transcriptions/whisper_tiny_librispeech_dev-other-full.json"
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
-    Root,
+    ROOT,
     "results/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json",
 )
 
@@ -98,7 +101,7 @@ if __name__ == "__main__":
     elif args.dataset == "dummy":
         data = read_dummy_transcriptions()
         output_file = os.path.join(
-            root,
+            ROOT,
             "results/experiment_without_confidence/dummy_corrected_transcriptions.json",
         )
 

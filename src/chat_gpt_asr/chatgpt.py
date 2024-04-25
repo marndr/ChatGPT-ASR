@@ -62,7 +62,7 @@ def get_chatgpt_response(d, get_messages_fn, model):
 def multithread_parallelization(
     data, get_messages_fn, model="gpt-3.5-turbo", num_workers=8
 ):
-    l = []
+    outputs = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = {
             executor.submit(get_chatgpt_response, item, get_messages_fn, model): item
@@ -72,11 +72,11 @@ def multithread_parallelization(
             item = futures[future]
             try:
                 d = future.result()
-                l.append(d)
+                outputs.append(d)
             except Exception as exc:
                 print_error(4)
                 print(f"{item} generated an exception: {exc}")
-    return l
+    return outputs
 
 
 # Example usage:

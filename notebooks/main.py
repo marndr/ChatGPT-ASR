@@ -1,10 +1,10 @@
 import json
 
 import pandas as pd
-from chat_gpt_asr.alignment import *
+from chat_gpt_asr.alignment import align3
 from jiwer import RemovePunctuation
 
-path = "/home/mnaderi/Documents/thesis/chat-gpt-asr/results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json"
+path = "/home/mnaderi/Documents/thesis/chat-gpt-asr/results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json"  # noqa: E501
 
 with open(path) as f:
     data = json.load(f)
@@ -27,7 +27,7 @@ def identify_edit_type(ref, asr, llm):
     edits = {"A": [], "B": [], "C": [], "D": []}
     rr, aa, ll = align3(ref, asr, llm)
     if len(rr) == len(aa) == len(ll):
-        for r, a, l in zip(rr, aa, ll):
+        for r, a, l in zip(rr, aa, ll):  # noqa: E741
             if a == l == r:
                 edit_types.append("C")  # left it correct
                 edits["C"].append((a, l, r))
@@ -61,7 +61,9 @@ for i, (ref, asr, llm) in enumerate(
     # df_edit_types = pd.DataFrame(word_counts.items(), columns=['Type', 'Count'])
 
     # Display the DataFrame
-    # print("asr: {} len:{} \nllm: {} len: {} \nref: {} len: {}".format(asr, len(asr), llm, len(llm), ref, len(ref)))
+    # print(f"asr: {asr} len:{len(asr)}")
+    # print(f"llm: {llm} len: {len(llm)}")
+    # print(f"ref: {ref} len: {len(ref)}")
     # print('edits: ', edits)
     # print(i, df_edit_types , "\n")
 

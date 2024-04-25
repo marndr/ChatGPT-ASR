@@ -11,3 +11,10 @@ lint.select = [
     "I",
     "UP",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = [
+    "E501",  # line too long
+    "E741",  # ambiguous variable name
+    "E722",  # bare except
+]

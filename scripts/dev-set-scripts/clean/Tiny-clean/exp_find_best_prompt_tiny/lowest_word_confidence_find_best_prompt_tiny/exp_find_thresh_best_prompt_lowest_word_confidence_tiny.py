@@ -58,10 +58,7 @@ def evaluate_with_thresh(items, thresh):
         else:
             hyp_l.append(asr_transcription)
 
-    wer = wer(ref_l, hyp_l) * 100
-    cer = cer(ref_l, hyp_l) * 100
-
-    return wer, cer
+    return wer(ref_l, hyp_l) * 100, cer(ref_l, hyp_l) * 100
 
 
 thresholds = [

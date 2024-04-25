@@ -57,7 +57,7 @@ def read_librispeech_transcriptions(root_folder="."):
     data = {}
 
     # Regular expression to match audio filenames
-    audio_file_pattern = re.compile(r"(\d+-\d+-\d+)\.flac")
+    # audio_file_pattern = re.compile(r"(\d+-\d+-\d+)\.flac")
     audio_file_pattern_no_ending = re.compile(r"(\d+-\d+-\d+)")
 
     for root, dirs, files in os.walk(root_folder):
@@ -92,8 +92,8 @@ def read_librispeech_transcriptions(root_folder="."):
 
 
 def remove_punctuations(s):
-    l = list(filter(None, re.split(r'[ ",.!?]+', s)))
-    return " ".join(l)
+    ls = list(filter(None, re.split(r'[ ",.!?]+', s)))
+    return " ".join(ls)
 
 
 def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
@@ -113,10 +113,10 @@ def confidence_score_sentence_level(trans, confidence=True):
     d = {}
     d["text"] = trans["text"]
     if confidence:
-        l = []
-        for i, seg in enumerate(trans["segments"]):
-            l.append(seg["confidence"])
-        confidence_score = sum(l) / len(l)
+        ls = []
+        for seg in trans["segments"]:
+            ls.append(seg["confidence"])
+        confidence_score = sum(ls) / len(ls)
         d["confidence_score"] = confidence_score
     return d
 
@@ -158,12 +158,12 @@ def confidence_score_word_level(trans, confidence=True):
     d = {}
     d["text"] = trans["text"]
     words = []
-    for i, seg in enumerate(trans["segments"]):
+    for seg in trans["segments"]:
         words.extend(seg["words"])
 
-    l = []
+    ls = []
     for word in words:
-        l.append({"text": word["text"], "confidence": word["confidence"]})
+        ls.append({"text": word["text"], "confidence": word["confidence"]})
 
-    d["words"] = l
+    d["words"] = ls
     return d
