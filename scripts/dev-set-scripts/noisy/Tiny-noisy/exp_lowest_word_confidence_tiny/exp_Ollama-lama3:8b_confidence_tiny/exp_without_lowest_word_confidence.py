@@ -69,11 +69,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # Load API key
-    load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY_Idiap")
-    # openai.api_key = os.getenv("OPENAI_API_KEY_MARYAM")
-
     if args.dataset == "librispeech":
         transcription_file = TRANSCRIPTION_FILENAME
         output_file = CORRECTED_TRANSCRIPTION_FILENAME

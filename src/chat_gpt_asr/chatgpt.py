@@ -1,10 +1,12 @@
 import concurrent.futures
+import os
 import sys
 import time
 import traceback
 
 import openai
 from openai import OpenAI
+from dotenv import load_dotenv
 
 
 def print_error(error_code):
@@ -68,7 +70,10 @@ def multithread_parallelization(
     outputs = []
 
     if api == "openai":
-        client = OpenAI()
+
+        # Load API key
+        load_dotenv()
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY_Idiap"))
     else:
         client = OpenAI(
             base_url="http://localhost:11434/v1",
