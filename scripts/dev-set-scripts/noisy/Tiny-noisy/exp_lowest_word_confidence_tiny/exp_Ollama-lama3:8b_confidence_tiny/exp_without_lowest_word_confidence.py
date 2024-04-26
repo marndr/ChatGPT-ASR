@@ -97,7 +97,11 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp, api="ollama", model="llama3:8b"
+        data,
+        get_messages_fn=get_messages_exp,
+        api="ollama",
+        model="llama3:8b",
+        num_workers=1,
     )
 
     with open(output_file, "w") as f:
