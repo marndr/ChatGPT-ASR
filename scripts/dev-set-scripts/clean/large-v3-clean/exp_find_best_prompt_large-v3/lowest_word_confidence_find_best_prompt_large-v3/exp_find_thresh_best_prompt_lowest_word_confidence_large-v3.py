@@ -10,22 +10,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_3.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/results_thresh_lowest_word_confidence_prompt_1_large-v3.md",
+    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/results_thresh_lowest_word_confidence_prompt_3_large-v3.md",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_prompt_1_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_prompt_3_large-v3.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_prompt_1_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_thresh_best_prompt_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_prompt_3_large-v3.png",
 )
 
 with open(l) as f:
