@@ -16,7 +16,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_2.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_3.json",
 )
 
 
@@ -29,7 +29,6 @@ def get_messages_exp1(asr_transcription):
             Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
-            If you encounter grammatical errors, do not correct them.\
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.

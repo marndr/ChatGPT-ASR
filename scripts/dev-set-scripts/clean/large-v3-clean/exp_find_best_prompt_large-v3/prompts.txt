@@ -22,7 +22,10 @@ prompt_3:"""You are a helpful assistant that corrects ASR errors. \
             Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
-            Do not change the language, british or american \
+            If unsure about a correction, provide the most natural-sounding alternative that maintains the semantic meaning.\
+            If there are multiple possible corrections, choose the one that best fits the context.\
+            If a correction involves punctuation or minor grammatical adjustments, apply them as necessary to enhance readability and coherence.\
+
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.

@@ -57,12 +57,12 @@ if __name__ == "__main__":
     if args.experiment == "exp_new_prompt_lowest_word_confidence_2_large-v3":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_2.json",
+            "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_3.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/results_overall_lowest_word_confidence_prompt_2_large-v3.md",
+            "results/results-dev-set/results_clean/results_large-v3/results_best_prompt_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_large-v3/results_find_best_prompt_large-v3/results_overall_lowest_word_confidence_prompt_3_large-v3.md",
         )
 
     if args.dataset == "librispeech":
