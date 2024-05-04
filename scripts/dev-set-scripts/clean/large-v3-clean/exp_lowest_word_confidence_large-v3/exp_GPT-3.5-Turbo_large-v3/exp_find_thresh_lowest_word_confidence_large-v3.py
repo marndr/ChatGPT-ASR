@@ -10,22 +10,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/results_thresh_lowest_word_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_large-v3/results_thresh_lowest_word_confidence_large-v3.json",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Wer_vs_lowest_word_confidence_plot_large-v3.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_large-v3/plots_lowest_word_confidence_large-v3/Cer_vs_lowest_word_confidence_plot_large-v3.png",
 )
 
 with open(l) as f:
