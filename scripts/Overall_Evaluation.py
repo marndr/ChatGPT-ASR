@@ -429,12 +429,12 @@ if __name__ == "__main__":
     elif args.experiment == "exp_without_lowest_word_confidence_noisy_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
+            "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/present_confidence_chatgpt/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_tiny/results_overall_lowest_word_confidence_tiny.md",
+            "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/present_confidence_chatgpt/results_without_lowest_word_confidence_tiny/results_overall_lowest_word_confidence_tiny.md",
         )
 
     elif args.experiment == "exp_without_lowest_word_confidence_GPT-4_noisy_tiny":

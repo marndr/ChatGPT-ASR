@@ -19,6 +19,9 @@ def print_error(error_code):
 
 
 def get_chatgpt_response(d, get_messages_fn, model):
+    transcription_has_confidence = "confidence_score" in d["asr_transcription"]
+    if transcription_has_confidence:
+        cscore = d["asr_transcription"].pop("confidence_score")
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
     messages = get_messages_fn(asr_transcription)
@@ -30,6 +33,8 @@ def get_chatgpt_response(d, get_messages_fn, model):
                 model=model, messages=messages, temperature=0, request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message["content"]
+            if transcription_has_confidence:
+                asr_transcription["confidence_score"] = cscore
             return {
                 "asr_transcription": asr_transcription,
                 "reference_transcription": reference_transcription,
@@ -52,6 +57,8 @@ def get_chatgpt_response(d, get_messages_fn, model):
             time.sleep(10)
 
     # If all retries fail, return None for this item
+    if transcription_has_confidence:
+        asr_transcription["confidence_score"] = cscore
     return {
         "asr_transcription": asr_transcription,
         "reference_transcription": reference_transcription,
