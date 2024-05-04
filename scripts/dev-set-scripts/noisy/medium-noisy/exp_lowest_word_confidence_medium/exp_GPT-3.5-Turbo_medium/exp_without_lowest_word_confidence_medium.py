@@ -16,7 +16,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-dev-set/results_noisy/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium_11.json",
+    "results/results-dev-set/results_noisy/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium.json",
 )
 
 
@@ -97,7 +97,7 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-0125"
+        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-1106"
     )
 
     with open(output_file, "w") as f:
