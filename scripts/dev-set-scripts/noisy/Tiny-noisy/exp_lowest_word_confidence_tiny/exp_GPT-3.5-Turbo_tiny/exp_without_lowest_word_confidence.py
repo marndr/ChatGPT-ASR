@@ -103,3 +103,4 @@ if __name__ == "__main__":
     with open(output_file, "w") as f:
         json_str = json.dumps(l, indent=2)
         f.write(json_str)
+print(asr_transcription)

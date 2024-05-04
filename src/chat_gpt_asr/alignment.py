@@ -15,9 +15,17 @@ def _cer(ref: str, hyp: str) -> float:
     return jiwer.cer(ref, hyp)
 
 
-def align3(a: str, b: str, c: str) -> tuple[list[str], list[str], list[str]]:
+def align3(
+    a: str, b: str, c: str, tokenizer_fn=None
+) -> tuple[list[str], list[str], list[str]]:
     """Align three word sequences using DTW based on character edit distance."""
-    a, b, c = a.split(), b.split(), c.split()
+    if tokenizer_fn is None:
+        a, b, c = a.split(), b.split(), c.split()
+    else:
+        a = tokenizer_fn(a)
+        b = tokenizer_fn(b)
+        c = tokenizer_fn(c)
+
     m = np.zeros((len(a) + 1, len(b) + 1, len(c) + 1))  # DTW matrix
     bp = np.zeros((len(a) + 1, len(b) + 1, len(c) + 1)).tolist()  # Back pointers
     bp[0][0][0] = (0, 0, 0)
