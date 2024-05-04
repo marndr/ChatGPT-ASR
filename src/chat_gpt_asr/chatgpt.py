@@ -1,9 +1,11 @@
 import concurrent.futures
+import os
 import sys
 import time
 import traceback
 
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
 
 
 def print_error(error_code):
@@ -18,7 +20,7 @@ def print_error(error_code):
         traceback.print_tb(exc_traceback)
 
 
-def get_chatgpt_response(d, get_messages_fn, model):
+def get_chatgpt_response(client, d, get_messages_fn, model):
     transcription_has_confidence = "confidence_score" in d["asr_transcription"]
     if transcription_has_confidence:
         cscore = d["asr_transcription"].pop("confidence_score")
@@ -29,10 +31,12 @@ def get_chatgpt_response(d, get_messages_fn, model):
     retries = 3  # Limiting retries to avoid infinite loops
     while retries > 0:
         try:
-            response = openai.ChatCompletion.create(
-                model=model, messages=messages, temperature=0, request_timeout=60
+            response = client.chat.completions.create(
+                model=model,
+                messages=messages,
+                temperature=0,  # request_timeout=60
             )
-            corrected_asr_transcription = response.choices[0].message["content"]
+            corrected_asr_transcription = response.choices[0].message.content
             if transcription_has_confidence:
                 asr_transcription["confidence_score"] = cscore
             return {
@@ -41,15 +45,15 @@ def get_chatgpt_response(d, get_messages_fn, model):
                 "corrected_asr_transcription": corrected_asr_transcription,
             }
 
-        except openai.error.Timeout:  # Timeout, retry after a delay
-            print_error(1)
-            retries -= 1
-            time.sleep(10)  # Wait for a short period before retrying
+        # except openai.error.Timeout:  # Timeout, retry after a delay
+        # print_error(1)
+        # retries -= 1
+        # time.sleep(10)  # Wait for a short period before retrying
 
-        except openai.error.RateLimitError:  # Quota exceeded, retry after a delay
-            print_error(1)
-            retries -= 1
-            time.sleep(60)
+        # except openai.error.RateLimitError:  # Quota exceeded, retry after a delay
+        # print_error(1)
+        # retries -= 1
+        # time.sleep(60)
 
         except Exception:
             print_error(4)
@@ -67,12 +71,25 @@ def get_chatgpt_response(d, get_messages_fn, model):
 
 
 def multithread_parallelization(
-    data, get_messages_fn, model="gpt-3.5-turbo", num_workers=8
+    data, get_messages_fn, api="openai", model="gpt-3.5-turbo", num_workers=8
 ):
     outputs = []
+
+    if api == "openai":
+        # Load API key
+        load_dotenv()
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY_Idiap"))
+    else:
+        client = OpenAI(
+            base_url="http://localhost:11434/v1",
+            api_key="NOT-USED",
+        )
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = {
-            executor.submit(get_chatgpt_response, item, get_messages_fn, model): item
+            executor.submit(
+                get_chatgpt_response, client, item, get_messages_fn, model
+            ): item
             for item in data
         }
         for future in concurrent.futures.as_completed(futures):
