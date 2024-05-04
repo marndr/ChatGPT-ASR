@@ -4,9 +4,8 @@ import sys
 import time
 import traceback
 
-import openai
-from openai import OpenAI
 from dotenv import load_dotenv
+from openai import OpenAI
 
 
 def print_error(error_code):
@@ -22,6 +21,9 @@ def print_error(error_code):
 
 
 def get_chatgpt_response(client, d, get_messages_fn, model):
+    transcription_has_confidence = "confidence_score" in d["asr_transcription"]
+    if transcription_has_confidence:
+        cscore = d["asr_transcription"].pop("confidence_score")
     asr_transcription = d["asr_transcription"]
     reference_transcription = d["reference_transcription"]
     messages = get_messages_fn(asr_transcription)
@@ -35,21 +37,23 @@ def get_chatgpt_response(client, d, get_messages_fn, model):
                 temperature=0,  # request_timeout=60
             )
             corrected_asr_transcription = response.choices[0].message.content
+            if transcription_has_confidence:
+                asr_transcription["confidence_score"] = cscore
             return {
                 "asr_transcription": asr_transcription,
                 "reference_transcription": reference_transcription,
                 "corrected_asr_transcription": corrected_asr_transcription,
             }
-        # TODO: see how the new API handle errors
-        # except openai.APITimeoutError:  # Timeout, retry after a delay
-        #     print_error(1)
-        #     retries -= 1
-        #     time.sleep(10)  # Wait for a short period before retrying
 
-        # except openai.RateLimitError:  # Quota exceeded, retry after a delay
-        #     print_error(1)
-        #     retries -= 1
-        #     time.sleep(60)
+        # except openai.error.Timeout:  # Timeout, retry after a delay
+        # print_error(1)
+        # retries -= 1
+        # time.sleep(10)  # Wait for a short period before retrying
+
+        # except openai.error.RateLimitError:  # Quota exceeded, retry after a delay
+        # print_error(1)
+        # retries -= 1
+        # time.sleep(60)
 
         except Exception:
             print_error(4)
@@ -57,6 +61,8 @@ def get_chatgpt_response(client, d, get_messages_fn, model):
             time.sleep(10)
 
     # If all retries fail, return None for this item
+    if transcription_has_confidence:
+        asr_transcription["confidence_score"] = cscore
     return {
         "asr_transcription": asr_transcription,
         "reference_transcription": reference_transcription,
@@ -70,7 +76,6 @@ def multithread_parallelization(
     outputs = []
 
     if api == "openai":
-
         # Load API key
         load_dotenv()
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY_Idiap"))

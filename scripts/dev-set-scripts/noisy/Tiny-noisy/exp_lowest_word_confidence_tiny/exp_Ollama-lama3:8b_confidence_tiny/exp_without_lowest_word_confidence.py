@@ -2,7 +2,6 @@ import argparse
 import json
 import os
 
-import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import confidence_score_lowest_word_level
 from dotenv import load_dotenv
