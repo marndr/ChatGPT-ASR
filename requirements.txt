@@ -1,7 +1,7 @@
 jiwer==3.0.3
 jupyter==1.0.0
 numpy==1.25.2
-openai==0.28.0
+openai==1.23.6
 pandas==2.2.1
 python-dotenv==1.0.0
 spacy==3.7.2
