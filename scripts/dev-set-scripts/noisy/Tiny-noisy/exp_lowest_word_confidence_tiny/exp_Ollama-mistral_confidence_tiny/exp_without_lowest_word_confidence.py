@@ -15,7 +15,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
+    "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_Ollama-mistral_tiny/ollama-mistral/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
 )
 
 
@@ -91,7 +91,11 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp, model="gpt-3.5-turbo-0125"
+        data,
+        get_messages_fn=get_messages_exp,
+        api="ollama",
+        model="mistral",
+        num_workers=1,
     )
 
     with open(output_file, "w") as f:
