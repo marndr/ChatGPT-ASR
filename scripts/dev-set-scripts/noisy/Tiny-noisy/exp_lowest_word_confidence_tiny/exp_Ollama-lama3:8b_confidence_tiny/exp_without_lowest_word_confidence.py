@@ -15,7 +15,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_Ollama-llama3:8b_tiny/ollama-llama3:8b/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
+    "results/results-dev-set/results_noisy/results_tiny/results_lowest_word_confidence_tiny/results_Ollama-llama3:8b_tiny/without_present_confidence_ollama/ollama-llama3:8b/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
 )
 
 
