@@ -16,7 +16,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
 )
 
 
@@ -25,7 +25,7 @@ def get_messages_exp1(asr_transcription):
         {
             "role": "system",
             "content": """You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model in json format with key: text. \
             Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
@@ -42,6 +42,14 @@ def get_messages_exp1(asr_transcription):
             "role": "assistant",
             "content": "why not allow your silver tufts to luxuriate in a natural manner?",
         },
+        {
+            "role": "user",
+            "content": '{"text": "Meanwhile, how fair did it with the flowers?"}',
+        },
+        {
+            "role": "assistant",
+            "content": "Meanwhile, how fared did it with the flowers?",
+        },
         {"role": "user", "content": json.dumps(asr_transcription)},
     ]
     return messages
@@ -54,7 +62,7 @@ if __name__ == "__main__":
         "--dataset",
         choices=["librispeech"],
         default="librispeech",
-        help="Select the dataset (librispeech or dummy)",
+        help="Select the dataset (librispeech)",
     )
     parser.add_argument(
         "-n", "--num_data", type=int, default=-1, help="Select the number of data"
@@ -88,7 +96,7 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp1, model="gpt-4-0125-preview"
+        data, get_messages_fn=get_messages_exp1, model="gpt-4o"
     )
 
     with open(output_file, "w") as f:

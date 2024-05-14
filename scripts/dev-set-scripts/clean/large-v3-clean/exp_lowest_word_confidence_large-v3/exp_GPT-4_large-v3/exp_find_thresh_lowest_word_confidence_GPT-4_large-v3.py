@@ -10,21 +10,21 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/results_thresh_lowest_word_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_GPT-4o_large-v3/results_thresh_lowest_word_confidence_large-v3.json",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/plots_lowest_word_confidence_GPT-4-Turbo_large-v3/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_GPT-4o_large-v3/plots_lowest_word_confidence_GPT-4o_large-v3/Wer_vs_lowest_word_confidence_GPT-4o_plot_large-v3.png",
 )
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_large-v3/plots_lowest_word_confidence_GPT-4-Turbo_large-v3/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_find_thresh_lowest_word_confidence_GPT-4o_large-v3/plots_lowest_word_confidence_GPT-4o_large-v3/Cer_vs_lowest_word_confidence_GPT-4o_plot_large-v3.png",
 )
 
 with open(l) as f:
@@ -102,7 +102,7 @@ def plot(l):
     plt.plot(x, y_wer, "-ob", label="Wer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Wer")
-    plt.title("Wer vs lowest word confidence for GPT-4-Turbo (clean, large-v3)")
+    plt.title("Wer vs lowest word confidence for GPT-4o (clean, large-v3)")
     # plt.yticks([6,6.5,7,7.5,8,8.5,9])
     # plt.show()
     plt.savefig(output_file_wer)
@@ -112,7 +112,7 @@ def plot(l):
     plt.plot(x, y_cer, "-or", label="Cer")
     plt.xlabel("lowest word confidence")
     plt.ylabel("Cer")
-    plt.title("Cer vs lowest word confidence for GPT-4-Turbo (clean, large-v3)")
+    plt.title("Cer vs lowest word confidence for GPT-4o (clean, large-v3)")
     # plt.yticks([2.5,3,3.5,4,4.5,5])
     # plt.show()
     plt.savefig(output_file_cer)

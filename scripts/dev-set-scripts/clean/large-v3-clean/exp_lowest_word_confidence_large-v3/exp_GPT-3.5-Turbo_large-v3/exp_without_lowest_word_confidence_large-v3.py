@@ -16,7 +16,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-0125/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
 )
 
 
@@ -25,7 +25,7 @@ def get_messages_exp1(asr_transcription):
         {
             "role": "system",
             "content": """You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model in json format with key: text. \
             Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
@@ -96,7 +96,7 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-0125"
+        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-Turbo-0125"
     )
 
     with open(output_file, "w") as f:

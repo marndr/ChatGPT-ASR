@@ -352,12 +352,12 @@ if __name__ == "__main__":
     elif args.experiment == "exp_lowest_word_confidence_GPT-4_large-v3":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_large-v3.json",
+            "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/corrected_transcriptions_lowest_word_confidence_large-v3.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4-Turbo_large-v3/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_large-v3/results_overall_lowest_word_confidence_GPT-4-Turbo_large-v3.md",
+            "results/results-dev-set/results_clean/results_large-v3/results_lowest_word_confidence_large-v3/results_GPT-4o_large-v3/without_present_confidence_chatgpt/results_without_lowest_word_confidence_large-v3/results_overall_lowest_word_confidence_GPT-4o-Turbo_large-v3.md",
         )
 
     elif args.experiment == "exp_sentence_confidence_GPT-3.5_noisy_large-v3":
