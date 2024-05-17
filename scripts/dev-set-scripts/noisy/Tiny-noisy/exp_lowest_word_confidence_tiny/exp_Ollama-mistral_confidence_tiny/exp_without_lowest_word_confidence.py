@@ -19,6 +19,43 @@ CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
 )
 
 
+def get_messages_exp_new(asr_transcription):
+    asr_transcription_str = asr_transcription["text"]
+    messages = [
+        {
+            "role": "system",
+            "content": """You are a helpful assistant that corrects ASR errors. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model in string format \
+            Your task is to correct any errors in the transcription.\
+            Provide the most probable corrected transcription in string format. \
+            If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
+            Do not change the case, for example, lower case or upper case, in the transcription. \
+            Do not output any additional text that is not the corrected transcription. \
+            Do not write any explanatory text that is not the corrected transcription.
+            """,
+        },
+        {
+            "role": "user",
+            "content": "Why not allow your silver tuff to luxuriate in a natural manner?",
+        },
+        {
+            "role": "assistant",
+            "content": "why not allow your silver tufts to luxuriate in a natural manner?",
+        },
+        {
+            "role": "user",
+            "content": "Meanwhile, how fair did it with the flowers?",
+        },
+        {
+            "role": "assistant",
+            "content": "Meanwhile, how fared did it with the flowers?",
+        },
+        {"role": "user", "content": asr_transcription_str},
+    ]
+
+    return messages
+
+
 def get_messages_exp(asr_transcription):
     messages = [
         {
@@ -30,7 +67,8 @@ def get_messages_exp(asr_transcription):
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
-            Do not write any explanatory text that is not the corrected transcription.
+            Do not write any explanatory text that is not the corrected transcription. \
+            Make sure that your response is in string format.
             """,
         },
         {
@@ -51,6 +89,7 @@ def get_messages_exp(asr_transcription):
         },
         {"role": "user", "content": json.dumps(asr_transcription)},
     ]
+
     return messages
 
 
