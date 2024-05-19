@@ -809,12 +809,12 @@ if __name__ == "__main__":
     ser_original /= count
 
     print(f"Number of audio files:  {count:}\n")
-    print(f"WER_original is:                {wer_original:.04f}\n")
-    print(f"WER_corrected_chatgpt is:       {wer_corrected_chatgpt:.04f}\n")
-    print(f"CER_original is:                {cer_original:.04f}\n")
-    print(f"CER_corrected_chatgpt is:       {cer_corrected_chatgpt:.04f}\n")
-    print(f"SER_original is:                {ser_original:.04f}\n")
-    print(f"SER_corrected_chatgpt is:       {ser_corrected_chatgpt:.04f}\n")
+    print(f"WER_original is:        {wer_original:.04f}\n")
+    print(f"WER_corrected is:       {wer_corrected_chatgpt:.04f}\n")
+    print(f"CER_original is:        {cer_original:.04f}\n")
+    print(f"CER_corrected is:       {cer_corrected_chatgpt:.04f}\n")
+    print(f"SER_original is:        {ser_original:.04f}\n")
+    print(f"SER_corrected is:       {ser_corrected_chatgpt:.04f}\n")
     print(
         f"measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}, wer: {measures['wer']}"
     )
@@ -825,12 +825,12 @@ if __name__ == "__main__":
     with open(output_filename, "w") as f:
         f.write(f"""
         Number of evaluated audio files:  {count:}
-        WER_original:                   {wer_original:.04f}%
-        WER_corrected_chatgpt:          {wer_corrected_chatgpt:.04f}%
-        CER_original:                   {cer_original:.04f}%
-        CER_corrected_chatgpt:          {cer_corrected_chatgpt:.04f}%
-        SER_original:                   {ser_original:.04f}%
-        SER_corrected_chatgpt:          {ser_corrected_chatgpt:.04f}%
+        WER_original:           {wer_original:.04f}%
+        WER_corrected:          {wer_corrected_chatgpt:.04f}%
+        CER_original:           {cer_original:.04f}%
+        CER_corrected:          {cer_corrected_chatgpt:.04f}%
+        SER_original:           {ser_original:.04f}%
+        SER_corrected:          {ser_corrected_chatgpt:.04f}%
         measures for substitution: {measures['substitutions']}, insertions: {measures['insertions']}, deletions: {measures['deletions']}
         measures_original for substitution: {measures_original['substitutions']}, insertions: {measures_original['insertions']}, deletions: {measures_original['deletions']}
 

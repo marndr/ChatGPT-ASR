@@ -486,20 +486,21 @@ if __name__ == "__main__":
             # ---
             # """
             # )
-            if (wer_corrected_chatgpt < wer_original) and (
-                cer_corrected_chatgpt > cer_original
-            ):
+            # if (wer_corrected_chatgpt < wer_original) and (
+            # cer_corrected_chatgpt > cer_original
+            # ):
+            if wer_corrected_chatgpt > wer_original:
                 f.write(
                     f"""
-                    data with this condition (wer_corrected_chatgpt < wer_original) and (cer_corrected_chatgpt > cer_original)
-                    ASR Transcription:        {hyp_original}
+                    data with this condition (wer_corrected > wer_original)
+                    ASR Transcription:       {hyp_original}
                     Reference Transcription:  {ref}
                     Corrected Transcription:  {hyp}
 
-                    WER_corrected_chatgpt:    {wer_corrected_chatgpt:.04f}%
-                    WER_original:             {wer_original:.04f}%
-                    CER_corrected_chatgpt:    {cer_corrected_chatgpt:.04f}%
-                    CER_original:             {cer_original:.04f}%
+                    WER_corrected:    {wer_corrected_chatgpt:.04f}%
+                    WER_original:     {wer_original:.04f}%
+                    CER_corrected:    {cer_corrected_chatgpt:.04f}%
+                    CER_original:     {cer_original:.04f}%
 
                     ---
                     """
