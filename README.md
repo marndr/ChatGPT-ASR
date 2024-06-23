@@ -92,4 +92,7 @@ cd script
 python Overall_Evaluation.py
 ```
 
-The expected results for WER, CER and SER are saved in `results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md
+The expected results for WER, CER and SER are saved in this path:
+``
+results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md
+```
