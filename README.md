@@ -1,4 +1,7 @@
 # ChatGPT-ASR
+## MASTER AI
+This git is the implementation of the master thesis of Maryam Naderi. The master thesis took place between 2023 and 2024.
+The goal of the master thesis is to study correcting ASR trancriptions using LLMs.
 
 ## Setup
 
@@ -95,4 +98,10 @@ python Overall_Evaluation.py
 The expected results for WER, CER and SER are saved in this path:
 ```
 results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md
+```
+## LICENSE
+```
+SPDX-FileCopyrightText: Copyright © 2024 Idiap Research Institute contact@idiap.ch
+SPDX-FileContributor: Maryam NADERI maryam.naderi@idiap.ch
+SPDX-License-Identifier: LicenseRef-master-thesis
 ```
