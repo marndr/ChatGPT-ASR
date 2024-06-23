@@ -65,8 +65,31 @@ https://docs.astral.sh/ruff/rules Specific rules can be ignored with a `noqa`
 comment:
 
 ```python
-path = "chat-gpt-asr/results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json"  # noqa: E501
+path = "chat-gpt-asr/results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json"  # noqa: E501
 ```
 
 Also see the the `pyproject.toml` file on how to turn on/off rules in general or
 for specific folders.
+
+
+## Running experiments
+
+To run sentence confidence experiment for tiny model, first run:
+```bash
+cd scripts/dev-set-scripts/clean/Tiny-clean/exp_sentence_confidence_tiny/exp_GPT-3.5-Turbo_tiny
+python exp_without_sentence_confidence_tiny.py
+```
+
+Then run:
+```bash
+python exp_find_thresh_sentence_confidence_tiny.py
+```
+## Evaluation
+
+To evaluate the results in overall, run:
+```bash
+cd script
+python Overall_Evaluation.py
+```
+
+The expected results for WER, CER and SER are saved in `results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/results_overall_sentence_confidence_tiny.md
