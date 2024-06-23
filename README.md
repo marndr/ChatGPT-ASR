@@ -74,10 +74,22 @@ path = "chat-gpt-asr/results/results-dev-set/results_clean/results_tiny/results_
 Also see the the `pyproject.toml` file on how to turn on/off rules in general or
 for specific folders.
 
+## Datasets
+
+We have four datasets categorized into two sets:
+
+1. **Development Set (`dev-set`):**
+   - **Clean (`dev-clean`):** Referred to as "clean" in this repository.
+   - **Noisy (`dev-other`):** Referred to as "noisy" in this repository.
+
+2. **Test Set (`test-set`):**
+   - **Clean (`test-clean`):** Referred to as "clean" in this repository.
+   - **Noisy (`test-other`):** Referred to as "noisy" in this repository.
+
 
 ## Running experiments
 
-To run sentence confidence experiment for tiny model, first run:
+To run sentence confidence experiment for tiny model and `dev-clean`, first run:
 ```bash
 cd scripts/dev-set-scripts/clean/Tiny-clean/exp_sentence_confidence_tiny/exp_GPT-3.5-Turbo_tiny
 python exp_without_sentence_confidence_tiny.py

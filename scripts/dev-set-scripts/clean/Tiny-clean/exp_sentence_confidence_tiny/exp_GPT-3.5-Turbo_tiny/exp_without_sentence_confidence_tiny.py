@@ -24,6 +24,9 @@ CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
 
 
 def get_messages_exp1(asr_transcription):
+    """
+    description
+    """
     messages = [
         {
             "role": "system",
