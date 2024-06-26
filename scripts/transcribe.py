@@ -1,4 +1,15 @@
-#!/usr/bin/env python3
+"""
+This script transcribes audio files from the Librispeech dataset using OpenAI's Whisper model.
+The transcriptions and reference texts are saved in a json file.
+
+Usage:
+    python3 transcribe_whisper.py -wm <whisper_model> -s <subset> -d <device>
+
+Arguments:
+    -wm, --whisper_model: Select the Whisper model (choices: "tiny", "base", "small", "medium", "large-v3")
+    -s, --subset: Librispeech subset to transcribe (choices: "dev-clean", "dev-other", "test-clean", "test-other")
+    -d, --device: Device to use for transcription (choices: "cpu", "cuda")
+"""
 
 import argparse
 import json
