@@ -1,8 +1,42 @@
+"""
+This module provides various functions for text processing and ASR evaluation.
+It includes functions for reading dummy transcriptions, reading transcriptions from
+Librispeech dataset,
+removing punctuations from text, computing SER, and calculating confidence scores
+at different levels (sentence-level, lowest word-level, average word-level, and
+word-level).
+
+Functions:
+- read_dummy_transcriptions(): Returns a list of dummy transcriptions for testing
+  purposes.
+- read_librispeech_transcriptions(root_folder="."): Reads audio filenames and their
+  corresponding transcriptions
+  from the Librispeech dataset located in the specified root folder.
+- remove_punctuations(s): Removes punctuations from the input strings.
+- ser(asr_transcription, corrected_asr_transcription, reference_transcription):
+  Computes SER between corrected ASR transcription and reference transcription.
+- confidence_score_sentence_level(trans, confidence=True): Computes confidence
+  score at sentence level.
+- confidence_score_lowest_word_level(trans, confidence=True): Computes confidence
+  score at lowest word level.
+- confidence_score_average_word_level(trans, confidence=True): Computes average
+  confidence score at word level.
+- confidence_score_word_level(trans, confidence=True): Computes confidence score for
+  each word in transcription.
+"""
+
 import os
 import re
 
 
 def read_dummy_transcriptions():
+    """
+    Returns a list of dummy transcriptions for testing purposes.
+
+    Each entry in the list contains:
+    - 'asr_transcription': ASR transcription with errors.
+    - 'reference_transcription': Reference transcription without errors.
+    """
     return [
         {
             "asr_transcription": "I prefer see over coffee.",
@@ -53,6 +87,17 @@ def read_dummy_transcriptions():
 
 # Function to read audio filenames and their corresponding transcriptions
 def read_librispeech_transcriptions(root_folder="."):
+    """
+    Reads audio filenames and their corresponding transcriptions from the Librispeech
+    dataset.
+
+    Args:
+    - root_folder (str): Root folder path where the Librispeech dataset is located.
+
+    Returns:
+    - data (dict): A dictionary where keys are absolute paths to audio files and
+      values are transcriptions.
+    """
     data = {}
 
     # Regular expression to match audio filenames
@@ -91,11 +136,32 @@ def read_librispeech_transcriptions(root_folder="."):
 
 
 def remove_punctuations(s):
+    """
+    Removes punctuations from the input strings.
+
+    Args:
+    - s (str): Input string from which punctuations will be removed.
+
+    Returns:
+    - str: String with punctuations removed.
+    """
     ls = list(filter(None, re.split(r'[ ",.!?]+', s)))
     return " ".join(ls)
 
 
 def ser(asr_transcription, corrected_asr_transcription, reference_transcription):
+    """
+    Computes SER between corrected ASR transcription and reference transcription.
+
+    Args:
+    - asr_transcription (str): Original ASR transcription.
+    - corrected_asr_transcription (str): Corrected ASR transcription.
+    - reference_transcription (str): Reference transcription.
+
+    Returns:
+    - float: SER score between corrected ASR transcription and reference transcription.
+    - float: SER score between original ASR transcription and reference transcription.
+    """
     asr_transcription = remove_punctuations(asr_transcription.lower())
     corrected_asr_transcription = remove_punctuations(
         corrected_asr_transcription.lower()
@@ -109,6 +175,16 @@ def ser(asr_transcription, corrected_asr_transcription, reference_transcription)
 
 
 def confidence_score_sentence_level(trans, confidence=True):
+    """
+    Computes confidence score at sentence level.
+
+    Args:
+    - trans (dict): Dictionary containing ASR transcription text.
+    - confidence (bool): Whether to compute confidence score (default is True).
+
+    Returns:
+    - dict: Dictionary containing text and optionally confidence score.
+    """
     d = {}
     d["text"] = trans["text"]
     if confidence:
@@ -121,6 +197,16 @@ def confidence_score_sentence_level(trans, confidence=True):
 
 
 def confidence_score_lowest_word_level(trans, confidence=True):
+    """
+    Computes confidence score at lowest word level.
+
+    Args:
+    - trans (dict): Dictionary containing ASR transcription text.
+    - confidence (bool): Whether to compute confidence score (default is True).
+
+    Returns:
+    - dict: Dictionary containing text and optionally confidence score.
+    """
     d = {}
     d["text"] = trans["text"]
     words = []
@@ -137,6 +223,16 @@ def confidence_score_lowest_word_level(trans, confidence=True):
 
 
 def confidence_score_average_word_level(trans, confidence=True):
+    """
+    Computes average confidence score at word level.
+
+    Args:
+    - trans (dict): Dictionary containing ASR transcription text.
+    - confidence (bool): Whether to compute confidence score (default is True).
+
+    Returns:
+    - dict: Dictionary containing text and optionally confidence score.
+    """
     d = {}
     d["text"] = trans["text"]
     words = []
@@ -154,6 +250,16 @@ def confidence_score_average_word_level(trans, confidence=True):
 
 
 def confidence_score_word_level(trans, confidence=True):
+    """
+    Computes confidence score for each word in transcription.
+
+    Args:
+    - trans (dict): Dictionary containing ASR transcription text.
+    - confidence (bool): Whether to compute confidence score (default is True).
+
+    Returns:
+    - dict: Dictionary containing text and list of words with confidence scores.
+    """
     d = {}
     d["text"] = trans["text"]
     words = []
