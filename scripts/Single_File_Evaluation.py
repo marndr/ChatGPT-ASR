@@ -1,14 +1,32 @@
-import argparse
+"""
+ASR Correction Evaluation Script
 
-# from chat_gpt_asr.utils import remove_punctuations
+This script evaluates ASR transcriptions from the Librispeech dataset based on selected experiments using the ChatGPT.
+It computes WER and CER for corrected and original transcriptions (for specific conditions), comparing them and generating
+a markdown file with detailed evaluation results.
+
+Usage:
+    python script_name.py -d <dataset> -e <experiment>
+
+Arguments:
+    -d, --dataset: Select the dataset to evaluate (currently supports 'librispeech').
+    -e, --experiment: Select the experiment to evaluate.
+
+The script requires environment variables to be set:
+    - ROOT_PATH: Root path where dataset and results directories are located.
+
+Example:
+    To evaluate Librispeech dataset with experiment 'exp_without_sentence_confidence_GPT-3.5-Turbo_tiny':
+    python Single_File_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
+"""
+
+import argparse
 import json
 import os
 
 from dotenv import load_dotenv
 from jiwer import RemovePunctuation, cer, wer
 from tqdm import tqdm
-
-# import jiwer
 
 EPSILON = 0.00001
 
@@ -461,10 +479,6 @@ if __name__ == "__main__":
             ref = RemovePunctuation()(d["reference_transcription"].lower())
             hyp = RemovePunctuation()(d["corrected_asr_transcription"].lower())
             hyp_original = RemovePunctuation()(d["asr_transcription"]["text"].lower())
-
-            # ref_l = remove_punctuations(d["reference_transcription"].lower())
-            # hyp_l = remove_punctuations(d["corrected_asr_transcription"].lower())
-            # hyp_l_original = remove_punctuations(d["asr_transcription"]["text"].lower())
 
             wer_corrected_chatgpt = wer([ref], [hyp]) * 100
             wer_original = wer([ref], [hyp_original]) * 100
