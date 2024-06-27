@@ -1,3 +1,9 @@
+"""
+This module provides functions to handle transcription correction using GPT model.
+It includes error printing, fetching responses from OpenAI's chat completions API,
+and parallel processing of multiple transcription data items using multithreading.
+"""
+
 import concurrent.futures
 import os
 import sys
@@ -9,6 +15,9 @@ from openai import OpenAI
 
 
 def print_error(error_code):
+    """
+    Prints error details based on the specified error code.
+    """
     exc_type, exc_value, exc_traceback = sys.exc_info()
     if error_code <= 1:
         print(f"Exception type: {exc_type}")
@@ -21,6 +30,19 @@ def print_error(error_code):
 
 
 def get_chatgpt_response(client, d, get_messages_fn, model):
+    """
+    Retrieves a corrected transcription from OpenAI's chat completions API.
+
+    Args:
+        client (OpenAI): The OpenAI API client.
+        d (dict): A dictionary containing ASR and reference transcriptions.
+        get_messages_fn (function): A function to generate messages for the API call.
+        model (str): The model name to use for the API call.
+
+    Returns:
+        dict: A dictionary containing the original ASR transcription,
+              reference transcription, and corrected ASR transcription.
+    """
     transcription_has_confidence = "confidence_score" in d["asr_transcription"]
     if transcription_has_confidence:
         cscore = d["asr_transcription"].pop("confidence_score")
@@ -73,6 +95,21 @@ def get_chatgpt_response(client, d, get_messages_fn, model):
 def multithread_parallelization(
     data, get_messages_fn, api="openai", model="gpt-3.5-turbo", num_workers=8
 ):
+    """
+    Processes a list of transcription data items in parallel using multithreading.
+
+    Args:
+        data (list): A list of dictionaries, each containing ASR and reference
+        transcriptions.
+        get_messages_fn (function): A function to generate messages for the API call.
+        api (str): The API to use, default is "openai".
+        model (str): The model name to use for the API call, default is "gpt-3.5-turbo".
+        num_workers (int): The number of worker threads to use, default is 8.
+
+    Returns:
+        list: A list of dictionaries containing the original ASR transcriptions,
+              reference transcriptions, and corrected ASR transcriptions.
+    """
     outputs = []
 
     if api == "openai":
