@@ -1,3 +1,9 @@
+"""
+This module provides functions to calculate the CER,
+align three word sequences using DTW based on character
+edit distance, and print the alignment in a tabular format.
+"""
+
 import jiwer
 import numpy as np
 import pandas as pd
@@ -7,7 +13,8 @@ def _cer(ref: str, hyp: str) -> float:
     """Return character error rate between the input strings.
 
     More flexible than jiwer.cer, which doesn't allow an empty string in the
-    reference. NB: Only supports single strings, not lists of strings."""
+    reference. NB: Only supports single strings, not lists of strings.
+    """
     if ref == hyp == "":
         return 0
     if ref == "" or hyp == "":
