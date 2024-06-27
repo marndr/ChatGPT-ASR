@@ -1,3 +1,22 @@
+"""
+Script to evaluate ASR correction performance for the Librispeech dataset based on selected experiments.
+
+This script computes WER, CER, and SER metrics for both original and corrected ASR transcriptions.
+It reads JSON data files containing original, reference and corrected transcriptions,
+and outputs evaluation results to the console and a markdown file.
+
+Usage:
+    python evaluate_asr_correction.py [-d DATASET] [-e EXPERIMENT]
+
+Options:
+    -d, --dataset        Select the dataset (Default is 'librispeech').
+    -e, --experiment     Select the experiment to evaluate.
+
+
+Environment Variables:
+    ROOT_PATH: Path to the root directory of the project containing data and results folders.
+"""
+
 import argparse
 import json
 import os
