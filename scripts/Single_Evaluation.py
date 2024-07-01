@@ -9,7 +9,7 @@ Usage:
     python Single_Evaluation.py [-d dataset] [-e experiment]
 
 Example:
-    python scripts/Single_File_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
+    python Single_File_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
 
 Options:
     -d, --dataset        Select the dataset (Default is 'librispeech').

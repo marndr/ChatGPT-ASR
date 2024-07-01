@@ -14,6 +14,9 @@ Usage:
     -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
     -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
 
+Example:
+    python exp_find_best_prompt_sentence_confidence_tiny.py -d librispeech -n 1
+
 Functions:
     get_messages_exp1(asr_transcription): Constructs the message list for GPT-3.5 Turbo to correct ASR transcriptions.
 
@@ -37,7 +40,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_2.json",
+    "results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_2.json",
 )
 
 

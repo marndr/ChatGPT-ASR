@@ -10,6 +10,8 @@ them to specified output files.
 Environment Variables:
 - ROOT_PATH: The root directory path for input and output files.
 
+Example:
+    python exp_find_thresh_best_prompt_sentence_confidence_tiny.py -d librispeech -n 1
 
 Functions:
     - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
@@ -28,22 +30,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_2.json",
+    "results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_2.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/results_thresh_sentence_confidence_prompt_2_tiny.md",
+    "results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/results_thresh_sentence_confidence_prompt_2_tiny.md",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_sentence_confidence_tiny/Wer_vs_sentence_confidence_prompt_2_tiny.png",
+    "results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_sentence_confidence_tiny/Wer_vs_sentence_confidence_prompt_2_tiny.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_sentence_confidence_tiny/Cer_vs_sentence_confidence_prompt_2_tiny.png",
+    "results/results-dev-set/results_clean/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_sentence_confidence_tiny/Cer_vs_sentence_confidence_prompt_2_tiny.png",
 )
 
 with open(l) as f:

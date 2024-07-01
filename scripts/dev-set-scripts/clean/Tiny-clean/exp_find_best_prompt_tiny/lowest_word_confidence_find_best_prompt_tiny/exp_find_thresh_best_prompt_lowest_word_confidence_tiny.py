@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-3.5 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_best_prompt_lowest_word_confidence_tiny.py -d librispeech -n 1
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 

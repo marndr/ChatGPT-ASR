@@ -9,7 +9,7 @@ Usage:
     python Overall_Evaluation.py [-d DATASET] [-e EXPERIMENT]
 
 Example:
-    python scripts/Overall_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
+    python Overall_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
 
 
 Options:

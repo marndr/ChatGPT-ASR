@@ -6,12 +6,14 @@ It reads JSON data files containing original, reference and corrected transcript
 and outputs evaluation results to the console and a markdown file.
 
 Usage:
-    python evaluate_asr_correction.py [-d DATASET] [-e EXPERIMENT]
+    python Prompt_Evaluation.py [-d DATASET] [-e EXPERIMENT]
 
 Options:
     -d, --dataset        Select the dataset (Default is 'librispeech').
     -e, --experiment     Select the experiment to evaluate.
 
+Example:
+    python Prompt_Evaluation.py -d librispeech -e exp_new_prompt_sentence_confidence_1_tiny
 
 Environment Variables:
     ROOT_PATH: Path to the root directory of the project containing data and results folders.
