@@ -1,3 +1,12 @@
+"""
+This module evaluates and plots the Word Error Rate (WER) versus word confidence
+for GPT-3.5-Turbo on certain low confidence words. It reads the evaluation results
+from a CSV file, saves the results to an Excel file, and generates a plot which is saved as a PNG file.
+
+Example:
+    python evaluation_results_GPT-3.5-Turbo.py
+"""
+
 import os
 
 import matplotlib.pyplot as plt
@@ -9,7 +18,7 @@ Root = os.getenv("ROOT_PATH")
 
 output_file = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/plots_certain_low_confidence_words_tiny/Wer_vs_certain_low_confidence_plot_tiny.png",
+    "results/results-dev-set/results_clean/results_tiny/results_certain_low_confidence_words_tiny/results_GPT-3.5-Turbo_tiny/plots_certain_low_confidence_words_tiny/Wer_vs_certain_low_confidence_plot_tiny.png",
 )
 
 df = pd.read_csv("evaluation_results_GPT-3.5-Turbo.csv")

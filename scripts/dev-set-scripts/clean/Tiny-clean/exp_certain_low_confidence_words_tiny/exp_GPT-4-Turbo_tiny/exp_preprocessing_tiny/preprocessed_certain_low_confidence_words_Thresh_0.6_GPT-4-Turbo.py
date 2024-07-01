@@ -1,3 +1,16 @@
+"""
+ASR Error Correction Module
+
+This module provides functionalities to correct Automatic Speech Recognition (ASR)
+errors using GPT-4 model. It identifies low confidence words in ASR
+transcriptions and replaces them with better suggestions.
+
+Constants:
+    THRESH (float): Confidence threshold for identifying low confidence words.
+    TRANSCRIPTION_FILENAME (str): Path to the input transcription file.
+    CORRECTED_TRANSCRIPTION_FILENAME (str): Path to the output corrected transcription file.
+"""
+
 import argparse
 import json
 import os

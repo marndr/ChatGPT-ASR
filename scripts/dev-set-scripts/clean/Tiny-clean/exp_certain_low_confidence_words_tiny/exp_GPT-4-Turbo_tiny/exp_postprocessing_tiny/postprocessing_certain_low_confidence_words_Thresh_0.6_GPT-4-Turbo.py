@@ -1,3 +1,10 @@
+"""
+Module for processing and correcting ASR transcriptions.
+
+This module loads ASR transcriptions from a JSON file, processes them to identify
+low confidence words, and then saves the corrected transcriptions to an output file.
+"""
+
 import json
 import os
 
