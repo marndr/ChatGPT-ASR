@@ -14,6 +14,9 @@ Usage:
     -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
     -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
 
+Example:
+    python exp_without_sentence_confidence_tiny.py -d librispeech -n 1
+
 Functions:
     get_messages_exp1(asr_transcription): Constructs the message list for GPT-3.5 Turbo to correct ASR transcriptions.
 
@@ -27,7 +30,6 @@ import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
 from chat_gpt_asr.utils import (
     confidence_score_sentence_level,
-    read_dummy_transcriptions,
 )
 from dotenv import load_dotenv
 
@@ -40,7 +42,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     ROOT,
-    "results/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json",
+    "results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-1106/results_without_sentence_confidence_tiny/corrected_transcriptions_sentence_confidence_tiny.json",
 )
 
 
@@ -116,7 +118,6 @@ if __name__ == "__main__":
         if args.num_data > 0:
             data = data[: args.num_data]
 
-        # experiment 1
         for i, d in enumerate(data):
             asr_transcription = confidence_score_sentence_level(
                 d["asr_transcription"], confidence=True
@@ -127,12 +128,12 @@ if __name__ == "__main__":
                 "reference_transcription": reference_transcription,
             }
 
-    elif args.dataset == "dummy":
-        data = read_dummy_transcriptions()
-        output_file = os.path.join(
-            ROOT,
-            "results/experiment_without_confidence/dummy_corrected_transcriptions.json",
-        )
+    # elif args.dataset == "dummy":
+    # data = read_dummy_transcriptions()
+    # output_file = os.path.join(
+    # ROOT,
+    # "results/experiment_without_confidence/dummy_corrected_transcriptions.json",
+    # )
 
     l = multithread_parallelization(
         data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-1106"
