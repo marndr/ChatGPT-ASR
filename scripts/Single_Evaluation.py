@@ -1,23 +1,23 @@
 """
-ASR Correction Evaluation Script
+ASR Correction Evaluation Script for specific condition.
 
 This script evaluates ASR transcriptions from the Librispeech dataset based on selected experiments using the ChatGPT.
 It computes WER and CER for corrected and original transcriptions (for specific conditions), comparing them and generating
 a markdown file with detailed evaluation results.
 
 Usage:
-    python script_name.py -d <dataset> -e <experiment>
-
-Arguments:
-    -d, --dataset: Select the dataset to evaluate (currently supports 'librispeech').
-    -e, --experiment: Select the experiment to evaluate.
-
-The script requires environment variables to be set:
-    - ROOT_PATH: Root path where dataset and results directories are located.
+    python Single_Evaluation.py [-d dataset] [-e experiment]
 
 Example:
-    To evaluate Librispeech dataset with experiment 'exp_without_sentence_confidence_GPT-3.5-Turbo_tiny':
-    python Single_File_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
+    python scripts/Single_File_Evaluation.py -d librispeech -e exp_without_sentence_confidence_GPT-3.5-Turbo_tiny
+
+Options:
+    -d, --dataset        Select the dataset (Default is 'librispeech').
+    -e, --experiment     Select the experiment to evaluate.
+
+Environment Variables:
+    ROOT_PATH: Path to the root directory of the project containing data and results folders.
+
 """
 
 import argparse
