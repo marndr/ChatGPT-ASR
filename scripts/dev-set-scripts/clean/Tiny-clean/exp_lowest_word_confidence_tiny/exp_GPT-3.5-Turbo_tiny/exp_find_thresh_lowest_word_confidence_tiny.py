@@ -10,6 +10,8 @@ them to specified output files.
 Environment Variables:
 - ROOT_PATH: The root directory path for input and output files.
 
+Example:
+    python exp_find_thresh_lowest_word_confidence_tiny.py
 
 Functions:
     - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
@@ -28,19 +30,19 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
+    "results/results-dev-set/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_tiny/corrected_transcriptions_lowest_word_confidence_tiny.json",
 )
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/results_thresh_lowest_word_confidence_tiny.md",
+    "results/results-dev-set/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/results_thresh_lowest_word_confidence_tiny.md",
 )
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/plots_lowest_word_confidence_tiny/Wer_vs_lowest_word_confidence_plot_tiny.png",
+    "results/results-dev-set/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/plots_lowest_word_confidence_tiny/Wer_vs_lowest_word_confidence_plot_tiny.png",
 )
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/plots_lowest_word_confidence_tiny/Cer_vs_lowest_word_confidence_plot_tiny.png",
+    "results/results-dev-set/results_clean/results_tiny/results_lowest_word_confidence_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_tiny/plots_lowest_word_confidence_tiny/Cer_vs_lowest_word_confidence_plot_tiny.png",
 )
 
 with open(l) as f:
