@@ -1,3 +1,24 @@
+"""
+Script to evaluate ASR correction performance for the Librispeech dataset based on selected experiments.
+
+This script computes WER, CER, and SER metrics for both original and corrected ASR transcriptions.
+It reads JSON data files containing original, reference and corrected transcriptions,
+and outputs evaluation results to the console and a markdown file.
+
+Usage:
+    python Prompt_Evaluation.py [-d DATASET] [-e EXPERIMENT]
+
+Options:
+    -d, --dataset        Select the dataset (Default is 'librispeech').
+    -e, --experiment     Select the experiment to evaluate.
+
+Example:
+    python Prompt_Evaluation.py -d librispeech -e exp_new_prompt_sentence_confidence_1_medium
+
+Environment Variables:
+    ROOT_PATH: Path to the root directory of the project containing data and results folders.
+"""
+
 import argparse
 import json
 import os
@@ -35,34 +56,34 @@ if __name__ == "__main__":
     if args.experiment == "exp_new_prompt_sentence_confidence_1_medium":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_sentence_confidence_prompt_1.json",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_sentence_confidence_prompt_1.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_sentence_confidence_prompt_1_medium.md",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_sentence_confidence_prompt_1_medium.md",
         )
 
     if args.experiment == "exp_new_prompt_lowest_word_confidence_1_medium":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_lowest_word_confidence_prompt_1_medium.md",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_lowest_word_confidence_prompt_1_medium.md",
         )
 
     if args.experiment == "exp_new_prompt_sentence_confidence_1_GPT-4-Turbo_medium":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_prompt_1.json",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_prompt_1.json",
         )
 
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results_noisy/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_sentence_confidence_prompt_1_medium.md",
+            "results/results-dev-set/results_noisy/results_medium/results_best_prompt_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_sentence_confidence_new_prompts_medium/results_find_best_prompt_medium/results_overall_sentence_confidence_prompt_1_medium.md",
         )
 
     if args.dataset == "librispeech":
