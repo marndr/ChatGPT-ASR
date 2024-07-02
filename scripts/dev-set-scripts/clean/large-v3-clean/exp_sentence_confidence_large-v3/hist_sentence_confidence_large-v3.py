@@ -1,3 +1,14 @@
+"""
+Module: sentence_confidence_histogram
+
+This module loads a JSON file containing ASR (Automatic Speech Recognition) transcription data,
+extracts confidence scores, and plots a histogram of the sentence confidence scores.
+The histogram is then saved as an image file.
+
+Example:
+    python hist_sentence_confidence_large-v3.py
+"""
+
 import json
 import os
 
@@ -9,11 +20,11 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_large-v3/corrected_transcriptions_sentence_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_large-v3/corrected_transcriptions_sentence_confidence_large-v3.json",
 )
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/hist_sentence_confidence_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/hist_sentence_confidence_large-v3.png",
 )
 
 with open(l) as f:

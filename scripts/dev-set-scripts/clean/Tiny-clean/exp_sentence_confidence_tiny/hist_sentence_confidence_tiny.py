@@ -1,5 +1,5 @@
 """
-Module: average_word_confidence_histogram
+Module: sentence_confidence_histogram
 
 This module loads a JSON file containing ASR (Automatic Speech Recognition) transcription data,
 extracts confidence scores, and plots a histogram of the sentence confidence scores.

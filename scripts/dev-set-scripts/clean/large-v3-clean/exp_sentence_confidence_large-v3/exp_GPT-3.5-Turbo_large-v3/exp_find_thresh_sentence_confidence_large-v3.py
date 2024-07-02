@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-3.5 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_sentence_confidence_large-v3.py
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 
@@ -10,22 +30,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_large-v3/corrected_transcriptions_sentence_confidence_large-v3.json",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_large-v3/corrected_transcriptions_sentence_confidence_large-v3.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/results_thresh_sentence_confidence_large-v3.md",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/results_thresh_sentence_confidence_large-v3.md",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/plots_sentence_confidence_large-v3/Wer_vs_sentence_confidence_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/plots_sentence_confidence_large-v3/Wer_vs_sentence_confidence_plot_large-v3.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/plots_sentence_confidence_large-v3/Cer_vs_sentence_confidence_plot_large-v3.png",
+    "results/results-dev-set/results_clean/results_large-v3/results_sentence_confidence_large-v3/results_GPT-3.5-Turbo_large-v3/gpt-3.5-turbo-1106/results_find_thresh_sentence_confidence_large-v3/plots_sentence_confidence_large-v3/Cer_vs_sentence_confidence_plot_large-v3.png",
 )
 
 with open(l) as f:
