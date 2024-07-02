@@ -1,3 +1,24 @@
+"""
+Script to evaluate ASR correction performance for the Librispeech dataset based on selected experiments.
+
+This script computes WER, CER, and SER metrics for both original and corrected ASR transcriptions.
+It reads JSON data files containing original, reference and corrected transcriptions,
+and outputs evaluation results to the console and a markdown file.
+
+Usage:
+    python Prompt_Evaluation.py [-d DATASET] [-e EXPERIMENT]
+
+Options:
+    -d, --dataset        Select the dataset (Default is 'librispeech').
+    -e, --experiment     Select the experiment to evaluate.
+
+Example:
+    python Prompt_Evaluation.py -d librispeech -e exp_new_prompt_sentence_confidence_1_tiny
+
+Environment Variables:
+    ROOT_PATH: Path to the root directory of the project containing data and results folders.
+"""
+
 import argparse
 import json
 import os
@@ -34,21 +55,21 @@ if __name__ == "__main__":
     if args.experiment == "exp_new_prompt_sentence_confidence_1_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_1.json",
+            "results/results-dev-set/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_sentence_confidence_prompt_1.json",
         )
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_sentence_confidence_prompt_1_tiny.md",
+            "results/results-dev-set/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_sentence_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_sentence_confidence_prompt_1_tiny.md",
         )
 
     if args.experiment == "exp_new_prompt_lowest_word_confidence_1_tiny":
         CORRECTED_TRANSCRIPTIONS_LIBRISPEECH = os.path.join(
             Root,
-            "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+            "results/results-dev-set/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
         )
         OUTPUT_FILE = os.path.join(
             Root,
-            "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_1_tiny.md",
+            "results/results-dev-set/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/results_overall_lowest_word_confidence_prompt_1_tiny.md",
         )
 
     if args.dataset == "librispeech":

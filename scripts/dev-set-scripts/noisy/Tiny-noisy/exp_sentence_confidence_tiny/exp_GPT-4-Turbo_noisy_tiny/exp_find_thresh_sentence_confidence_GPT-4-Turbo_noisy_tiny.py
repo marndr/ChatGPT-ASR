@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-4 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_sentence_confidence_GPT-4-Turbo_noisy_tiny.py
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 
@@ -10,22 +30,19 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_best_prompt_tiny/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+    "results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_tiny/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_tiny.json",
 )
-
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/results_thresh_lowest_word_confidence_prompt_1_tiny.md",
+    "results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_tiny/results_thresh_sentence_confidence_GPT-4-Turbo_tiny.md",
 )
-
 output_file_wer = os.path.join(
     Root,
-    "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_lowest_word_confidence_tiny/Wer_vs_lowest_word_confidence_prompt_1_tiny.png",
+    "results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_tiny/plots_sentence_confidence_GPT-4-Turbo_tiny/Wer_vs_sentence-confidence_GPT-4-Turbo_plot_tiny.png",
 )
-
 output_file_cer = os.path.join(
     Root,
-    "results/results_noisy/results_tiny/results_best_prompt_tiny/results_GPT-3.5-Turbo_tiny/gpt-3.5-turbo-0125/results_lowest_word_confidence_new_prompts_tiny/results_find_thresh_best_prompt_tiny/plots_lowest_word_confidence_tiny/Cer_vs_lowest_word_confidence_prompt_1_tiny.png",
+    "results/results-dev-set/results_noisy/results_tiny/results_sentence_confidence_tiny/results_GPT-4-Turbo_tiny/gpt-4-0125-preview/results_find_thresh_sentence_confidence_GPT-4-Turbo_tiny/plots_sentence_confidence_GPT-4-Turbo_tiny/Cer_vs_sentence-confidence_GPT-4-Turbo_plot_tiny.png",
 )
 
 with open(l) as f:
@@ -101,22 +118,19 @@ def plot(l):
 
     plt.figure()
     plt.plot(x, y_wer, "-ob", label="Wer")
-    plt.xlabel("lowest word confidence")
+    plt.xlabel("sentence confidence")
     plt.ylabel("Wer")
-    plt.title(
-        "Wer vs lowest word confidence for GPT-3.5-Turbo (new prompt-1, tiny, noisy)"
-    )
+    plt.title("Wer sentence confidence for GPT-4-Turbo(tiny, noisy)")
     # plt.yticks([6,6.5,7,7.5,8,8.5,9])
+    # plt.show()
     plt.savefig(output_file_wer)
 
     y_cer = [dictionary["cer"] for dictionary in l]
     plt.figure()
     plt.plot(x, y_cer, "-or", label="Cer")
-    plt.xlabel("lowest word confidence")
+    plt.xlabel("sentence confidence")
     plt.ylabel("Cer")
-    plt.title(
-        "Cer vs lowest word confidence for GPT-3.5-Turbo (new promt-1,tiny, noisy)"
-    )
+    plt.title("Cer vs sentence confidence for GPT-4-Turbo(tiny, noisy)")
     # plt.yticks([2.5,3,3.5,4,4.5,5])
     # plt.show()
     plt.savefig(output_file_cer)
