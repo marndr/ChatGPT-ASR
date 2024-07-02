@@ -1,10 +1,34 @@
+"""
+ASR Correction Script Using ChatGPT
+
+This script utilizes GPT-4 Turbo model to correct automatic speech recognition (ASR) transcriptions.
+It reads ASR transcriptions from a dataset, processes them to calculate confidence scores, and corrects the
+transcriptions using the GPT-4 Turbo model. The corrected transcriptions are then saved to a specified output file.
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+- OPENAI_API_KEY: The API key for OpenAI.
+
+Usage:
+    Run the script from the command line with optional arguments to specify the dataset and number of data points to process.
+    -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
+    -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
+
+Example:
+    python exp_without_sentence_confidence_GPT-4-Turbo_noisy_large-v3.py -d librispeech -n 1
+
+Functions:
+    get_messages_exp1(asr_transcription): Constructs the message list for GPT-4 Turbo to correct ASR transcriptions.
+
+"""
+
 import argparse
 import json
 import os
 
 import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
-from chat_gpt_asr.utils import confidence_score_lowest_word_level
+from chat_gpt_asr.utils import confidence_score_sentence_level
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,26 +40,36 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_noisy_large-v3/results_find_best_prompt_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-4-Turbo_noisy_large-v3/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_noisy_large-v3/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_noisy_large-v3.json",
 )
 
 
 def get_messages_exp1(asr_transcription):
+    """
+    Constructs a prompt for a given ASR transcription.
+
+    Args:
+        asr_transcription (dict): A dictionary containing the ASR transcription with the key 'text'.
+
+    Returns:
+        list: A list of dictionaries representing the message sequence.
+    """
     messages = [
         {
             "role": "system",
             "content": """You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription in json format with key: text \
-            and your task is to correct any errors in it. \
+            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model. \
+            Your task is to correct any errors in the transcription.\
             Provide the most probable corrected transcription in string format. \
+            If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
             Do not change the case, for example, lower case or upper case, in the transcription. \
             Do not output any additional text that is not the corrected transcription. \
             Do not write any explanatory text that is not the corrected transcription.
-        """,
+            """,
         },
         {
             "role": "user",
-            "content": '{"text":"Why not allow your silver tuff to luxuriate in a natural manner?"}',
+            "content": '{"text": "Why not allow your silver tuff to luxuriate in a natural manner?"}',
         },
         {
             "role": "assistant",
@@ -85,7 +119,7 @@ if __name__ == "__main__":
 
         # experiment 1
         for i, d in enumerate(data):
-            asr_transcription = confidence_score_lowest_word_level(
+            asr_transcription = confidence_score_sentence_level(
                 d["asr_transcription"], confidence=True
             )
             reference_transcription = d["reference_transcription"]
@@ -95,7 +129,7 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-1106"
+        data, get_messages_fn=get_messages_exp1, model="gpt-4-0125-preview"
     )
 
     with open(output_file, "w") as f:

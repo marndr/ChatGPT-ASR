@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-3.5 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_best_prompt_sentence_confidence_noisy_large-v3.py
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 
@@ -10,21 +30,21 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_best_prompt_noisy_large-v3/corrected_transcriptions_sentence_confidence_prompt_1.json",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_best_prompt_noisy_large-v3/corrected_transcriptions_sentence_confidence_prompt_1.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/results_thresh_sentence_confidence_prompt_1_noisy_large-v3.md",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/results_thresh_sentence_confidence_prompt_1_noisy_large-v3.md",
 )
 output_file_wer = os.path.join(
     Root,
-    "results/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_prompt_1_noisy_large-v3.png",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Wer_vs_sentence_confidence_prompt_1_noisy_large-v3.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_prompt_1_noisy_large-v3.png",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_best_prompt_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_sentence_confidence_new_prompts_noisy_large-v3/results_find_thresh_best_prompt_noisy_large-v3/plots_sentence_confidence_noisy_large-v3/Cer_vs_sentence_confidence_prompt_1_noisy_large-v3.png",
 )
 
 with open(l) as f:
@@ -33,6 +53,16 @@ with open(l) as f:
 
 
 def evaluate_with_thresh(items, thresh):
+    """
+    Evaluates WER and CER for a given confidence threshold.
+
+    Args:
+        items (list): List of dictionaries containing ASR transcriptions and their confidence scores.
+        thresh (float): The confidence threshold to evaluate.
+
+    Returns:
+        tuple: A tuple containing WER and CER as percentages.
+    """
     hyp_l, ref_l = [], []
 
     for item in items:
@@ -73,6 +103,12 @@ for thresh in thresholds:
 
 
 def plot(l):
+    """
+    Plots WER and CER against confidence thresholds and saves the plots.
+
+    Args:
+        results (list): List of dictionaries containing thresholds, WER, and CER values.
+    """
     x = [dictionary["thresh"] for dictionary in l]
     y_wer = [dictionary["wer"] for dictionary in l]
 

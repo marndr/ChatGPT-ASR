@@ -6,7 +6,7 @@ extracts confidence scores, and plots a histogram of the sentence confidence sco
 The histogram is then saved as an image file.
 
 Example:
-    python hist_sentence_confidence_noisy_large-v3.py
+    python hist_lowest_word_confidence_noisy_large-v3.py
 """
 
 import json
@@ -20,11 +20,11 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_without_sentence_confidence_noisy_large-v3/corrected_transcriptions_sentence_confidence_noisy_large-v3.json",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/results_GPT-3.5-Turbo_noisy_large-v3/gpt-3.5-turbo-1106/results_without_lowest_word_confidence_noisy_large-v3/corrected_transcriptions_lowest_word_confidence_noisy_large-v3.json",
 )
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_sentence_confidence_noisy_large-v3/hist_sentence_confidence_noisy_large-v3.png",
+    "results/results-dev-set/results_noisy/results_noisy_large-v3/results_lowest_word_confidence_noisy_large-v3/hist_lowest_word_confidence_noisy_large-v3.png",
 )
 
 with open(l) as f:
@@ -41,9 +41,10 @@ for item in items:
 
 
 plt.hist(confidences, bins=20)
-plt.xlabel("sentence confidence")
+
+plt.xlabel("lowest-word confidence")
 plt.ylabel("count")
-plt.title("Histogram of sentence confidence (noisy, large-v3)")
+plt.title("Histogram of lowest-word confidence(noisy, large-v3)")
 plt.yticks([0, 100, 200, 300, 400, 500, 600, 700, 800, 900])
 
 plt.savefig(OUTPUT_FILE)
