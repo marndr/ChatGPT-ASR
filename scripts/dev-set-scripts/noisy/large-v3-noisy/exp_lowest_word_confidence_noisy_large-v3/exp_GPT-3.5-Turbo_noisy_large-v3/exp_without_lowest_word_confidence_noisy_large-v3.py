@@ -45,6 +45,15 @@ CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
 
 
 def get_messages_exp1(asr_transcription):
+    """
+    Constructs a prompt for a given ASR transcription.
+
+    Args:
+        asr_transcription (dict): A dictionary containing the ASR transcription with the key 'text'.
+
+    Returns:
+        list: A list of dictionaries representing the message sequence.
+    """
     messages = [
         {
             "role": "system",
