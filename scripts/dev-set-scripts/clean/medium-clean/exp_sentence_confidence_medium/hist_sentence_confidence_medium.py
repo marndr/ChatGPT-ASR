@@ -18,11 +18,11 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_without_sentence_confidence_medium/corrected_transcriptions_sentence_confidence_medium.json",
+    "results/results-dev-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_without_sentence_confidence_medium/corrected_transcriptions_sentence_confidence_medium.json",
 )
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_sentence_confidence_medium/hist_sentence_confidence_medium.png",
+    "results/results-dev-set/results_clean/results_medium/results_sentence_confidence_medium/hist_sentence_confidence_medium.png",
 )
 
 with open(l) as f:

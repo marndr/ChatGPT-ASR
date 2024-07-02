@@ -14,6 +14,9 @@ Usage:
     -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
     -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
 
+Example:
+    python exp_without_sentence_confidence_GPT-4-Turbo_medium.py -d librispeech -n 1
+
 Functions:
     get_messages_exp1(asr_transcription): Constructs the message list for GPT-4 Turbo to correct ASR transcriptions.
 
@@ -37,7 +40,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json",
+    "results/results-dev-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json",
 )
 
 
@@ -114,7 +117,6 @@ if __name__ == "__main__":
         if args.num_data > 0:
             data = data[: args.num_data]
 
-        # experiment 1
         for i, d in enumerate(data):
             asr_transcription = confidence_score_sentence_level(
                 d["asr_transcription"], confidence=True

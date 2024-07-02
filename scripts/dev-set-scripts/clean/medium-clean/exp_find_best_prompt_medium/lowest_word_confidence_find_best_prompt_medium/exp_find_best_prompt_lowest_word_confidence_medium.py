@@ -1,3 +1,27 @@
+"""
+ASR Correction Script Using ChatGPT
+
+This script utilizes GPT-3.5 Turbo model to correct automatic speech recognition (ASR) transcriptions.
+It reads ASR transcriptions from a dataset, processes them to calculate confidence scores, and corrects the
+transcriptions using the GPT-3.5 Turbo model. The corrected transcriptions are then saved to a specified output file.
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+- OPENAI_API_KEY: The API key for OpenAI.
+
+Usage:
+    Run the script from the command line with optional arguments to specify the dataset and number of data points to process.
+    -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
+    -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
+
+Example:
+    python exp_find_best_prompt_lowest_word_confidence_medium.py -d librispeech -n 1
+
+Functions:
+    get_messages_exp1(asr_transcription): Constructs the message list for GPT-3.5 Turbo to correct ASR transcriptions.
+
+"""
+
 import argparse
 import json
 import os
@@ -16,7 +40,7 @@ TRANSCRIPTION_FILENAME = os.path.join(
 )
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
+    "results/results-dev-set/results_clean/results_medium/results_best_prompt_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-1106/results_lowest_word_confidence_new_prompts_medium/results_find_best_prompt_medium/corrected_transcriptions_lowest_word_confidence_prompt_1.json",
 )
 
 

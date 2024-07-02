@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-4 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium.py
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 
@@ -10,22 +30,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_medium/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_medium.json",
+    "results/results-dev-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_lowest_word_confidence_GPT-4-Turbo_medium/corrected_transcriptions_lowest_word_confidence_GPT-4-Turbo_medium.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/results_thresh_lowest_word_confidence_medium.json",
+    "results/results-dev-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/results_thresh_lowest_word_confidence_medium.json",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png",
+    "results/results-dev-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Wer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png",
+    "results/results-dev-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_find_thresh_lowest_word_confidence_GPT-4-Turbo_medium/plots_lowest_word_confidence_GPT-4-Turbo_medium/Cer_vs_lowest_word_confidence_GPT-4-Turbo_plot_medium.png",
 )
 
 with open(l) as f:
