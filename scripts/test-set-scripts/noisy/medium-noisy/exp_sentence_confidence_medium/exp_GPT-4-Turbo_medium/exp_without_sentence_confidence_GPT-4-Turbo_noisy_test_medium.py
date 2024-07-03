@@ -1,10 +1,34 @@
+"""
+ASR Correction Script Using ChatGPT
+
+This script utilizes GPT-4 Turbo model to correct automatic speech recognition (ASR) transcriptions.
+It reads ASR transcriptions from a dataset, processes them to calculate confidence scores, and corrects the
+transcriptions using the GPT-4 Turbo model. The corrected transcriptions are then saved to a specified output file.
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+- OPENAI_API_KEY: The API key for OpenAI.
+
+Usage:
+    Run the script from the command line with optional arguments to specify the dataset and number of data points to process.
+    -d, --dataset: Specify the dataset to use ('librispeech'). Default is 'librispeech'.
+    -n, --num_data: Specify the number of data points to process. Default is -1 (process all data).
+
+Example:
+    python exp_without_sentence_confidence_GPT-4-Turbo_noisy_test_medium.py -d librispeech -n 1
+
+Functions:
+    get_messages_exp1(asr_transcription): Constructs the message list for GPT-4 Turbo to correct ASR transcriptions.
+
+"""
+
 import argparse
 import json
 import os
 
 import openai
 from chat_gpt_asr.chatgpt import multithread_parallelization
-from chat_gpt_asr.utils import confidence_score_lowest_word_level
+from chat_gpt_asr.utils import confidence_score_sentence_level
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,11 +41,20 @@ TRANSCRIPTION_FILENAME = os.path.join(
 
 CORRECTED_TRANSCRIPTION_FILENAME = os.path.join(
     Root,
-    "results/results-test-set/results_noisy/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium.json",
+    "results/results-test-set/results_noisy/results_medium/results_sentence_confidence_medium/results_GPT-4-Turbo_medium/gpt-4-0125-preview/results_without_sentence_confidence_GPT-4-Turbo_medium/corrected_transcriptions_sentence_confidence_GPT-4-Turbo_medium.json",
 )
 
 
 def get_messages_exp1(asr_transcription):
+    """
+    Constructs a prompt for a given ASR transcription.
+
+    Args:
+        asr_transcription (dict): A dictionary containing the ASR transcription with the key 'text'.
+
+    Returns:
+        list: A list of dictionaries representing the message sequence.
+    """
     messages = [
         {
             "role": "system",
@@ -86,11 +119,14 @@ if __name__ == "__main__":
         if args.num_data > 0:
             data = data[: args.num_data]
 
-        # experiment 1
         for i, d in enumerate(data):
-            asr_transcription = confidence_score_lowest_word_level(
-                d["asr_transcription"], confidence=True
-            )
+            try:
+                asr_transcription = confidence_score_sentence_level(
+                    d["asr_transcription"], confidence=True
+                )
+            except:
+                print("error for ", d)
+                continue
             reference_transcription = d["reference_transcription"]
             data[i] = {
                 "asr_transcription": asr_transcription,
@@ -98,7 +134,7 @@ if __name__ == "__main__":
             }
 
     l = multithread_parallelization(
-        data, get_messages_fn=get_messages_exp1, model="gpt-3.5-turbo-0125"
+        data, get_messages_fn=get_messages_exp1, model="gpt-4-0125-preview"
     )
 
     with open(output_file, "w") as f:
