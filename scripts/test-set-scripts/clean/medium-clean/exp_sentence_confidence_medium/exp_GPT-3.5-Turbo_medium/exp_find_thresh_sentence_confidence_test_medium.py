@@ -1,3 +1,23 @@
+"""
+ASR Confidence Threshold Evaluation and Plotting Script
+
+This script evaluates the impact of various confidence thresholds on
+Word Error Rate (WER) and Character Error Rate (CER) for ASR transcriptions
+corrected using GPT-3.5 Turbo model. It plots the results and saves
+them to specified output files.
+
+
+Environment Variables:
+- ROOT_PATH: The root directory path for input and output files.
+
+Example:
+    python exp_find_thresh_sentence_confidence_test_medium.py
+
+Functions:
+    - evaluate_with_thresh(items, thresh): Evaluates WER and CER at a given confidence threshold.
+    - plot(results): Plots WER and CER against confidence thresholds.
+"""
+
 import json
 import os
 
@@ -10,22 +30,22 @@ Root = os.getenv("ROOT_PATH")
 
 l = os.path.join(
     Root,
-    "results/results-test-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_without_lowest_word_confidence_medium/corrected_transcriptions_lowest_word_confidence_medium.json",
+    "results/results-test-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_without_sentence_confidence_medium/corrected_transcriptions_sentence_confidence_medium.json",
 )
 
 OUTPUT_FILE = os.path.join(
     Root,
-    "results/results-test-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_medium/results_thresh_lowest_word_confidence_medium.json",
+    "results/results-test-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_medium/results_thresh_sentence_confidence_medium.md",
 )
 
 output_file_wer = os.path.join(
     Root,
-    "results/results-test-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_medium/plots_lowest_word_confidence_medium/Wer_vs_lowest_word_confidence_plot_medium.png",
+    "results/results-test-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_medium/plots_sentence_confidence_medium/Wer_vs_sentence_confidence_plot_medium.png",
 )
 
 output_file_cer = os.path.join(
     Root,
-    "results/results-test-set/results_clean/results_medium/results_lowest_word_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_lowest_word_confidence_medium/plots_lowest_word_confidence_medium/Cer_vs_lowest_word_confidence_plot_medium.png",
+    "results/results-test-set/results_clean/results_medium/results_sentence_confidence_medium/results_GPT-3.5-Turbo_medium/gpt-3.5-turbo-0125/results_find_thresh_sentence_confidence_medium/plots_sentence_confidence_medium/Cer_vs_sentence_confidence_plot_medium.png",
 )
 
 with open(l) as f:
@@ -69,7 +89,7 @@ def evaluate_with_thresh(items, thresh):
     return WER, CER
 
 
-thresholds = [0.7]
+thresholds = [0.95]
 results = []
 
 
@@ -84,11 +104,9 @@ def plot(l):
 
     plt.figure()
     plt.plot(x, y_wer, "-ob", label="Wer")
-    plt.xlabel("lowest word confidence")
+    plt.xlabel("sentence confidence")
     plt.ylabel("Wer")
-    plt.title(
-        "Wer vs lowest word confidence for GPT-3.5-Turbo(medium, clean, test-set)"
-    )
+    plt.title("Wer vs sentence confidence for GPT-3.5-Turbo(medium, clean, test-set)")
     # plt.yticks([3,3.5,4,4.5,5,5.5])
     # plt.show()
     plt.savefig(output_file_wer)
@@ -96,11 +114,9 @@ def plot(l):
     y_cer = [dictionary["cer"] for dictionary in l]
     plt.figure()
     plt.plot(x, y_cer, "-or", label="Cer")
-    plt.xlabel("lowest word confidence")
+    plt.xlabel("sentence confidence")
     plt.ylabel("Cer")
-    plt.title(
-        "Cer vs lowest word confidence for GPT-3.5-Turbo(medium, clean, test-set)"
-    )
+    plt.title("Cer vs sentence confidence for GPT-3.5-Turbo(medium, clean, test-set)")
     # plt.yticks([1,1.5,2,2.5])
     # plt.show()
     plt.savefig(output_file_cer)
