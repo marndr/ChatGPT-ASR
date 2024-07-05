@@ -1,6 +1,7 @@
 # Overview
 
-This document provides detailed instructions on how to re-run the experiments for correcting ASR transcriptions using GPT models. It includes steps to prepare the environment, run the experiments, and the expected results.
+This document provides detailed instructions on how to re-run the experiments for correcting ASR transcriptions using GPT models in this project.
+It includes steps to prepare the environment, run the experiments, and the expected results for this project.
 
 ## Preparing the Environment
 
