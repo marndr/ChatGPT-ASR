@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Maryam Naderi  <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
 """
 This script transcribes audio files from the Librispeech dataset using OpenAI's Whisper model.
 The transcriptions and reference texts are saved in a json file.

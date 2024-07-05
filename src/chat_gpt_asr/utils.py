@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Maryam Naderi  <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
 """
 This module provides various functions for text processing and ASR evaluation.
 It includes functions for reading dummy transcriptions, reading transcriptions from

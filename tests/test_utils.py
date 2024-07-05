@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Maryam Naderi  <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
 from chat_gpt_asr.utils import confidence_score_sentence_level
 
 

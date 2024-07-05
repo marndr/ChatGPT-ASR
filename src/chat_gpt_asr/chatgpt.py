@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Maryam Naderi  <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
 """
 This module provides functions to handle transcription correction using GPT model.
 It includes error printing, fetching responses from OpenAI's chat completions API,
