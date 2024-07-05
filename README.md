@@ -113,7 +113,10 @@ results/results-dev-set/results_clean/results_tiny/results_sentence_confidence_t
 ```
 ## LICENSE
 ```
-SPDX-FileCopyrightText: Copyright © 2024 Idiap Research Institute contact@idiap.ch
-SPDX-FileContributor: Maryam NADERI maryam.naderi@idiap.ch
-SPDX-License-Identifier: LicenseRef-master-thesis
+Copyright 2023 Idiap Research Institute <contact@idiap.ch
+
+SPDX-FileContributor: Maryam Naderi <maryam.naderi@idiap.ch>
+
+SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
 ```
