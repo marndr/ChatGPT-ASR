@@ -1,7 +1,11 @@
 # ChatGPT-ASR
 ## MASTER AI
-This git is the implementation of the master thesis of Maryam Naderi. The master thesis took place between 2023 and 2024.
+This git is the implementation of the master thesis of Maryam Naderi.
+The master thesis took place between 2023 and 2024.
 The goal of the master thesis is to study correcting ASR trancriptions using LLMs.
+A part of this project has already been accepted in the form of a peer-reviewed paper
+titled "Towards interfacing large language models with ASR systems using
+confidence measures and prompting" at the Interspeech 2024 Conference.
 
 ## Setup
 
