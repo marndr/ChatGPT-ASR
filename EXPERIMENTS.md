@@ -47,7 +47,7 @@ This document provides detailed instructions on how to re-run the experiments fo
 
 #### Description
 
-This experiment corrects ASR transcriptions using GPT model without considering sentence confidence.
+This experiment corrects ASR transcriptions using GPT model without considering confidence measures.
 
 #### Steps
 
@@ -108,7 +108,7 @@ This experiment evaluates the impact of various confidence thresholds on Word Er
 
 3. **Evaluation:**
 
-    The overall evaluation results including WER, CER, and SER are expected to be documented and can be reviewed for performance analysis.
+    The overall evaluation results including WER, CER, and SER are expected to be documented and can be reviewed for performance analysis (by Overall_Evaluation.py in scripts).
 
 ## Conclusion
 
