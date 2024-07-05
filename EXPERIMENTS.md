@@ -109,7 +109,3 @@ This experiment evaluates the impact of various confidence thresholds on Word Er
 3. **Evaluation:**
 
     The overall evaluation results including WER, CER, and SER are expected to be documented and can be reviewed for performance analysis (by Overall_Evaluation.py in scripts).
-
-## Conclusion
-
-By following these steps, you should be able to reproduce the experiments and obtain results similar to those documented in the expected results sections. Ensure that the environment is correctly set up and the necessary dependencies are installed as specified in the `README.md`.
