@@ -1,3 +1,10 @@
+# Copyright 2023 Idiap Research Institute <contact@idiap.ch
+#
+# SPDX-FileContributor: Maryam Naderi <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
+
 """
 Script to evaluate ASR correction performance for the Librispeech dataset based on selected experiments.
 

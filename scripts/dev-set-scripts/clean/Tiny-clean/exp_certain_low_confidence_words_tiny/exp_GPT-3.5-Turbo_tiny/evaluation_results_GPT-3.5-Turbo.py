@@ -1,3 +1,10 @@
+# Copyright 2023 Idiap Research Institute <contact@idiap.ch
+#
+# SPDX-FileContributor: Maryam Naderi <maryam.naderi@idiap.ch>
+#
+# SPDX-License-Identifier: LicenseRef-chatgpt-asr
+
+
 """
 This module evaluates and plots the Word Error Rate (WER) versus word confidence
 for GPT-3.5-Turbo on certain low confidence words. It reads the evaluation results
