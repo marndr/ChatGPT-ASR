@@ -1,16 +1,16 @@
 version = 1
 SPDX-PackageName = "chatgpt-asr"
-SPDX-PackageSupplier = "Maryam Naderi <maryam.naderi@idiap.ch>"
+SPDX-PackageSupplier = "Maryam Naderi maryam.naderi@idiap.ch"
 SPDX-PackageDownloadLocation = "https://gitlab.idiap.ch/mnaderi/chat-gpt-asr.git"
 
 [[annotations]]
-path = [".gitignore", "README.md", "requirements.txt", "setup.py", "THIRDPARTY.md"]
+path = [".gitignore,", "README.md,", "requirements.txt,", "setup.py"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
 SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
 
 [[annotations]]
-path = ["scripts/**.py", "scripts/**/**.py", "src/**/*.py"]
+path = ["scripts/**.py,", "scripts/**/**.py,", "src/**/**.py"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
 SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
@@ -23,6 +23,12 @@ SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
 
 [[annotations]]
 path = "**/**.py"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
+SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
+
+[[annotations]]
+path = ["./LICENSES/LicenseRef-chatgpt-asr.txt,", "./src/chat_gpt_asr.egg-info/dependency_links.txt,", "./src/chat_gpt_asr.egg-info/SOURCES.txt,", "./src/chat_gpt_asr.egg-info/top_level.txt,", "./requirements.dev.txt,./scripts/dev-set-scripts/clean/medium-clean/exp_find_best_prompt_medium/prompts.txt,./scripts/dev-set-scripts/clean/Tiny-clean/exp_find_best_prompt_tiny/prompts.txt,./scripts/dev-set-scripts/clean/large-v3-clean/exp_find_best_prompt_large-v3/prompts.txt,./scripts/dev-set-scripts/noisy/large-v3-noisy/exp_find_best_prompt_noisy_large-v3/prompts.txt,./scripts/dev-set-scripts/noisy/Tiny-noisy/exp_find_best_prompt_noisy_tiny/prompts.txt,./scripts/dev-set-scripts/noisy/medium-noisy/exp_find_best_prompt_noisy_medium/prompts.txt,./requirements.txt"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
 SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
