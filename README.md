@@ -20,7 +20,6 @@ cd chat-gpt-asr
 ```bash
 conda create -n chat-gpt-asr python=3.10
 conda activate chat-gpt-asr
-pip install -r requirements.txt
 pip install -e .
 
 # Download Spacy model for POS tag analysis
@@ -46,10 +45,10 @@ python scripts/transcribe.py
 
 ## Development
 
-Install the dev requirements.
+Install the package with the development dependencies.
 
 ```bash
-pip install -r requirements.dev.txt
+pip install -e .[dev]
 ```
 
 The code is formatted and linted with [ruff](https://docs.astral.sh/ruff/). It runs
