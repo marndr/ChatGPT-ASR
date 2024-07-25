@@ -9,25 +9,13 @@ SPDX-PackageSupplier = "Maryam Naderi maryam.naderi@idiap.ch"
 SPDX-PackageDownloadLocation = "https://gitlab.idiap.ch/mnaderi/chat-gpt-asr.git"
 
 [[annotations]]
-path = [".gitignore", "README.md", "requirements.txt", "setup.py"]
-precedence = "aggregate"
-SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
-SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
-
-[[annotations]]
-path = ["scripts/**.py", "scripts/**/**.py", "src/**/**.py"]
+path = [".gitignore", "README.md", "requirements.txt"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
 SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
 
 [[annotations]]
 path = "**/**.ipynb"
-precedence = "aggregate"
-SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
-SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
-
-[[annotations]]
-path = "**/**.py"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2023 Idiap Research Institute <contact@idiap.ch>"
 SPDX-License-Identifier = "LicenseRef-chatgpt-asr"
