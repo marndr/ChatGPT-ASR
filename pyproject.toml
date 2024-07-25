@@ -1,13 +1,36 @@
 # SPDX-FileCopyrightText: 2024 Idiap Research Institute <contact@idiap.ch>
-# SPDX-FileContributor: Maryam Naderi  <maryam.naderi@idiap.ch>
 #
 # SPDX-License-Identifier: LicenseRef-chatgpt-asr
 
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "chat-gpt-asr"
 version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10, <3.11"
 authors = [{name = "Maryam Naderi", email = "maryam.naderi@idiap.ch"}]
+dependencies = [
+    "jiwer==3.0.3",
+    "jupyter==1.0.0",
+    "numpy==1.25.2",
+    "openai==1.23.6",
+    "pandas==2.2.1",
+    "python-dotenv==1.0.0",
+    "spacy==3.7.2",
+    "tqdm",
+    "whisper_timestamped==1.12.20",
+]
+
+[project.optional-dependencies]
+# Development dependencies
+dev = [
+    "pre-commit==3.7.0",
+    "reuse==4.0.2",
+    "ruff==0.4.1",
+]
 
 [tool.ruff]
 target-version = "py310"
