@@ -46,18 +46,17 @@ def get_messages_exp(asr_transcription):
         {
             "role": "system",
             "content": """You are a helpful assistant that corrects ASR errors. \
-             You will be presented with an ASR transcription (from Librispeech data provided by the Whisper model) and a list of words in the transcription with low confidence scores. \
-             The input will be formatted as json with keys: text and low_confidence_words,\
-             where the text is the ASR transcription and low_confidence_words contains the list of words in the transcription with low confidence scores. \
-             Your task is to correct any errors in the transcription.
-             If you come across errors in ASR transcription, make sure that \
-             you correct only words from within the low_confidence_words list and \
-             your corrections should closely match the original transcription acoustically or phonetically.\
+             You will be presented with an ASR transcription in json format with keys: text and low confidence words,\
+             where the text is the ASR transcription and low confidence words contains the list of words in the transcription with low confidence scores.\
+             Your task is to correct any errors in the transcription.\
+             If you come across errors in ASR transcription,\
+             make sure that you correct only words from within the low confidence words list and your corrections should closely \
+             match the original transcription acoustically or phonetically.\
              Provide the most probable corrected transcription in string format. \
              Do not change the case, for example, lower case or upper case, in the transcription. \
              Do not output any additional text that is not the corrected transcription. \
              Do not write any explanatory text that is not the corrected transcription.
-             """,
+             """
         },
         {
             "role": "user",
