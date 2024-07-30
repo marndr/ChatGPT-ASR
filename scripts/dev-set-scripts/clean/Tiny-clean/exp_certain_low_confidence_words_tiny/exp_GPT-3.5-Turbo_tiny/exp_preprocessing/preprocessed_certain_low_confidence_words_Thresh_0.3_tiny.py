@@ -43,7 +43,7 @@ def get_messages_exp(asr_transcription):
              Do not change the case, for example, lower case or upper case, in the transcription. \
              Do not output any additional text that is not the corrected transcription. \
              Do not write any explanatory text that is not the corrected transcription.
-             """
+             """,
         },
         {
             "role": "user",
