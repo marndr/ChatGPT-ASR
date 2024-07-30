@@ -29,8 +29,7 @@ def get_messages_exp(asr_transcription):
         {
             "role": "system",
             "content": """You are a helpful assistant that corrects ASR errors. \
-            You will be presented with an ASR transcription of Librispeech data provided by the Whisper model in json format with key: text. \
-            Your task is to correct any errors in the transcription.\
+            You will be presented with an ASR transcription in json format with key: text and your task is to correct any errors in it.\
             Provide the most probable corrected transcription in string format. \
             If you come across errors in ASR transcription, make corrections that closely match the original transcription acoustically or phonetically.\
             Do not change the case, for example, lower case or upper case, in the transcription. \
